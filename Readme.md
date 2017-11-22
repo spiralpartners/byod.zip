@@ -58,7 +58,7 @@ C:\byod\java1.8_152\jre
 - 現在は.classpathを以下のように指定している．
   - srcとoutputを指定しないと，ソースコードの自動チェックが走らない(Intellisenseとかも働かない）
   - つまり，*.javaファイルを置くディレクトリごとにsrcの指定が必要
-```.classpath
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/java01/ex01"/>
@@ -72,7 +72,7 @@ C:\byod\java1.8_152\jre
   - mainClassを現在開いているファイルのファイル名から拡張子を取り除いたもの(```${fileBasenameNoExtension}```)を自動的に取得して設定するようになっている
   - packageを利用する場合，mainClassの設定を「java01.ex01.Hello」のように明示的に書く必要がある．
     - 課題が進むごとに書き換えないといけなくなるので現実的ではない
-```launch.json
+```javascript
     "configurations": [
         {
             "type": "java",
