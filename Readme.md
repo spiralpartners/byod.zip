@@ -17,7 +17,6 @@ C:\byod\java1.8_152\db
 C:\byod\java1.8_152\include
 C:\byod\java1.8_152\jre
 :
-:
 ```
 
 - javatest_local.zipを任意のフォルダに解凍（どこでも良い）
@@ -35,9 +34,9 @@ C:\byod\java1.8_152\jre
 
 ### コンパイル・実行(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（デフォではWin10だとPowershell，それより前だとcmdが起動する）
-- フォルダルートにいる状態でターミナルが開くので，```cd .\src\java01\ex01\```と実行する
-- ```javac -encoding utf8 Hello.java Test2.java```と実行する
-- 正常にコンパイルができ，classファイルができたら，```java Hello```と実行すると結果が出力される
+- フォルダルートにいる状態でターミナルが開くので，`cd .\src\java01\ex01\`と実行する
+- `javac -encoding utf8 Hello.java Test2.java`と実行する
+- 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
 ### コンパイル・実行(方法2)
 - Hello.javaを開いた状態で，デバッグ->デバッグを開始，を選択する
@@ -46,7 +45,7 @@ C:\byod\java1.8_152\jre
 
 ## 今後の課題
 ### デフォルト文字エンコードをどうするか
-- vs codeのデフォはutf-8だが，その場合winでjavac -encoding utf-8を毎回つける必要あり
+- vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要あり
   - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
 
 ### シェルをどうするか
