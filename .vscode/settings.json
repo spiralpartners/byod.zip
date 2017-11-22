@@ -1,0 +1,9 @@
+{
+    "files.encoding": "utf8",
+    "java.home": "c://byod//java1.8_152",
+    "editor.renderWhitespace": "boundary",
+    "workbench.colorTheme": "Default Light+",
+    "files.exclude": {
+        "bin/": true
+    }
+}
