@@ -1,7 +1,12 @@
-# BYOD環境下におけるプログラミング演習環境の構築
+# BYOD下におけるプログラミング演習環境の構築
+## リポジトリの内容
+- このリポジトリの内容はBYOD下でのプログラミング演習環境の一部である
+- 学生が解く課題を保存するフォルダのみをリポジトリで管理する
+- 想定するプログラミング演習の言語はJava
+- 実行する環境はJDK＋Visual Studio Code．実行環境は[Release](https://github.com/spiralpartners/byod.zip/releases) でDLできるようにする予定．
 
 ## 利用時にすること
-- byod_v1.x.zipをC:\に展開する
+- byod_v1.0.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり
 ```
 C:\byod\VSCodePortable_1.16.1\App
@@ -19,10 +24,12 @@ C:\byod\java1.8_152\jre
 :
 ```
 
-- javatest_local.zipを任意のフォルダに解凍（どこでも良い）
-  - c:\byod以下に解凍すると以下のようなディレクトリ構成になる
-  - c:\byod\javatest_local\src
-  - c:\byod\javatest_local\bin
+- 任意のフォルダを作成し，本リポジトリの内容を展開する（どこでも良い）
+  - c:\byod以下にjavatestという名前のフォルダとして解凍すると以下のようなフォルダ構成になる
+```
+c:\byod\javatest\src
+c:\byod\javatest\bin
+```
   - [OIT]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
     - その場合，「\\o-file01.ad.oit.ac.jp\post\IS科専門\教員名」を例えばS:\などに割り当てることが望ましい
 
