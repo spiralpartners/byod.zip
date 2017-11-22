@@ -1,0 +1,114 @@
+# BYOD環境下におけるプログラミング演習環境の構築
+
+## 利用時にすること
+- byod_v1.x.zipをC:\に展開する
+  - ファイル解凍後のフォルダ構成は以下のとおり
+```
+C:\byod\VSCodePortable_1.16.1\App
+C:\byod\VSCodePortable_1.16.1\Data
+C:\byod\VSCodePortable_1.16.1\Other
+C:\byod\VSCodePortable_1.16.1\Help.html
+C:\byod\VSCodePortable_1.16.1\VSCodePortable.exe
+:
+C:\byod\java1.8_152\App
+C:\byod\java1.8_152\bin
+C:\byod\java1.8_152\Data
+C:\byod\java1.8_152\db
+C:\byod\java1.8_152\include
+C:\byod\java1.8_152\jre
+:
+```
+
+- javatest_local.zipを任意のフォルダに解凍（どこでも良い）
+  - c:\byod以下に解凍すると以下のようなディレクトリ構成になる
+  - c:\byod\javatest_local\src
+  - c:\byod\javatest_local\bin
+  - [OIT]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
+    - その場合，「\\o-file01.ad.oit.ac.jp\post\IS科専門\教員名」を例えばS:\などに割り当てることが望ましい
+
+## 開発の流れ
+### ファイル編集
+- C:\byod\VSCodePortable_1.16.1\VSCodePortable.exeを起動する
+- ファイル->フォルダを開く->「javatest_local」フォルダを指定する
+- 「src\java01\ex01\Hello.java」を開いて適当に編集する
+
+### コンパイル・実行(方法1)
+- Hello.javaを開いた状態で，表示->統合ターミナル（デフォではWin10だとPowershell，それより前だとcmdが起動する）
+- フォルダルートにいる状態でターミナルが開くので，`cd .\src\java01\ex01\`と実行する
+- `javac -encoding utf8 Hello.java Test2.java`と実行する
+- 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
+
+### コンパイル・実行(方法2)
+- Hello.javaを開いた状態で，デバッグ->デバッグを開始，を選択する
+- コンパイルがターミナルで行われ，実行結果がデバッグコンソールに表示される
+  - breakpointを指定したデバッグ等も可能
+
+## 今後の課題
+### デフォルト文字エンコードをどうするか
+- vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要あり
+  - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
+
+### シェルをどうするか
+- PortableGit(Bash)を導入するとbash.exeが利用できる（250MB程度必要）
+  - Bashの場合，ホームディレクトリをどう指定するかが問題．powershell,cmdの場合はプロジェクトのルートが自動で開くようになってるっぽい
+- Powershell, cmd.exeも可能
+  - Windows10だとデフォがpowershell, それ以前だとcmdになる
+
+### ディレクトリ構造をどうするか
+- 現在は.classpathを以下のように指定している．
+  - srcとoutputを指定しないと，ソースコードの自動チェックが走らない(Intellisenseとかも働かない）
+  - つまり，*.javaファイルを置くディレクトリごとにsrcの指定が必要
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java01/ex01"/>
+	<classpathentry kind="src" path="src/java01/ex02"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+```
+- packageの概念を教えてsrcフォルダのみをsrcにし，java01.ex01.Hello を実行させることも可能だが，その場合は「.vscode\launch.json」で別の問題が発生する．
+- 現状のlaunch.jsonファイル(抜粋)は以下のとおり
+  - mainClassを現在開いているファイルのファイル名から拡張子を取り除いたもの(```${fileBasenameNoExtension}```)を自動的に取得して設定するようになっている
+  - packageを利用する場合，mainClassの設定を「java01.ex01.Hello」のように明示的に書く必要がある．
+    - 課題が進むごとに書き換えないといけなくなるので現実的ではない
+```javascript
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)",
+            "request": "launch",
+            "mainClass": "${fileBasenameNoExtension}",
+            "args": "",
+            "preLaunchTask": "Compile Java4",
+            "encoding": "UTF-8",
+            "classPaths": [
+                "${workspaceRoot}\\bin"
+            ]
+        }
+    ]
+```
+- 現実的な案としては全14回の回ごとにフォルダを1つ作り，課題ごとにはフォルダを作らないようにするものが考えられる．classpathentryは「src/java01」「src/java02」といった単位で設定しておく．packageを教えないのであればそれで十分に対応可能．教える場合は「javatest_local」フォルダを用意するのではなく，「java01」フォルダ，「java02」フォルダ，のように回ごとに設定を変えることで対応する．
+
+
+## VS codeセットアップ詳細
+### Step1. 以下の2つをc:\byod以下にインストール
+- visual studio code portable
+-- https://github.com/garethflowers/vscode-portable/releases/tag/v1.16.1
+- jdk portable (x64)
+- https://portableapps.com/apps/utilities/jdkportable
+
+### Step2. 拡張機能の追加
+- Java Extention Pack
+  - Java Language SupportとDebugger for Javaのセット
+- Project Manager
+  - 複数のフォルダを管理するための拡張機能
+
+### 不要なフォルダを削除
+-「C:\byod\VSCodePortable_1.16.1\Data\code\」以下のextensions以外のフォルダをすべて削除
+  - ただし，「C:\byod\VSCodePortable_1.16.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
+
+### 演習フォルダ(javatest_local)のセットアップ
+- .vscode以下のlaunch.json, tasks.json, settings.json
+- フォルダルートにある.classpath, .project
+- 以上のファイルの設定は本リポジトリ参照のこと
