@@ -6,7 +6,7 @@
 - 実行環境はJDK＋Visual Studio Code．
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
 
-## 利用時にすること
+## 演習環境の準備
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.0.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり
 ```
