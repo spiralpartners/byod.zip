@@ -30,7 +30,8 @@ C:\byod\java1.8_152\jre
 c:\byod\javatest\src
 c:\byod\javatest\bin
 ```
-  - [OIT]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
+  - .vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
+  - [OIT]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
     - その場合，「\\o-file01.ad.oit.ac.jp\post\IS科専門\教員名」を例えばS:\などに割り当てることが望ましい
 
 ## 開発の流れ
@@ -115,7 +116,7 @@ c:\byod\javatest\bin
 -「C:\byod\VSCodePortable_1.16.1\Data\code\」以下のextensions以外のフォルダをすべて削除
   - ただし，「C:\byod\VSCodePortable_1.16.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 
-### 演習フォルダ(javatest_local)のセットアップ
+### 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
 - フォルダルートにある.classpath, .project
 - 以上のファイルの設定は本リポジトリ参照のこと
