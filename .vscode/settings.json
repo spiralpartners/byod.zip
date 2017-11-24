@@ -5,5 +5,7 @@
     "workbench.colorTheme": "Default Light+",
     "files.exclude": {
         "bin/": true
-    }
+    },
+      // Git が有効になっているかどうか
+    "git.enabled": false
 }
