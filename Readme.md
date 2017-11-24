@@ -31,9 +31,9 @@ C:\byod\java1.8_152\jre
 c:\byod\javatest\src
 c:\byod\javatest\bin
 ```
-  - .vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
-  - [OIT]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
-    - その場合，「\\o-file01.ad.oit.ac.jp\post\IS科専門\教員名」を例えばS:\などに割り当てることが望ましい
+- .vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
+- [OIT限定]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
+  - その場合，「\\o-file01.ad.oit.ac.jp\post\IS科専門\教員名」を例えばS:\などに割り当てることが望ましい
 
 ## 開発(学生の立場から)の流れ
 ### ファイル編集
