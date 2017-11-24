@@ -113,7 +113,7 @@ c:\byod\javatest\bin
 - Project Manager
   - 複数のフォルダを管理するための拡張機能
 
-### 不要なフォルダを削除
+### Step3. 不要なフォルダを削除
 -「C:\byod\VSCodePortable_1.16.1\Data\code\」以下のextensions以外のフォルダをすべて削除
   - ただし，「C:\byod\VSCodePortable_1.16.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 
