@@ -7,7 +7,7 @@
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
 
 ## 利用時にすること
-- byod_v1.0.zipをC:\に展開する
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.0.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり
 ```
 C:\byod\VSCodePortable_1.16.1\App
@@ -117,7 +117,7 @@ c:\byod\javatest\bin
 -「C:\byod\VSCodePortable_1.16.1\Data\code\」以下のextensions以外のフォルダをすべて削除
   - ただし，「C:\byod\VSCodePortable_1.16.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 
-### 演習フォルダ(本リポジトリ)のセットアップ
+### Step4. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
 - フォルダルートにある.classpath, .project
 - 以上のファイルの設定は本リポジトリ参照のこと
