@@ -53,6 +53,9 @@ c:\byod\javatest\bin
   - breakpointを指定したデバッグ等も可能
 
 ## 今後の課題
+### デバッガ利用時の不具合
+- 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
+
 ### デフォルト文字エンコードをどうするか
 - vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要あり
   - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
