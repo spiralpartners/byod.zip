@@ -3,10 +3,11 @@
 - このリポジトリの内容はBYOD下でのプログラミング演習環境の一部である
 - 学生が解く課題を保存するフォルダのみをリポジトリで管理する
 - 想定するプログラミング演習の言語はJava
-- 実行する環境はJDK＋Visual Studio Code．実行環境は[Release](https://github.com/spiralpartners/byod.zip/releases) でDLできるようにする予定．
+- 実行環境はJDK＋Visual Studio Code．
+  - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
 
-## 利用時にすること
-- byod_v1.0.zipをC:\に展開する
+## 演習環境の準備
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.0.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり
 ```
 C:\byod\VSCodePortable_1.16.1\App
@@ -30,10 +31,11 @@ C:\byod\java1.8_152\jre
 c:\byod\javatest\src
 c:\byod\javatest\bin
 ```
-  - [OIT]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
-    - その場合，「\\o-file01.ad.oit.ac.jp\post\IS科専門\教員名」を例えばS:\などに割り当てることが望ましい
+- .vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
+- [OIT限定]将来的にはネットワークドライブ上に（恐らく）置くことになるので，現時点では\\o-file01.ad.oit.ac.jp\post\IS科専門以下の教員フォルダに置いてテストできると良いかも．
+  - その場合，「\\o-file01.ad.oit.ac.jp\post\IS科専門\教員名」を例えばS:\などに割り当てることが望ましい
 
-## 開発の流れ
+## 開発(学生の立場から)の流れ
 ### ファイル編集
 - C:\byod\VSCodePortable_1.16.1\VSCodePortable.exeを起動する
 - ファイル->フォルダを開く->「javatest_local」フォルダを指定する
@@ -51,15 +53,18 @@ c:\byod\javatest\bin
   - breakpointを指定したデバッグ等も可能
 
 ## 今後の課題
+### デバッガ利用時の不具合
+- 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
+
 ### デフォルト文字エンコードをどうするか
 - vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要あり
   - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
 
 ### シェルをどうするか
 - PortableGit(Bash)を導入するとbash.exeが利用できる（250MB程度必要）
-  - Bashの場合，ホームディレクトリをどう指定するかが問題．powershell,cmdの場合はプロジェクトのルートが自動で開くようになってるっぽい
 - Powershell, cmd.exeも可能
   - Windows10だとデフォがpowershell, それ以前だとcmdになる
+- Bashの場合，ホームディレクトリをどう指定するかが問題(.bashrcその他の設定ファイルで別途指定する)．powershell,cmdの場合はプロジェクトのルートが自動で開くようになってるっぽい
 
 ### ディレクトリ構造をどうするか
 - 現在は.classpathを以下のように指定している．
@@ -95,7 +100,8 @@ c:\byod\javatest\bin
         }
     ]
 ```
-- 現実的な案としては全14回の回ごとにフォルダを1つ作り，課題ごとにはフォルダを作らないようにするものが考えられる．classpathentryは「src/java01」「src/java02」といった単位で設定しておく．packageを教えないのであればそれで十分に対応可能．教える場合は「javatest_local」フォルダを用意するのではなく，「java01」フォルダ，「java02」フォルダ，のように回ごとに設定を変えることで対応する．
+- 現実的な案としてはjava2017というようなフォルダ（.vscodeがある）を1つ作り，その下に全14回の回ごとのフォルダを1つずつ作り，課題ごとにはフォルダを作らないようにするものが考えられる．classpathentryは「src/java01」「src/java02」といった単位で設定しておく．packageを教えないのであればそれで十分に対応可能．
+  - packageを教える場合は「java2017」フォルダは用意せず，「java01」フォルダ，「java02」フォルダ，のように回ごとに.vscodeを含むフォルダを配布し，毎回設定を変えることで対応し，かつ，課題ごとにmainClassを書き換える必要がある．
 
 
 ## VS codeセットアップ詳細
@@ -111,11 +117,11 @@ c:\byod\javatest\bin
 - Project Manager
   - 複数のフォルダを管理するための拡張機能
 
-### 不要なフォルダを削除
+### Step3. 不要なフォルダを削除
 -「C:\byod\VSCodePortable_1.16.1\Data\code\」以下のextensions以外のフォルダをすべて削除
   - ただし，「C:\byod\VSCodePortable_1.16.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 
-### 演習フォルダ(javatest_local)のセットアップ
+### Step4. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
 - フォルダルートにある.classpath, .project
 - 以上のファイルの設定は本リポジトリ参照のこと
