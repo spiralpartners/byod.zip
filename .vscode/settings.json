@@ -7,5 +7,6 @@
         "bin/": true
     },
       // Git が有効になっているかどうか
-    "git.enabled": false
+    "git.enabled": false,
+    "terminal.integrated.shell.windows": "C://byod/PortableGit/bin/bash.exe"
 }
