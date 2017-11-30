@@ -14,6 +14,8 @@ class Ex2_5{
         System.out.println("おらおらおら");
         Test3 t = new Test3();
         t.fuga = 3;
+        int[] ora = new int[5];
+        System.out.println(ora[5]);//エラー
         System.out.println(t.getFuga()+1);
         System.out.println(t.getHoge());        
     }
