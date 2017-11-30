@@ -136,3 +136,6 @@ c:\byod\javatest\bin
 - .vscode以下のlaunch.json, tasks.json, settings.json
 - フォルダルートにある.classpath, .project
 - 以上のファイルの設定は本リポジトリ参照のこと
+
+### Step5. シェルのセットアップ
+- jdkのbinへのpath設定が必要．bash.exeの場合は$PorableGit\etcのbash.bashrcに`export PATH=/c/byod/java1.8_152/bin/:$PATH`を追加し，bash.exeをvs codeの統合ターミナルとして呼び出すようにしている．
