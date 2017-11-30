@@ -3,11 +3,11 @@
 - このリポジトリの内容はBYOD下でのプログラミング演習環境の一部である
 - 学生が解く課題を保存するフォルダのみをリポジトリで管理する
 - 想定するプログラミング演習の言語はJava
-- 実行環境はJDK＋Visual Studio Code．
+- 実行環境はJDK＋PortableGit+Visual Studio Code．
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
 
 ## 演習環境の準備
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.0.zipをC:\に展開する
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.1.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり
 ```
 C:\byod\VSCodePortable_1.16.1\App
@@ -23,6 +23,11 @@ C:\byod\java1.8_152\db
 C:\byod\java1.8_152\include
 C:\byod\java1.8_152\jre
 :
+C:\byod\PortableGit\bin
+C:\byod\PortableGit\cmd
+:
+C:\byod\PortableGit\git-bash.exe
+\
 ```
 
 - 任意のフォルダを作成し，本リポジトリの内容を展開する（どこでも良い）
@@ -42,7 +47,7 @@ c:\byod\javatest\bin
 - 「src\java01\ex01\Hello.java」を開いて適当に編集する
 
 ### コンパイル・実行(方法1)
-- Hello.javaを開いた状態で，表示->統合ターミナル（デフォではWin10だとPowershell，それより前だとcmdが起動する）
+- Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
 - フォルダルートにいる状態でターミナルが開くので，`cd .\src\java01\ex01\`と実行する
 - `javac -encoding utf8 Hello.java Test2.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
@@ -53,6 +58,9 @@ c:\byod\javatest\bin
   - breakpointを指定したデバッグ等も可能
 
 ## 今後の課題
+### ファイル編集時にextends元のファイルがJDTから見つからず，cannot be resolvedになることがある
+- コンパイルはできるが，エディタ上でエラーマークが出る（赤の波線）．また，右クリック->定義を参照，も実行できない
+
 ### デバッガ利用時の不具合
 - 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
 
