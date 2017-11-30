@@ -116,11 +116,13 @@ c:\byod\javatest\bin
 
 
 ## VS codeセットアップ詳細
-### Step1. 以下の2つをc:\byod以下にインストール
+### Step1. 以下の2つをc:\byod以下にインストール(すべてPortableなので基本解凍するだけ)
 - visual studio code portable
--- https://github.com/garethflowers/vscode-portable/releases/tag/v1.16.1
+  - https://github.com/garethflowers/vscode-portable/releases/tag/v1.16.1
 - jdk portable (x64)
-- https://portableapps.com/apps/utilities/jdkportable
+  - https://portableapps.com/apps/utilities/jdkportable
+- PortableGit(x64)
+  - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
 
 ### Step2. 拡張機能の追加
 - Java Extention Pack
