@@ -6,9 +6,9 @@
     },
     "tasks": [
         {
-            "taskName": "Compile Java4",
-            "type": "shell",
-            "command": "javac",
+            "label": "Compile Java4",
+            "type":"process",
+            "command": "C:/byod/java1.8_152/bin/javac.exe",
             "windows": {
                 "args": [
                     "-encoding",

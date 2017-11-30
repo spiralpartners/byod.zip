@@ -13,7 +13,7 @@
             "preLaunchTask": "Compile Java4",
             "encoding": "UTF-8",
             "classPaths": [
-                "${workspaceRoot}\\bin"
+                "${workspaceFolder}\\bin"
             ]
         }
     ]
