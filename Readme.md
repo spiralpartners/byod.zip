@@ -58,15 +58,17 @@ c:\byod\javatest\bin
   - breakpointを指定したデバッグ等も可能
 
 ## 今後の課題
-### ファイル編集時にextends元のファイルがJDTから見つからず，cannot be resolvedになることがある
-- コンパイルはできるが，エディタ上でエラーマークが出る（赤の波線）．また，右クリック->定義を参照，も実行できない
+### ファイル編集時にextends元のクラスが間違っており，エラーが検出されることがある
+- extends元のクラスと同じ名前のクラスを別の課題で作成していた場合に，そちらを参照してしまうことがある
+- 原因は下にもあるディレクトリ構造とpackageの問題．JDTによる自動出力先の設定がすべてbinになっており，packageの指定がないと，同一クラス名は上書きされています．
+-- 本リポジトリにあるようにjava02とjava01\ex02で両方共PacMan classを定義したところ，java02のNoizyPacMan extends PacMan が正常に継承できなかった．
 
 ### デバッガ利用時の不具合
 - 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
 
 ### デフォルト文字エンコードをどうするか
-- vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要あり
-  - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
+- vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要がある
+  - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
 
 ### シェルをどうするか
 - PortableGit(Bash)を導入するとbash.exeが利用できる（250MB程度必要）
@@ -83,6 +85,7 @@ c:\byod\javatest\bin
 <classpath>
 	<classpathentry kind="src" path="src/java01/ex01"/>
 	<classpathentry kind="src" path="src/java01/ex02"/>
+	<classpathentry kind="src" path="src/java02"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
