@@ -63,13 +63,13 @@ c:\byod\javatest\bin
 - 原因は下にもあるディレクトリ構造とpackageの問題．JDTによる自動出力先の設定がすべてbinになっており，packageの指定がないと，同一クラス名は上書きされています．
 -- 本リポジトリにあるようにjava02とjava01\ex02で両方共PacMan classを定義したところ，java02のNoizyPacMan extends PacMan が正常に継承できなかった．
 
-~### デバッガ利用時の不具合~
+~~### デバッガ利用時の不具合~~
 - 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
-- VScodeのバージョンをUPしたら治ったっぽい
+- __VScodeのバージョンをUP(1.16.1->1.18.1)したら治ったっぽい__
 
 ### デフォルト文字エンコードをどうするか
 - vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要がある
-  - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
+  - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
 
 ### シェルをどうするか
 - PortableGit(Bash)を導入するとbash.exeが利用できる（250MB程度必要）
