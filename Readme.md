@@ -117,22 +117,27 @@ c:\byod\javatest\bin
 
 
 ## VS codeセットアップ詳細
-### Step1. 以下の2つをc:\byod以下にインストール(すべてPortableなので基本解凍するだけ)
-- visual studio code portable
-  - https://github.com/garethflowers/vscode-portable/releases/tag/v1.16.1
+### Step1. [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をc:\byodに展開する．
+
+### Step2. VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
+
+### Step3. App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
+- https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
+
+### Step4. 以下の2つをc:\byod以下に追加インストール
 - jdk portable (x64)
   - https://portableapps.com/apps/utilities/jdkportable
-- PortableGit(x64)
+- PortableGit(x64)（解凍するだけ）
   - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
 
-### Step2. 拡張機能の追加
+### Step5. 拡張機能の追加
 - Java Extention Pack
   - Java Language SupportとDebugger for Javaのセット
 - Project Manager
   - 複数のフォルダを管理するための拡張機能
 
-### Step3. 不要なフォルダを削除
--「C:\byod\VSCodePortable_1.16.1\Data\code\」以下のextensions以外のフォルダをすべて削除
+### Step6. 不要なフォルダを削除
+-「C:\byod\VSCodePortable_1.18.1\Data\code\」以下のextensions以外のフォルダをすべて削除
   - ただし，「C:\byod\VSCodePortable_1.16.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 
 ### Step4. 演習フォルダ(本リポジトリ)のセットアップ
