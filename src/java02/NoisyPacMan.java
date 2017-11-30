@@ -12,6 +12,5 @@ class NoisyPacMan extends PacMan{
         word = w0;
     }
     void draw(Graphics g){
-
     }
 }
