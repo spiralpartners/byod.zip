@@ -1,4 +1,4 @@
-class Ex2-5 {
+class Ex2_5{
     public static void main(String[] args) {
         System.out.println("2Hello world");
         System.out.println("Hello world2");
