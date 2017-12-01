@@ -48,7 +48,7 @@ c:\byod\javatest\bin
 
 ### コンパイル・実行(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-- フォルダルートにいる状態でターミナルが開くので，`cd .\src\java01\ex01\`と実行する
+- フォルダルートにいる状態でターミナルが開くので，`cd src/java01/ex01/`と実行する
 - `javac -encoding utf8 Hello.java Test2.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
@@ -60,8 +60,8 @@ c:\byod\javatest\bin
 ## 今後の課題
 ### ファイル編集時にextends元のクラスが間違っており，エラーが検出されることがある
 - extends元のクラスと同じ名前のクラスを別の課題で作成していた場合に，そちらを参照してしまうことがある
-- 原因は下にもあるディレクトリ構造とpackageの問題．JDTによる自動出力先の設定がすべてbinになっており，packageの指定がないと，同一クラス名は上書きされています．
--- 本リポジトリにあるようにjava02とjava01\ex02で両方共PacMan classを定義したところ，java02のNoizyPacMan extends PacMan が正常に継承できなかった．
+- 原因は下にもあるディレクトリ構造とpackageの問題．JDTによる自動出力先の設定がbinになっているため，packageの指定がないと，同一クラス名は上書きされてしまう．
+-- 本リポジトリにあるようにjava02とjava01\ex02で両方共PacMan classを定義したところ，java02のNoizyPacMan extends PacMan が正常に継承できなかった（ただし，コンパイル・実行（方法1）で行う場合は正常にコンパイル・実行できる）．
 
 ~~### デバッガ利用時の不具合~~
 - 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
@@ -117,12 +117,15 @@ c:\byod\javatest\bin
 
 
 ## VS codeセットアップ詳細
-### Step1. [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をc:\byodに展開する．
+### Step1. VSCodePortable Updaterのセットアップ
+- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をc:\byodに展開する．
 
-### Step2. VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
+### Step2. VSCodePortableの最新へのUpdate
+- VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
 
-### Step3. App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
-- https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
+### Step3. 配布用にUpdateの停止
+- App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
+  - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
 
 ### Step4. 以下の2つをc:\byod以下に追加インストール
 - jdk portable (x64)
@@ -146,4 +149,5 @@ c:\byod\javatest\bin
 - 以上のファイルの設定は本リポジトリ参照のこと
 
 ### Step5. シェルのセットアップ
-- jdkのbinへのpath設定が必要．bash.exeの場合は$PorableGit\etcのbash.bashrcに`export PATH=/c/byod/java1.8_152/bin/:$PATH`を追加し，bash.exeをvs codeの統合ターミナルとして呼び出すようにしている．
+- jdkのbinへのpath設定が必要．WindowsのPATH環境変数の設定はいじりたくないので，シェル起動時に追加するようにする
+- bash.exeの場合は$PorableGit\etcのbash.bashrcに`export PATH=/c/byod/java1.8_152/bin/:$PATH`を追加し，bash.exeをvs codeの統合ターミナルとして呼び出すようにする(settings.json)．
