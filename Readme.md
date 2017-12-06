@@ -7,7 +7,7 @@
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
 
 ## 演習環境の準備
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.1.zipをC:\に展開する
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.2.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり
 ```
 C:\byod\VSCodePortable_1.16.1\App
