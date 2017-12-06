@@ -133,6 +133,25 @@ c:\byod\javatest\bin
 ### Step3. 配布用にUpdateの停止
 - App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
   - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
+```
+[Launch]
+ProgramExecutable=VSCode\code.exe
+ProgramExecutable64=VSCode64\code.exe
+CommandLineArguments='--user-data-dir="%PAL:DataDir%\code" --extensionHomePath="%PAL:DataDir%\code\extensions"'
+DirectoryMoveOK=yes
+DisableSplashScreen=true
+SplashTime=0
+SupportsUNC=yes
+MinOS=7
+
+[Environment]
+VSCODE_HOME=%PAL:DataDir%\code
+
+[DirectoriesCleanupIfEmpty]
+1=%APPDATA%\Code
+2=%USERPROFILE%\.vscode\extensions
+3=%USERPROFILE%\.vscode
+```
 
 ### Step4. 以下の2つをc:\byod以下に追加インストール
 - jdk portable (x64)
