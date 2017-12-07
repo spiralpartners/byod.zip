@@ -58,6 +58,10 @@ c:\byod\javatest\bin
   - breakpointを指定したデバッグ等も可能
 
 ## 今後の課題
+### 初回起動時にデバッガが認識されない
+- 初回に起動し，ソースが含まれたフォルダを選択してから方法2でコンパイル・デバッグを行うと`デバッグアダプター'{0}'の実行可能ファイルを判別できません`と表示される
+- すべての設定をソースが含まれたフォルダ内に置いているため，Java拡張機能が起動時にjava.homeの場所を認識できていないと推測される．
+
 ### デフォルト文字エンコードをどうするか
 - vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要がある
   - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
@@ -110,6 +114,13 @@ c:\byod\javatest\bin
 ```
 - 現実的な案としてはjava2017というようなフォルダ（.vscodeがある）を1つ作り，その下に全14回の回ごとのフォルダを1つずつ作り，課題ごとにはフォルダを作らないようにするものが考えられる．classpathentryは「src/java01」「src/java02」といった単位で設定しておく．また，packageを教えない場合は全課題を通じて，同一クラス名で仕様が異なるクラスを作成しないようにする必要がある．
   - packageを教える場合は「java2017」フォルダは用意せず，「java01」フォルダ，「java02」フォルダ，のように回ごとに.vscodeを含むフォルダを配布し，毎回設定を変えることで対応し，かつ，課題ごとにmainClassを書き換える必要がある．
+
+### ~~初回起動時に方法2でビルドを行うと失敗する~~（解決）
+- Ctr+Shit+bなどでtask.jsonに定義されたビルドタスクを実施すると`binフォルダがない`と言われて失敗する
+- 下記コマンドで`-d`オプションで指定している出力先フォルダが存在しないため
+  - `javac.exe -encoding utf-8 -source 1.8 -target 1.8 -cp bin -d c:\byod_tmp\javatest_local\bin -sourcepath c:\byod_tmp\javatest_local\src\java01\ex01 c:\byod_tmp\javatest_local\src\java01\ex01\Hello.java`
+- jdtも初回起動時には実施されない（java.homeが認識されないため)ので，自動生成もされない
+- ソースフォルダ配布時にbinフォルダを付与して配布すればOK
 
 ### ~~日本語出力が文字化けする（コンパイル・実行（方法2)時）~~(解決)
 - 恐らくJDTによる自動コンパイルがShift-jisで行われているため
