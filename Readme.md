@@ -10,11 +10,11 @@
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.2.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり
 ```
-C:\byod\VSCodePortable_1.16.1\App
-C:\byod\VSCodePortable_1.16.1\Data
-C:\byod\VSCodePortable_1.16.1\Other
-C:\byod\VSCodePortable_1.16.1\Help.html
-C:\byod\VSCodePortable_1.16.1\VSCodePortable.exe
+C:\byod\VSCodePortable_1.18.1\App
+C:\byod\VSCodePortable_1.18.1\Data
+C:\byod\VSCodePortable_1.18.1\Other
+C:\byod\VSCodePortable_1.18.1\Help.html
+C:\byod\VSCodePortable_1.18.1\VSCodePortable.exe
 :
 C:\byod\java1.8_152\App
 C:\byod\java1.8_152\bin
