@@ -42,14 +42,14 @@ c:\byod\javatest\bin
 
 ## 開発(学生の立場から)の流れ
 ### ファイル編集
-- C:\byod\VSCodePortable_1.16.1\VSCodePortable.exeを起動する
-- ファイル->フォルダを開く->「javatest_local」フォルダを指定する
+- C:\byod\VSCodePortable_1.18.1\VSCodePortable.exeを起動する
+- ファイル->フォルダを開く->「javatest」フォルダを指定する
 - 「src\java01\ex01\Hello.java」を開いて適当に編集する
 
 ### コンパイル・実行(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
 - フォルダルートにいる状態でターミナルが開くので，`cd src/java01/ex01/`と実行する
-- `javac -encoding utf8 Hello.java Test2.java`と実行する
+- `javac -encoding utf8 Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
 ### コンパイル・実行(方法2)
