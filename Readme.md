@@ -196,7 +196,7 @@ VSCODE_HOME=%PAL:DataDir%\code
 
 ### Step6. 不要なフォルダを削除
 -「C:\byod\VSCodePortable_1.18.1\Data\code\」以下のextensions以外のフォルダをすべて削除
-  - ただし，「C:\byod\VSCodePortable_1.16.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
+  - ただし，「C:\byod\VSCodePortable_1.18.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 
 ### Step7. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
