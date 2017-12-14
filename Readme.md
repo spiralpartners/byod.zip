@@ -31,7 +31,7 @@ C:\byod\PortableGit\git-bash.exe
 ```
 
 - 任意のフォルダを作成し，本リポジトリの内容を展開する（どこでも良い）
-  - 例えばc:\byod以下にjavatestという名前のフォルダとして解凍する場合，以下のようになる．このとき，javatestフォルダ内にbinフォルダを作成すること
+  - 例えばc:\byod以下にjavatestという名前のフォルダとして解凍する場合，以下のようになる．このとき，javatestフォルダ内にbinフォルダを作成すること
 ```
 c:\byod\javatest\src
 c:\byod\javatest\bin
