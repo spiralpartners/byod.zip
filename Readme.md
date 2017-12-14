@@ -61,7 +61,7 @@ c:\byod\javatest\bin
 ### デフォルト文字エンコードをどうするか
 - vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要がある
   - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
-  - shiftjisの場合は何もつけなくて良いが，課題チェックシステム等のアプリで表示する際にutf-8で統一しておいたほうが多分実装が楽．
+  - shiftjisの場合は何もつけなくて良いが，課題チェックシステム等のアプリで表示する際にutf-8で統一しておいたほうが多分実装が楽．
 
 ### シェルをどうするか
 - PortableGit(Bash)を導入するとbash.exeが利用できる（250MB程度必要）
