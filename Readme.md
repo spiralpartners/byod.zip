@@ -181,6 +181,8 @@ VSCODE_HOME=%PAL:DataDir%\code
 2=%USERPROFILE%\.vscode\extensions
 3=%USERPROFILE%\.vscode
 ```
+- App\UpdateManager.exe を削除する
+  - 削除しないとアンチウィルスにひっかかることがある
 
 ### Step4. 以下の2つをc:\byod以下に追加インストール
 - jdk portable (x64)
