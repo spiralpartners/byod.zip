@@ -7,7 +7,7 @@
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
 
 ## 演習環境の準備
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.2.zipをC:\に展開する
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり(XXにはバージョン番号が入る)
 ```
 C:\byod\VSCodePortable_1.XX.1\App
@@ -40,7 +40,7 @@ c:\byod\javatest\bin
 
 ## 開発(学生の立場から)の流れ
 ### ファイル編集
-- C:\byod\VSCodePortable_1.18.1\VSCodePortable.exeを起動する
+- C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exeを起動する
 - ファイル->フォルダを開く->「javatest」フォルダを指定する
 - 「src\java01\ex01\Hello.java」を開いて適当に編集する
 
