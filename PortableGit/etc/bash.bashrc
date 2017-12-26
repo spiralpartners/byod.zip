@@ -58,3 +58,8 @@ unset _ps1_symbol
 
 # Fixup git-bash in non login env
 shopt -q login_shell || . /etc/profile.d/git-prompt.sh
+
+export PATH=/c/byod/java1.8_152/bin/:$PATH
+
+export HOME=$USERPROFILE/byod_home
+cd $HOME
