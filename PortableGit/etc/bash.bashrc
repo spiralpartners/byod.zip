@@ -61,5 +61,5 @@ shopt -q login_shell || . /etc/profile.d/git-prompt.sh
 
 export PATH=/c/byod/java1.8_152/bin/:$PATH
 
-export HOME=$USERPROFILE/byod_home
+export HOME=$(cd "$USERPROFILE\byod_home" && pwd)
 cd $HOME
