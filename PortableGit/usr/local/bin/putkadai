@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# Written by Yasuharu Mizutani.
+
+usage(){
+    cat <<-EOF
+	
+	使い方:
+	  putkadai 
+	  putkadai --delete
+	
+	ホームディレクトリの下にあるkadaiディレクトリ（~/kadai）をサーバ上に
+	コピー（提出）します．
+	
+	--deleteを付けると~/kadaiとサーバ上のkadaiを完全同期します．
+	すなわち，サーバ上のkadaiにあって~/kadaiに無いファイルは，サーバ上から
+	削除されます．使い方を誤るとサーバ上の必要なファイルまで削除してしまう
+	可能性があるため，--deleteの使用は十分に気を付けてください．
+	
+	EOF
+}
+
+DFLAG=""
+if [ "$#" -ge 1 ]; then
+    case "$1" in
+        -h|-help|--help)
+            usage
+            exit 0
+            ;;
+        --delete)
+            DFLAG="--delete"
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+fi
+
+id="`getoitname`" || exit 1
+cd
+rsync -av -e "ssh -i ./.ssh/id_rsa " ${DFLAG} \
+        --chmod=g-rwx \
+        --exclude='*.exe' \
+        --exclude='*.class' \
+        --exclude='*~' \
+        ~/kadai ${id}@o-vnc.center.oit.ac.jp:
+echo $?
+

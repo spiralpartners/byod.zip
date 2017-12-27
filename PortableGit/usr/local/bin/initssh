@@ -1,0 +1,57 @@
+#!/bin/sh
+
+#
+# ユーザ名の入力
+#
+echo -n "e1で始まるユーザ名を入力してください: "
+read id
+case "${id}" in
+  e1??????|t???????) ;;
+  *)  echo "ユーザ名がe1xxxxxxの形式ではありません"
+      exit 1
+esac
+
+
+#
+# .ssh
+#
+if [ ! -d ~/.ssh ]; then
+    mkdir -p ~/.ssh
+fi
+echo "StrictHostKeyChecking no" > "$HOME"/.ssh/config
+
+#
+# 鍵の生成
+#
+eval PUBKEY="~/.ssh/id_rsa.pub"
+eval PRIKEY="~/.ssh/id_rsa"
+if [ -f "${PUBKEY}" -a -f "${PRIKEY}" ]; then
+    :
+else
+    echo "今からEnter passphraseと言われたらエンターキーを押してください（合計2回）"
+    sleep 1
+    ssh-keygen -t rsa -f "$HOME"/.ssh/id_rsa
+fi
+
+#
+# 鍵認証の設定
+#
+RHOST="${id}@o-vnc.center.oit.ac.jp"
+RCOMM="
+    mkdir -p -m 700 .ssh;
+    grep -v "`hostname`" .ssh/authorized_keys > .ssh/tmp;
+    mv .ssh/tmp .ssh/authorized_keys;
+    cat >> .ssh/authorized_keys;
+    chmod 600 .ssh/authorized_keys
+"
+echo "演習室のパスワードを入力してください"
+if cat "${PUBKEY}" | ssh "${RHOST}" "${RCOMM}"; then
+    echo "${id}" > "${HOME}"/.oitname
+    echo "成功しました"
+else
+    echo "失敗しました"
+    exit 1
+fi
+
+
+exit 0

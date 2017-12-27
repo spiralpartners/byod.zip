@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Written by Yasuharu Mizutani.
+
+usage(){
+    cat <<-EOF
+	
+	使い方:
+	  getkadai 
+	
+	サーバ上に提出したkadaiディレクトリをホームディレクトリの下にあるkadai
+	（~/kadai）にコピーします．
+	
+	EOF
+}
+
+if [ "$#" -ge 1 ]; then
+    case "$1" in
+        -h|-help|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+fi
+
+
+id="`getoitname`" || exit 1
+cd
+rsync -av -e "ssh -i ./.ssh/id_rsa " ${id}@o-vnc.center.oit.ac.jp:kadai ~/
+exit $?
