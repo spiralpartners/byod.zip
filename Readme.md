@@ -1,7 +1,7 @@
 # BYOD下におけるプログラミング演習環境の構築
 ## リポジトリの内容
 - このリポジトリの内容はBYOD下でのプログラミング演習環境の一部である
-- 学生が解く課題を保存するフォルダのみをリポジトリで管理する
+- 学生が解く課題のサンプルを保存するフォルダとPortableGitの変更内容をリポジトリで管理する
 - 想定するプログラミング演習の言語はJava
 - 実行環境はJDK＋PortableGit+Visual Studio Code．
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
@@ -31,10 +31,10 @@ C:\byod\PortableGit\git-bash.exe
 ```
 
 - 任意のフォルダを作成し，本リポジトリの内容を展開する（どこでも良い）
-  - 例えばc:\byod以下にjavatestという名前のフォルダとして解凍する場合，以下のようになる．このとき，javatestフォルダ内にbinフォルダを作成すること
+  - 例えばc:\byod以下にjava_kadaiという名前のフォルダとして解凍する場合，以下のようになる．このとき，java_kadaiフォルダ内にsrc,binフォルダが存在することを確認すること
 ```
-c:\byod\javatest\src
-c:\byod\javatest\bin
+c:\byod\java_kadai\src
+c:\byod\java_kadai\bin
 ```
 - .vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
 
