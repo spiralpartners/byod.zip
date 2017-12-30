@@ -5,6 +5,8 @@
 - 想定するプログラミング演習の言語はJava
 - 実行環境はJDK＋PortableGit+Visual Studio Code．
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
+  - PortableGitについての設定方法や課題は下記参照のこと
+    - https://github.com/spiralpartners/byod.zip/tree/master/PortableGit
 
 ## 演習環境の準備
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
@@ -36,7 +38,7 @@ C:\byod\PortableGit\git-bash.exe
 c:\byod\java_kadai\src
 c:\byod\java_kadai\bin
 ```
-- .vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
+- java_kadai/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
 
 ## 開発(学生の立場から)の流れ
 ### ファイル編集
