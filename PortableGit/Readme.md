@@ -1,12 +1,8 @@
-PortableGitのダウンロード及び解凍
+# PortableGitの設定情報
+- このフォルダにはPortableGitを対象とした追加の設定ファイル，コマンドを設置する．
 
-msys2の64bit版をインストール
-https://sourceforge.net/projects/msys2/files/Base/
-
-msys2 64bitを起動してrsyncをインストール
-pacman -S rsync
-
-/usr/bin/rsync.exe を /usr/local/bin/にコピー
+## 利用方法
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開すると，本フォルダの内容を適用済みのPortableGitフォルダが展開される．
 
 ## 課題
 ### ファイルとディレクトリを間違えて作成した場合に，正しくリモートに課題が提出されない可能性がある
@@ -38,3 +34,19 @@ pacman -S rsync
 ### ~~ホームディレクトリが`C:\Users\hoge`形式の場合，rsyncコマンドが失敗する(The source and destination cannot both be remote)~~(解決済み)
 - `C:\`の`:`のせいでremoteだと誤認するっぽい．
 - HOMEを`export HOME=$(cd "$USERPROFILE\byod_home" && pwd)`として設定することで，`/c/Users/..`形式でホームディレクトリを処理できるようになる
+
+## PortableGit設定方法詳細
+### Step1. PortableGitのダウンロード及び解凍
+- 下記URLより，PortableGit-2.XX.Y.Z-64-bit.7z.exe をダウンロードし，byodフォルダに解凍する
+- https://github.com/git-for-windows/git/releases/latest
+
+### Step2. PortableGitフォルダへの設定ファイルの追加
+- 本リポジトリPortableGitフォルダの中身をStep1で解凍したPortableGitフォルダに上書きする
+
+### StepX. 追加バイナリのインストール方法
+- 本リポジトリ中に既に用意されているnkf.exeやrsync.exeはmsys2を利用して取得したもの．毎回やる必要はないが，セットアップ方法を以下に記しておく．
+- msys2の64bit版をインストール
+  - https://sourceforge.net/projects/msys2/files/Base/
+- msys2 64bitを起動してrsyncをインストール（nkfも多分同じ）
+  - `pacman -S rsync`
+- `${msys2}/usr/bin/rsync.exe` を `${PortableGit}/usr/local/bin/`にコピーする

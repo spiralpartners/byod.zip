@@ -5,23 +5,25 @@
 - 想定するプログラミング演習の言語はJava
 - 実行環境はJDK＋PortableGit+Visual Studio Code．
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
+  - PortableGitについての設定方法や課題は下記参照のこと
+    - https://github.com/spiralpartners/byod.zip/tree/master/PortableGit
 
 ## 演習環境の準備
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
-  - ファイル解凍後のフォルダ構成は以下のとおり(XXにはバージョン番号が入る)
+  - ファイル解凍後のフォルダ構成は以下のとおり(X,Yにはバージョン番号が入る)
 ```
-C:\byod\VSCodePortable_1.XX.1\App
-C:\byod\VSCodePortable_1.XX.1\Data
-C:\byod\VSCodePortable_1.XX.1\Other
-C:\byod\VSCodePortable_1.XX.1\Help.html
-C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exe
+C:\byod\VSCodePortable_1.XX.Y\App
+C:\byod\VSCodePortable_1.XX.Y\Data
+C:\byod\VSCodePortable_1.XX.Y\Other
+C:\byod\VSCodePortable_1.XX.Y\Help.html
+C:\byod\VSCodePortable_1.XX.Y\VSCodePortable.exe
 :
-C:\byod\java1.8_152\App
-C:\byod\java1.8_152\bin
-C:\byod\java1.8_152\Data
-C:\byod\java1.8_152\db
-C:\byod\java1.8_152\include
-C:\byod\java1.8_152\jre
+C:\byod\java1.8_XXX\App
+C:\byod\java1.8_XXX\bin
+C:\byod\java1.8_XXX\Data
+C:\byod\java1.8_XXX\db
+C:\byod\java1.8_XXX\include
+C:\byod\java1.8_XXX\jre
 :
 C:\byod\PortableGit\bin
 C:\byod\PortableGit\cmd
@@ -36,7 +38,7 @@ C:\byod\PortableGit\git-bash.exe
 c:\byod\java_kadai\src
 c:\byod\java_kadai\bin
 ```
-- .vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
+- java_kadai/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
 
 ## 開発(学生の立場から)の流れ
 ### ファイル編集
@@ -46,7 +48,7 @@ c:\byod\java_kadai\bin
 
 ### コンパイル・実行(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-- フォルダルートにいる状態でターミナルが開くので，`cd src/java01/ex01/`と実行する
+- フォルダルートにいる状態でターミナルが開くので，`cd src/java01/`と実行する
 - `javac -encoding utf8 Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
@@ -56,6 +58,9 @@ c:\byod\java_kadai\bin
   - breakpointを指定したデバッグ等も可能
 
 ## 今後の課題
+### 全ディレクトリ構成をどうするか
+- jdk,vscode,portablegit等のバイナリを置くディレクトリとjavakadaiを置くディレクトリの場所をどうするか.
+- 他の授業との兼ね合いや年度進行（再履修含む）にどう対応するかも検討する必要あり．
 ### デフォルト文字エンコードをどうするか
 - vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要がある
   - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
@@ -73,8 +78,6 @@ c:\byod\java_kadai\bin
 - 原因は下にもあるディレクトリ構造とpackageの問題．JDTによる自動出力先の設定がbinになっているため，packageの指定がないと，同一クラス名は上書きされてしまう．
   - 本リポジトリにあるようにjava02とjava01\ex02で両方共PacMan classを定義したところ，java02のNoizyPacMan extends PacMan が正常に継承できなかった（ただし，コンパイル・実行（方法1）で行う場合は正常にコンパイル・実行できる）．
 
-
-
 ### 課題提出方法をどうするか
 - 学生が課題を解いている過程をリアルタイムにチェックできるような課題提出方法が望ましい．
 - 方法1: 学生にネットワークドライブ上のフォルダに特定のドライブレターを割り当てさせる．その中に学生ごとのフォルダを作成し，そこに本リポジトリの内容を配置，学生ごとのvscodeから開かせる
@@ -84,7 +87,7 @@ c:\byod\java_kadai\bin
   - メリット：教員側から見ると，現状の演習環境と同一に見える（学生のホームディレクトリ下の特定ディレクトリにアクセスすると学生のコードが見える）．
   - デメリット：rsyncコマンドを学生が実施するのを忘れると提出がまったくできないことになる．学生から見たときに何が提出されているかを確認することが難しい(定期的にrsyncを実行する関係上，最新がUPLOADされているかが分からない)．rsyncが何らかの不具合で学生環境において正常に実行できないと詰む詰む（方法1もこの点では同様）．
 
-### ~~ディレクトリ構造をどうするか~~（解決)
+### ~~java課題のディレクトリ構造をどうするか~~（解決)
 - ↓の`src/java02`方式で実施する予定．つまり授業回ごとにフォルダを作成する．また，パッケージはやらず，授業回が変わっても同じクラス名は使わない．
 - 現在は.classpathを以下のように指定している．
   - srcとoutputを指定しないと，ソースコードの自動チェックが走らない(Intellisenseとかも働かない）
@@ -137,7 +140,7 @@ c:\byod\java_kadai\bin
 ### ~~初回起動時に方法2でビルドを行うと失敗する~~（解決）
 - Ctr+Shit+bなどでtask.jsonに定義されたビルドタスクを実施すると`binフォルダがない`と言われて失敗する
 - 下記コマンドで`-d`オプションで指定している出力先フォルダが存在しないため
-  - `javac.exe -encoding utf-8 -source 1.8 -target 1.8 -cp bin -d c:\byod_tmp\javatest_local\bin -sourcepath c:\byod_tmp\javatest_local\src\java01\ex01 c:\byod_tmp\javatest_local\src\java01\ex01\Hello.java`
+  - `javac.exe -encoding utf-8 -source 1.8 -target 1.8 -cp bin -d c:\byod_tmp\javatest_local\bin -sourcepath c:\byod_tmp\javatest_local\src\java01\ex01 c:\byod_tmp\javatest_local\src\java01\ex01\Hello.java`
 - jdtも初回起動時には実施されない（java.homeが認識されないため)ので，自動生成もされない
 - ソースフォルダ配布時にbinフォルダを付与して配布すればOK
 
