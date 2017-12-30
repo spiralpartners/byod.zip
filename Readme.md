@@ -8,20 +8,20 @@
 
 ## 演習環境の準備
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
-  - ファイル解凍後のフォルダ構成は以下のとおり(XXにはバージョン番号が入る)
+  - ファイル解凍後のフォルダ構成は以下のとおり(X,Yにはバージョン番号が入る)
 ```
-C:\byod\VSCodePortable_1.XX.1\App
-C:\byod\VSCodePortable_1.XX.1\Data
-C:\byod\VSCodePortable_1.XX.1\Other
-C:\byod\VSCodePortable_1.XX.1\Help.html
-C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exe
+C:\byod\VSCodePortable_1.XX.Y\App
+C:\byod\VSCodePortable_1.XX.Y\Data
+C:\byod\VSCodePortable_1.XX.Y\Other
+C:\byod\VSCodePortable_1.XX.Y\Help.html
+C:\byod\VSCodePortable_1.XX.Y\VSCodePortable.exe
 :
-C:\byod\java1.8_152\App
-C:\byod\java1.8_152\bin
-C:\byod\java1.8_152\Data
-C:\byod\java1.8_152\db
-C:\byod\java1.8_152\include
-C:\byod\java1.8_152\jre
+C:\byod\java1.8_XXX\App
+C:\byod\java1.8_XXX\bin
+C:\byod\java1.8_XXX\Data
+C:\byod\java1.8_XXX\db
+C:\byod\java1.8_XXX\include
+C:\byod\java1.8_XXX\jre
 :
 C:\byod\PortableGit\bin
 C:\byod\PortableGit\cmd
@@ -46,7 +46,7 @@ c:\byod\java_kadai\bin
 
 ### コンパイル・実行(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-- フォルダルートにいる状態でターミナルが開くので，`cd src/java01/ex01/`と実行する
+- フォルダルートにいる状態でターミナルが開くので，`cd src/java01/`と実行する
 - `javac -encoding utf8 Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
@@ -57,7 +57,8 @@ c:\byod\java_kadai\bin
 
 ## 今後の課題
 ### 全ディレクトリ構成をどうするか
-- jdk,vscode,portablegit等のバイナリを置くディレクトリとjavakadaiを置くディレクトリの場所をどうするか（他の授業との兼ね合いも考慮する必要あり）
+- jdk,vscode,portablegit等のバイナリを置くディレクトリとjavakadaiを置くディレクトリの場所をどうするか.
+- 他の授業との兼ね合いや年度進行（再履修含む）にどう対応するかも検討する必要あり．
 ### デフォルト文字エンコードをどうするか
 - vs codeのデフォはutf-8だが，その場合winで`javac -encoding utf-8`を毎回つける必要がある
   - 参考 http://kyouichisato.blogspot.jp/2015/06/visual-studio-code-jis.html
