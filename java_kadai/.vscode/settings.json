@@ -11,5 +11,5 @@
       // Git が有効になっているかどうか
     "git.ignoreMissingGitWarning": true,
     "git.enabled": false,
-    "terminal.integrated.shell.windows": "C://byod/PortableGit/bin/bash.exe"
+    "terminal.integrated.shell.windows": "C://byod/PortableGit2.15.1.2-64/bin/bash.exe"
 }
