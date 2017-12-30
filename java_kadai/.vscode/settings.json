@@ -1,11 +1,13 @@
 {
     "files.encoding": "utf8",
     "java.home": "c://byod//java1.8_152",
+    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8",
     "editor.renderWhitespace": "boundary",
     "workbench.colorTheme": "Default Light+",
     "files.exclude": {
         "bin/": true
     },
       // Git が有効になっているかどうか
-    "git.enabled": false
+    "git.enabled": false,
+    "terminal.integrated.shell.windows": "C://byod/PortableGit/bin/bash.exe"
 }
