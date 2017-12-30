@@ -7,6 +7,7 @@
     "files.exclude": {
         "bin/": true
     },
+    "workbench.editor.enablePreview": false,
       // Git が有効になっているかどうか
     "git.enabled": false,
     "terminal.integrated.shell.windows": "C://byod/PortableGit/bin/bash.exe"
