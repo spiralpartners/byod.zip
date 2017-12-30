@@ -9,6 +9,7 @@
     },
     "workbench.editor.enablePreview": false,
       // Git が有効になっているかどうか
+    "git.ignoreMissingGitWarning": true,
     "git.enabled": false,
     "terminal.integrated.shell.windows": "C://byod/PortableGit/bin/bash.exe"
 }
