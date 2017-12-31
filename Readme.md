@@ -72,6 +72,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ### 出席・課題提出方法
 - `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「shusseki」コマンドを実行する
 - 下記のように~/kadai がsyncされればOK．
+- 終了時には`Ctr + C`
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
 ## 今後の課題
