@@ -49,6 +49,8 @@ C:\Users\ユーザ名\byod_home\java_kadai\bin
     - .sshフォルダと公開鍵・秘密鍵はbyod_homeフォルダ内部に作成される
   - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有．なお，$HOMEの場所は変更の可能性あり）
 
+
+
 ### ファイル編集
 - `C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
 - ファイル->フォルダを開く->「javatest」フォルダを指定する
