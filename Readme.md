@@ -34,42 +34,45 @@ C:\byod\PortableGit2.XX.YY.Z-64\git-bash.exe
 ```
 
 ### java_kadai
-- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．この下に本リポジトリのjava_kadaiフォルダを以下のようになるように展開する．
+- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．この下に`kadai`フォルダを作成し，本リポジトリのjava_kadaiフォルダを以下のようになるように展開する．
 ```
-C:\Users\ユーザ名\byod_home\java_kadai\src
-C:\Users\ユーザ名\byod_home\java_kadai\bin
+C:\Users\ユーザ名\byod_home\kadai\java_kadai\src
+C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ```
 - java_kadai/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
 
 ## 開発(学生の立場から)の流れ
-### 準備
+### 準備(公開鍵sshの設定)
 - `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「initssh」コマンドを実行する
   - $HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．
-  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vncにアクセスできるようになる
-    - .sshフォルダと公開鍵・秘密鍵はbyod_homeフォルダ内部に作成される
-  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有．なお，$HOMEの場所は変更の可能性あり）
+  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vncにアクセスできるようになる
+  - .sshフォルダと公開鍵・秘密鍵はbyod_homeフォルダ内部に作成される
+  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有．なお，$HOMEの場所は変更の可能性あり）
+  - 下記画像のように`成功しました`と表示されればOK.
 
+<img src="https://github.com/spiralpartners/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
 
-
-### ファイル編集
+### Javaファイルの編集・コンパイル・実行
+#### vscodeの起動及びファイル編集
 - `C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->「javatest」フォルダを指定する
+- ファイル->フォルダを開く->「java_kadai」フォルダを指定する
 - 「src\java01\ex01\Hello.java」を開いて適当に編集する
 
-### コンパイル・実行方法
-#### 方法1
+#### コンパイル・実行方法(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
 - フォルダルートにいる状態でターミナルが開くので，`cd src/java01/`と実行する
 - `javac -encoding utf8 Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
-#### 方法2
+#### コンパイル・実行方法(方法2)
 - Hello.javaを開いた状態で，デバッグ->デバッグを開始，を選択する
 - コンパイルがターミナルで行われ，実行結果がデバッグコンソールに表示される
   - breakpointを指定したデバッグ等も可能
 
-### 課題提出方法
-
+### 出席・課題提出方法
+- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「shusseki」コマンドを実行する
+- 下記のように~/kadai がsyncされればOK．
+<img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
 ## 今後の課題
 ### 全ディレクトリ構成をどうするか
