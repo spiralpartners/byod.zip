@@ -3,8 +3,13 @@
 
 ## 利用方法
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開すると，本フォルダの内容を適用済みのPortableGitフォルダが展開される．
+- `/etc/bash.bashrc` ログイン時の処理を最後に追記した．指定したホームフォルダを作成し，そこに移動する．
+- `/usr/local/bin`
 
 ## 課題
+### vscodeでシェル(bash.exe)を開いたときに`/usr/local/bin`にPATHが通っていない
+- 原因不明．bash.bashrcで明示的にPATHに追加すればいけるかもしれないが，2重でPATHを通すことになりそうで避けたい．
+- echo $PATHをすると，`/usr/local/bin/`と`/bin`へのPATHがbash.exeを実行した場合は通っていない(git-bash.exeの場合は通っている）
 ### ファイルとディレクトリを間違えて作成した場合に，正しくリモートに課題が提出されない可能性がある
 - `ex01.c`とかいうディレクトリを間違って作成し，それが一度pushされると，以降はそれが変更されない（--deleteをつけない場合）
 ### shussekiコマンドが失敗していても学生が気づかない場合が考えられる
