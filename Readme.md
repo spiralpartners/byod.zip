@@ -9,8 +9,9 @@
     - https://github.com/spiralpartners/byod.zip/tree/master/PortableGit
 
 ## 演習環境の準備
+### vscode, jdk, portablegit
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
-  - ファイル解凍後のフォルダ構成は以下のとおり(X,Yにはバージョン番号が入る)
+  - ファイル解凍後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
 ```
 C:\byod\VSCodePortable_1.XX.Y\App
 C:\byod\VSCodePortable_1.XX.Y\Data
@@ -25,37 +26,48 @@ C:\byod\java1.8_XXX\db
 C:\byod\java1.8_XXX\include
 C:\byod\java1.8_XXX\jre
 :
-C:\byod\PortableGit\bin
-C:\byod\PortableGit\cmd
+C:\byod\PortableGit2.XX.YY.Z-64\bin
+C:\byod\PortableGit2.XX.YY.Z-64\cmd
 :
-C:\byod\PortableGit\git-bash.exe
+C:\byod\PortableGit2.XX.YY.Z-64\git-bash.exe
 \
 ```
 
-- 任意のフォルダを作成し，本リポジトリの内容を展開する（どこでも良い）
-  - 例えばc:\byod以下にjava_kadaiという名前のフォルダとして解凍する場合，以下のようになる．このとき，java_kadaiフォルダ内にsrc,binフォルダが存在することを確認すること
+### java_kadai
+- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．この下に本リポジトリのjava_kadaiフォルダを以下のようになるように展開する．
 ```
-c:\byod\java_kadai\src
-c:\byod\java_kadai\bin
+C:\Users\ユーザ名\byod_home\java_kadai\src
+C:\Users\ユーザ名\byod_home\java_kadai\bin
 ```
 - java_kadai/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
 
 ## 開発(学生の立場から)の流れ
+### 準備
+- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「initssh」コマンドを実行する
+  - $HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．
+  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vncにアクセスできるようになる
+    - .sshフォルダと公開鍵・秘密鍵はbyod_homeフォルダ内部に作成される
+  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有．なお，$HOMEの場所は変更の可能性あり）
+
 ### ファイル編集
-- C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exeを起動する
+- `C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
 - ファイル->フォルダを開く->「javatest」フォルダを指定する
 - 「src\java01\ex01\Hello.java」を開いて適当に編集する
 
-### コンパイル・実行(方法1)
+### コンパイル・実行方法
+#### 方法1
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
 - フォルダルートにいる状態でターミナルが開くので，`cd src/java01/`と実行する
 - `javac -encoding utf8 Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
-### コンパイル・実行(方法2)
+#### 方法2
 - Hello.javaを開いた状態で，デバッグ->デバッグを開始，を選択する
 - コンパイルがターミナルで行われ，実行結果がデバッグコンソールに表示される
   - breakpointを指定したデバッグ等も可能
+
+### 課題提出方法
+
 
 ## 今後の課題
 ### 全ディレクトリ構成をどうするか
