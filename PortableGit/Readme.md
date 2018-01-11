@@ -4,8 +4,8 @@
 ## 利用方法
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開すると，本フォルダの内容を適用済みのPortableGitフォルダが展開される．
 - 内訳
-  - `/etc/bash.bashrc` ログイン時の処理を最後に追記したもの．git-bash.exeを起動すると，指定したホームフォルダを（なければ）作成し，そこに移動する．
-  - `/usr/local/bin` nkf.exe, rsync.exe, putkadai, shusseki等必要なexeや課題提出用スクリプト
+  - `/etc/bash.bashrc` ログイン時の処理を最後に追記したもの．git-bash.exeを起動すると，指定したホームフォルダを（なければ）作成し，そこに移動する．
+  - `/usr/local/bin` nkf.exe, rsync.exe, putkadai, shusseki等必要なexeや課題提出用スクリプト
 
 ## 課題
 ### vscodeでシェル(bash.exe)を開いたときに`/usr/local/bin`にPATHが通っていない
