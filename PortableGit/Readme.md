@@ -44,7 +44,8 @@
 ## PortableGit設定方法詳細
 ### Step1. PortableGitのダウンロード及び解凍
 - 下記URLより，PortableGit-2.XX.Y.Z-64-bit.7z.exe をダウンロードし，byodフォルダに解凍する
-- https://github.com/git-for-windows/git/releases/latest
+  - ディレクトリ名を`PortableGit2.XX.YY.Z-64`のようにバージョン番号を付与したものにしておくこと
+  - https://github.com/git-for-windows/git/releases/latest
 
 ### Step2. PortableGitフォルダへの設定ファイルの追加
 - 本リポジトリPortableGitフォルダの中身をStep1で解凍したPortableGitフォルダに上書きする
