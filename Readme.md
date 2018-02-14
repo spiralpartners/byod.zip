@@ -220,10 +220,10 @@ VSCODE_HOME=%PAL:DataDir%\code
 - Project Manager
   - 複数のフォルダを管理するための拡張機能
 - EvilInspector
-  - 全角スペースを強調表示する
+  - 全角スペースを強調表示する
 
 ### Step6. 不要なフォルダを削除
--「C:\byod\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
+- 「C:\byod\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
   - ただし，「C:\byod\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 - 「C:\byod\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
 
