@@ -219,6 +219,8 @@ VSCODE_HOME=%PAL:DataDir%\code
   - Java Language SupportとDebugger for Javaのセット
 - Project Manager
   - 複数のフォルダを管理するための拡張機能
+- EvilInspector
+  - 全角スペースを強調表示する
 
 ### Step6. 不要なフォルダを削除
 -「C:\byod\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
