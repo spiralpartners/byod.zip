@@ -179,6 +179,10 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ## VS codeセットアップ詳細
 ### Step1. VSCodePortable Updaterのセットアップ
 - [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をc:\byodに展開する．
+- 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
+### Step1. VSCodePortableのセットアップ
+- [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)のダウンロード
+- 最新版がこれでインストールできた場合はStep4まで飛ばして良い
 
 ### Step2. VSCodePortableの最新へのUpdate
 - VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
