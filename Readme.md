@@ -13,23 +13,23 @@
 - [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
   - ファイル解凍後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
 ```
-C:\byod\VSCodePortable_1.XX.Y\App
-C:\byod\VSCodePortable_1.XX.Y\Data
-C:\byod\VSCodePortable_1.XX.Y\Other
-C:\byod\VSCodePortable_1.XX.Y\Help.html
-C:\byod\VSCodePortable_1.XX.Y\VSCodePortable.exe
+C:\oit\VSCodePortable_1.XX.Y\App
+C:\oit\VSCodePortable_1.XX.Y\Data
+C:\oit\VSCodePortable_1.XX.Y\Other
+C:\oit\VSCodePortable_1.XX.Y\Help.html
+C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe
 :
-C:\byod\java1.8_XXX\App
-C:\byod\java1.8_XXX\bin
-C:\byod\java1.8_XXX\Data
-C:\byod\java1.8_XXX\db
-C:\byod\java1.8_XXX\include
-C:\byod\java1.8_XXX\jre
+C:\oit\java8_XXX\App
+C:\oit\java8_XXX\bin
+C:\oit\java8_XXX\Data
+C:\oit\java8_XXX\db
+C:\oit\java8_XXX\include
+C:\oit\java8_XXX\jre
 :
-C:\byod\PortableGit2.XX.YY.Z-64\bin
-C:\byod\PortableGit2.XX.YY.Z-64\cmd
+C:\oit\PortableGit2.XX.YY.Z-64\bin
+C:\oit\PortableGit2.XX.YY.Z-64\cmd
 :
-C:\byod\PortableGit2.XX.YY.Z-64\git-bash.exe
+C:\oit\PortableGit2.XX.YY.Z-64\git-bash.exe
 \
 ```
 
@@ -54,7 +54,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 
 ### Javaファイルの編集・コンパイル・実行
 #### vscodeの起動及びファイル編集
-- `C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
+- `C:\oit\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
 - ファイル->フォルダを開く->「java_kadai」フォルダを指定する
 - 「src\java01\ex01\Hello.java」を開いて適当に編集する
 
@@ -148,7 +148,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 
 ### ~~初回起動時に統合ターミナルがbashにならない~~(一応解決)
 - 初回に起動した際に，`表示->統合ターミナル`を選択すると，settings.jsonにbash.exeで統合ターミナルを開くよう設定しているにも関わらず，powershellが起動する(Win10の場合)．
-- さらに，`shell:"C://byod/.../bash.exe"(ワークスペースの設定として定義されている）をターミナルで起動することを許可しますか？`というメッセージが表示される
+- さらに，`shell:"C://oit/.../bash.exe"(ワークスペースの設定として定義されている）をターミナルで起動することを許可しますか？`というメッセージが表示される
 - 下記のデバッガと同様に初回起動時はbash.exeでの起動が認識されていない（許可が必要）
 - 上記の許可しますか？のメッセージを対象に`Allow`を選択し，Visual Studio Codeを再起動すればOK．
 
@@ -160,7 +160,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ### ~~初回起動時に方法2でビルドを行うと失敗する~~（解決）
 - Ctr+Shit+bなどでtask.jsonに定義されたビルドタスクを実施すると`binフォルダがない`と言われて失敗する
 - 下記コマンドで`-d`オプションで指定している出力先フォルダが存在しないため
-  - `javac.exe -encoding utf-8 -source 1.8 -target 1.8 -cp bin -d c:\byod_tmp\javatest_local\bin -sourcepath c:\byod_tmp\javatest_local\src\java01\ex01 c:\byod_tmp\javatest_local\src\java01\ex01\Hello.java`
+  - `javac.exe -encoding utf-8 -source 1.8 -target 1.8 -cp bin -d C:\oit_tmp\javatest_local\bin -sourcepath C:\oit_tmp\javatest_local\src\java01\ex01 C:\oit_tmp\javatest_local\src\java01\ex01\Hello.java`
 - jdtも初回起動時には実施されない（java.homeが認識されないため)ので，自動生成もされない
 - ソースフォルダ配布時にbinフォルダを付与して配布すればOK
 
@@ -178,7 +178,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 
 ## VS codeセットアップ詳細
 ### ~~Step1. VSCodePortable Updaterのセットアップ~~(2018/4/5時点で失敗するようになった)
-- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をc:\byodに展開する．
+- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をC:\oitに展開する．
 - 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
 ### Step1'. VSCodePortableのセットアップ
 - [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)のダウンロード
@@ -212,7 +212,7 @@ VSCODE_HOME=%PAL:DataDir%\code
 - App\UpdateManager.exe を削除する
   - 削除しないとアンチウィルスにひっかかることがある
 
-### Step4. 以下の2つをc:\byod以下に追加インストール
+### Step4. 以下の2つをC:\oit以下に追加インストール
 - jdk portable (x64)
   - https://portableapps.com/apps/utilities/jdkportable
 - PortableGit(x64)（解凍するだけ）
@@ -227,9 +227,9 @@ VSCODE_HOME=%PAL:DataDir%\code
   - 全角スペースを強調表示する
 
 ### Step6. 不要なフォルダを削除
-- 「C:\byod\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
-  - ただし，「C:\byod\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
-- 「C:\byod\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
+- 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
+  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
+- 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
 
 ### Step7. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
