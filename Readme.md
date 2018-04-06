@@ -60,7 +60,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 
 #### コンパイル・実行方法(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-- $HOMEにいる状態でターミナルが開くので，`cd kadai/java_kadai/src/java01/`と実行する
+- $HOMEにいる状態でターミナルが開くので，`cd kadai/java_kadai/java01/`と実行する
 - `javac -encoding utf8 Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
