@@ -40,7 +40,7 @@ fi
 id="`getoitname`" || exit 1
 rhost="`getkadaihost`"
 
-rsync -av ${DFLAG} \
+rsync -av -e "ssh -i '$HOME'/.ssh/id_rsa " ${DFLAG} \
         --chmod=D705,F604   \
         --exclude='*.exe'   \
         --exclude='*.class' \

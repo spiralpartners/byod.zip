@@ -23,5 +23,5 @@ fi
 id="`getoitname`" || exit 1
 rhost="`getkadaihost`"
 
-ssh "${id}@${rhost}" "$@"
+ssh -i "$HOME"/.ssh/id_rsa "${id}@${rhost}" "$@"
 exit $?

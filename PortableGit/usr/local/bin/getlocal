@@ -33,6 +33,6 @@ echo "現在の/usr/localをバックアップ中．"
 (cd /usr; tar czpf local-`date +%Y%m%d-%H%M%S`.tgz local)
 
 echo "/usr/localを更新します．"
-rsync -av "${id}@${rhost}:/home/teachers/t2005225/PINT/pint-env/local/ /usr/local/
+rsync -av -e "ssh -i '$HOME'/.ssh/id_rsa " "${id}@${rhost}:/home/teachers/t2005225/PINT/pint-env/local/ /usr/local/
 
 exit $?

@@ -34,7 +34,7 @@ if [ -f "${PUBKEY}" -a -f "${PRIKEY}" ]; then
 else
     echo "今からエンターキーを3回押してください"
     sleep 0.2
-    ssh-keygen -t rsa
+    ssh-keygen -t rsa -f "$HOME"/.ssh/id_rsa
 fi
 
 #
