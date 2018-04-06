@@ -1,6 +1,6 @@
 {
     "files.encoding": "utf8",
-    "java.home": "c://byod//java1.8_152",
+    "java.home": "c://oit//java8_161",
     "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8",
     "editor.renderWhitespace": "boundary",
     "workbench.colorTheme": "Default Light+",
@@ -11,5 +11,6 @@
       // Git が有効になっているかどうか
     "git.ignoreMissingGitWarning": true,
     "git.enabled": false,
-    "terminal.integrated.shell.windows": "C://byod/PortableGit2.15.1.2-64/bin/bash.exe"
+    "terminal.integrated.shell.windows": "C:\\oit\\PortableGit-2.17.0-64\\bin\\bash.exe",
+    "terminal.integrated.shellArgs.windows":["-l"]
 }

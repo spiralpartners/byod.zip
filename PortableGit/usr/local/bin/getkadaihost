@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo ${KADAI_HOST:-o-vnc.center.oit.ac.jp}

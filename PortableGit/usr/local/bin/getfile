@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# Written by Yasuharu Mizutani.
+
+usage(){
+    cat <<-EOF
+	
+	使い方:
+	    getfile ファイル名
+	
+	    ファイルサーバから指定したファイルを手元にコピーする．
+	    ファイル名は1つだけ指定してください．
+	
+	EOF
+}
+
+if [ "$#" -ne 1 ]; then
+    usage
+    exit 1
+else
+    case "$1" in
+        -h|-help|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            FILE="${1}"
+            ;;
+    esac
+fi
+
+id="`getoitname`" || exit 1
+rhost="`getkadaihost`"
+
+rsync -av "${id}@${rhost}:${FILE}" ./
+exit $?

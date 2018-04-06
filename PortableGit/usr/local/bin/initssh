@@ -1,4 +1,6 @@
 #!/bin/sh
+#
+# Written by Yasuharu Mizutani
 
 #
 # ユーザ名の入力
@@ -6,19 +8,21 @@
 echo -n "e1で始まるユーザ名を入力してください: "
 read id
 case "${id}" in
-  e1??????|t???????) ;;
-  *)  echo "ユーザ名がe1xxxxxxの形式ではありません"
-      exit 1
+  e1??????|t???????)
+    ;;
+  *)
+    echo "ユーザ名が e1xxxxxx の形式（e1の後に5桁の数字）ではありません"
+    exit 1
 esac
 
 
 #
-# .ssh
+# .sshディレクトリの作成
 #
 if [ ! -d ~/.ssh ]; then
     mkdir -p ~/.ssh
 fi
-echo "StrictHostKeyChecking no" > "$HOME"/.ssh/config
+echo "StrictHostKeyChecking no" > ~/.ssh/config
 
 #
 # 鍵の生成
@@ -28,25 +32,27 @@ eval PRIKEY="~/.ssh/id_rsa"
 if [ -f "${PUBKEY}" -a -f "${PRIKEY}" ]; then
     :
 else
-    echo "今からEnter passphraseと言われたらエンターキーを押してください（合計2回）"
-    sleep 1
-    ssh-keygen -t rsa -f "$HOME"/.ssh/id_rsa
+    echo "今からエンターキーを3回押してください"
+    sleep 0.2
+    ssh-keygen -t rsa
 fi
 
 #
-# 鍵認証の設定
+# 鍵認証の設定とユーザ名の登録
 #
-RHOST="${id}@o-vnc.center.oit.ac.jp"
+RHOST="`getkadaihost`"
 RCOMM="
     mkdir -p -m 700 .ssh;
-    grep -v "`hostname`" .ssh/authorized_keys > .ssh/tmp;
+    grep -v '`hostname`' .ssh/authorized_keys > .ssh/tmp;
     mv .ssh/tmp .ssh/authorized_keys;
     cat >> .ssh/authorized_keys;
     chmod 600 .ssh/authorized_keys
+    mkdir -p -m 705 kadai;
 "
+echo ""
 echo "演習室のパスワードを入力してください"
-if cat "${PUBKEY}" | ssh "${RHOST}" "${RCOMM}"; then
-    echo "${id}" > "${HOME}"/.oitname
+if cat "${PUBKEY}" | ssh "${id}@${RHOST}" "${RCOMM}"; then
+    echo "${id}" > ~/.oitname
     echo "成功しました"
 else
     echo "失敗しました"

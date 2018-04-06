@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "出席スクリプトを起動します．"
 echo "今日の意気込みを一言入力してください（1行のみ）． "
@@ -13,8 +13,8 @@ trap "echo '授業を終了します'; exit 0" 2 15
 echo "`date +'%Y-%m-%dT%H:%M:%S'` ${IPADDR} : $input" >> ~/kadai/.message.txt
 
 
-echo "==== putkadaiコマンドで定期的に課題を提出します ===="
-INTERVAL="60"
+echo "==== 今からputkadaiコマンドで定期的に課題を提出します ===="
+INTERVAL="120"
 while :; do
     putkadai |grep -v 'message\.txt' |grep -v '^[ 	]*$'
     echo "${INTERVAL}秒後に再度自動提出します"

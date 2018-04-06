@@ -1,0 +1,8 @@
+BoldAsFont=yes
+Font=Consolas
+FontHeight=13
+Language=ja
+ThemeFile=mintty
+CopyAsRTF=no
+RightClickAction=paste
+Charset=UTF-8

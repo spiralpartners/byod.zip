@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# Written by Yasuharu Mizutani.
+
+usage(){
+    cat <<-EOF
+	
+	使い方:
+	    getlocal
+	
+	/usr/localを更新する．
+	
+	EOF
+}
+
+if [ "$#" -ge 1 ]; then
+    case "$1" in
+        -h|-help|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+fi
+
+id="`getoitname`" || exit 1
+rhost="`getkadaihost`"
+
+echo "現在の/usr/localをバックアップ中．"
+(cd /usr; tar czpf local-`date +%Y%m%d-%H%M%S`.tgz local)
+
+echo "/usr/localを更新します．"
+rsync -av "${id}@${rhost}:/home/teachers/t2005225/PINT/pint-env/local/ /usr/local/
+
+exit $?

@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Written by Yasuharu Mizutani.
+
+usage(){
+    cat <<-EOF
+	
+	使い方:
+	    sshrun コマンド [引数...]
+	
+	サーバ上で引数に指定したコマンドを実行する．
+	サーバ名は環境変数KADAI_HOSTで指定する．
+	KADAI_HOSTが未定義の場合はo-vnc.center.oit.ac.jpとなる．
+	
+	EOF
+}
+
+if [ "$#" -eq 0 ]; then
+    usage
+    exit 1
+fi
+
+id="`getoitname`" || exit 1
+rhost="`getkadaihost`"
+
+ssh "${id}@${rhost}" "$@"
+exit $?

@@ -8,27 +8,23 @@ usage(){
 	使い方:
 	  getkadai 
 	
-	サーバ上に提出したkadaiディレクトリをホームディレクトリの下にあるkadai
-	（~/kadai）にコピーします．
+	サーバ上のkadaiディレクトリを，このPC上のホームディレクトリの下に
+	あるkadaiディレクトリ（~/kadai）にコピーします．
 	
 	EOF
 }
 
-if [ "$#" -ge 1 ]; then
-    case "$1" in
-        -h|-help|--help)
-            usage
-            exit 0
-            ;;
-        *)
-            usage
-            exit 1
-            ;;
-    esac
+if [ "$#" -ne 0 ]; then
+    usage
+    exit 0
 fi
 
-
 id="`getoitname`" || exit 1
-cd
-rsync -av -e "ssh -i ./.ssh/id_rsa " ${id}@o-vnc.center.oit.ac.jp:kadai ~/
+rhost="`getkadaihost`"
+
+if [ ! -d ~/kadai ]; then
+    mkdir ~/kadai
+fi
+rsync -av ${id}@${rhost}:kadai ~/
 exit $?
+

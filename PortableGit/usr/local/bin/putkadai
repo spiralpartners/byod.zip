@@ -9,11 +9,11 @@ usage(){
 	  putkadai 
 	  putkadai --delete
 	
-	ホームディレクトリの下にあるkadaiディレクトリ（~/kadai）をサーバ上に
-	コピー（提出）します．
+	このPCのホームディレクトリ下にあるkadaiディレクトリ（~/kadai）をサーバ
+	上のkadaiディレクトリにコピー（提出）します．
 	
 	--deleteを付けると~/kadaiとサーバ上のkadaiを完全同期します．
-	すなわち，サーバ上のkadaiにあって~/kadaiに無いファイルは，サーバ上から
+	つまり，サーバ上のkadaiにあって~/kadaiに無いファイルは，サーバ上から
 	削除されます．使い方を誤るとサーバ上の必要なファイルまで削除してしまう
 	可能性があるため，--deleteの使用は十分に気を付けてください．
 	
@@ -38,12 +38,14 @@ if [ "$#" -ge 1 ]; then
 fi
 
 id="`getoitname`" || exit 1
-cd
-rsync -av -e "ssh -i ./.ssh/id_rsa " ${DFLAG} \
-        --chmod=g-rwx \
-        --exclude='*.exe' \
+rhost="`getkadaihost`"
+
+rsync -av ${DFLAG} \
+        --chmod=D705,F604   \
+        --exclude='*.exe'   \
         --exclude='*.class' \
-        --exclude='*~' \
-        ~/kadai ${id}@o-vnc.center.oit.ac.jp:
+        --exclude='*~'      \
+        --exclude='#*'      \
+        ~/kadai ${id}@${rhost}:
 echo $?
 

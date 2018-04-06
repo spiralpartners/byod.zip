@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "${fileBasenameNoExtension}",
             "args": "",
-            "preLaunchTask": "Compile Java4",
+            "preLaunchTask": "Compile Java",
             "encoding": "UTF-8",
             "classPaths": [
                 "${workspaceFolder}\\bin"
