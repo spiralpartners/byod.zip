@@ -26,10 +26,10 @@ C:\oit\java8_XXX\db
 C:\oit\java8_XXX\include
 C:\oit\java8_XXX\jre
 :
-C:\oit\PortableGit2.XX.YY.Z-64\bin
-C:\oit\PortableGit2.XX.YY.Z-64\cmd
+C:\oit\PortableGit-2.XX.YY.Z-64\bin
+C:\oit\PortableGit-2.XX.YY.Z-64\cmd
 :
-C:\oit\PortableGit2.XX.YY.Z-64\git-bash.exe
+C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
 \
 ```
 
@@ -55,13 +55,14 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ### Javaファイルの編集・コンパイル・実行
 #### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->「java_kadai」フォルダを指定する
-- 「src\java01\ex01\Hello.java」を開いて適当に編集する
+- ファイル->フォルダを開く->「`$HOME\kadai\javaYYYY`」(年度によってYYYYは変わる)フォルダを指定する
+- 「java01\Hello.java」を開いて適当に編集する
 
 #### コンパイル・実行方法(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-- $HOMEにいる状態でターミナルが開くので，`cd kadai/java_kadai/java01/`と実行する
-- `javac -encoding utf8 Hello.java`と実行する
+  - 初回起動時はPowershellが開き，bash.exeを開いてよいか聞いてくるので`Allow`を選択し，vscode毎再起動すると良い
+- `$HOME\kadai\javaYYYY`にいる状態でターミナルが開くので，`cd java01`と実行する
+- `javac Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
 #### コンパイル・実行方法(方法2)
@@ -75,7 +76,77 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 - 終了時には`Ctr + C`
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
-## 今後の課題
+
+
+
+
+# Java演習開発環境セットアップ詳細
+### ~~Step1. VSCodePortable Updaterのセットアップ~~(2018/4/5時点で失敗するようになった)
+- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をC:\oitに展開する．
+- 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
+### Step1'. VSCodePortableのセットアップ
+- [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)のダウンロード
+- 最新版がこれでインストールできた場合はStep2,3を飛ばして良い
+
+### Step2. VSCodePortableの最新へのUpdate
+- VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
+
+### Step3. 配布用にUpdateの停止
+- App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
+  - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
+```
+[Launch]
+ProgramExecutable=VSCode\code.exe
+ProgramExecutable64=VSCode64\code.exe
+CommandLineArguments='--user-data-dir="%PAL:DataDir%\code" --extensionHomePath="%PAL:DataDir%\code\extensions"'
+DirectoryMoveOK=yes
+DisableSplashScreen=true
+SplashTime=0
+SupportsUNC=yes
+MinOS=7
+
+[Environment]
+VSCODE_HOME=%PAL:DataDir%\code
+
+[DirectoriesCleanupIfEmpty]
+1=%APPDATA%\Code
+2=%USERPROFILE%\.vscode\extensions
+3=%USERPROFILE%\.vscode
+```
+- App\UpdateManager.exe を削除する
+  - 削除しないとアンチウィルスにひっかかることがある
+
+### Step4. 以下の2つをC:\oit以下に追加インストール
+- ディレクトリ名を指定のものに変更する
+- jdk portable (x64)
+  - https://portableapps.com/apps/utilities/jdkportable
+- PortableGit(x64)（解凍するだけ）
+  - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
+  - bash.exe経由で起動するようにbatファイルを作成する
+    - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
+
+### Step5. 拡張機能の追加
+- Java Extention Pack
+  - Java Language SupportとDebugger for Javaのセット
+- Project Manager
+  - 複数のフォルダを管理するための拡張機能
+- EvilInspector
+  - 全角スペースを強調表示する
+
+### Step6. 不要なフォルダを削除
+- 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
+  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
+- 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
+
+### Step7. 演習フォルダ(本リポジトリ)のセットアップ
+- .vscode以下のlaunch.json, tasks.json, settings.json
+- フォルダルートにある.classpath, .project
+- 以上のファイルの設定は本リポジトリ参照のこと
+
+### Step8. シェルのセットアップ
+- C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
+
+# 今後の課題
 ### 全ディレクトリ構成をどうするか
 - jdk,vscode,portablegit等のバイナリを置くディレクトリとjavakadaiを置くディレクトリの場所をどうするか.
 - 他の授業との兼ね合いや年度進行（再履修含む）にどう対応するかも検討する必要あり．
@@ -173,74 +244,3 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ### ~~デバッガ利用時の不具合~~(解決)
 - 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
 - __VScodeのバージョンをUP(1.16.1->1.18.1)したら治ったっぽい__
-
-
-
-## VS codeセットアップ詳細
-### ~~Step1. VSCodePortable Updaterのセットアップ~~(2018/4/5時点で失敗するようになった)
-- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をC:\oitに展開する．
-- 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
-### Step1'. VSCodePortableのセットアップ
-- [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)のダウンロード
-- 最新版がこれでインストールできた場合はStep2,3を飛ばして良い
-
-### Step2. VSCodePortableの最新へのUpdate
-- VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
-
-### Step3. 配布用にUpdateの停止
-- App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
-  - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
-```
-[Launch]
-ProgramExecutable=VSCode\code.exe
-ProgramExecutable64=VSCode64\code.exe
-CommandLineArguments='--user-data-dir="%PAL:DataDir%\code" --extensionHomePath="%PAL:DataDir%\code\extensions"'
-DirectoryMoveOK=yes
-DisableSplashScreen=true
-SplashTime=0
-SupportsUNC=yes
-MinOS=7
-
-[Environment]
-VSCODE_HOME=%PAL:DataDir%\code
-
-[DirectoriesCleanupIfEmpty]
-1=%APPDATA%\Code
-2=%USERPROFILE%\.vscode\extensions
-3=%USERPROFILE%\.vscode
-```
-- App\UpdateManager.exe を削除する
-  - 削除しないとアンチウィルスにひっかかることがある
-
-### Step4. 以下の2つをC:\oit以下に追加インストール
-- ディレクトリ名を指定のものに変更する
-- jdk portable (x64)
-  - https://portableapps.com/apps/utilities/jdkportable
-- PortableGit(x64)（解凍するだけ）
-  - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
-  - bash.exe経由で起動するようにbatファイルを作成する
-    - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
-
-### Step5. 拡張機能の追加
-- Java Extention Pack
-  - Java Language SupportとDebugger for Javaのセット
-- Project Manager
-  - 複数のフォルダを管理するための拡張機能
-- EvilInspector
-  - 全角スペースを強調表示する
-
-### Step6. 不要なフォルダを削除
-- 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
-  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
-- 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
-
-### Step7. 演習フォルダ(本リポジトリ)のセットアップ
-- .vscode以下のlaunch.json, tasks.json, settings.json
-- フォルダルートにある.classpath, .project
-- 以上のファイルの設定は本リポジトリ参照のこと
-
-### Step8. シェルのセットアップ
-- jdkのbinへのpath設定が必要．WindowsのPATH環境変数の設定はいじりたくないので，シェル起動時にprofile.dで追加するようにする
-- bash.exeの場合は$PorableGit\etc\profile.d\のbash.profile.shに`export PATH=/c/byod/java8_XXX/bin/:$PATH`を追加し，bash.exeをvs codeの統合ターミナルとして呼び出すようにする(settings.json)．同じprofile.shにjava.exe,javac.exeへのaliasを追加し，$HOMEを指定する．
-- opensshが参照するホームディレクトリを指定するためにnsswitch.confにホームディレクトリを設定する．
-- /usr/local/bin/にmizutani先生謹製の課題get/pushスクリプトを置く
