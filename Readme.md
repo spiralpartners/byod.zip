@@ -10,8 +10,8 @@
 
 ## 演習環境の準備
 ### vscode, jdk, portablegit
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
-  - ファイル解凍後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるjavaYYYYMMDD.exeをC:\oitにダウンロードし，実行（展開）する
+  - 自己解凍ファイル展開後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
 ```
 C:\oit\VSCodePortable_1.XX.Y\App
 C:\oit\VSCodePortable_1.XX.Y\Data
@@ -30,16 +30,16 @@ C:\oit\PortableGit-2.XX.YY.Z-64\bin
 C:\oit\PortableGit-2.XX.YY.Z-64\cmd
 :
 C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
-\
+C:\oit\java-bash-2.XX.YY.Z-64.exe
 ```
 
-### java_kadai
-- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．この下に`kadai`フォルダを作成し，本リポジトリのjava_kadaiフォルダを以下のようになるように展開する．
+### vscode_setting
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\oithome\kadai`が生成される．`kadai`フォルダ以下に本リポジトリの`vscode_setting`フォルダを以下のようになるように展開する．
 ```
-C:\Users\ユーザ名\byod_home\kadai\java_kadai\src
-C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
+C:\Users\ユーザ名\oithome\kadai\vscode_setting\.vscode
+C:\Users\ユーザ名\oithome\kadai\vscode_setting\bin
 ```
-- java_kadai/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
+- vscode_setting/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
 
 ## 開発(学生の立場から)の流れ
 ### 準備(公開鍵sshの設定)
@@ -138,13 +138,25 @@ VSCODE_HOME=%PAL:DataDir%\code
   - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
 - 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
 
+
 ### Step7. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
 - フォルダルートにある.classpath, .project
 - 以上のファイルの設定は本リポジトリ参照のこと
+- https://qiita.com/yumetodo/items/42132a1e8435504448aa
 
 ### Step8. シェルのセットアップ
 - C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
+- history: http://takuya-1st.hatenablog.jp/entry/2017/01/01/034040
+- mkdir:http://blog.katty.in/4967
+- bash設定: https://qiita.com/u1and0/items/b4c3217868cf8bafb085
+- alias: http://blog.msz3nhen.net/?p=39
+
+
+### StepX. bash.exe実行のための実行バイナリの作成
+- goでビルド
+- https://gist.github.com/mattn/000735084394601b225a861af4afd35e
+- icon: http://blog.y-yuki.net/entry/2017/04/22/000000
 
 # 今後の課題
 ### 全ディレクトリ構成をどうするか
