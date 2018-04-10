@@ -182,7 +182,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 - 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
 ### Step1'. VSCodePortableのセットアップ
 - [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)のダウンロード
-- 最新版がこれでインストールできた場合はStep4まで飛ばして良い
+- 最新版がこれでインストールできた場合はStep2,3を飛ばして良い
 
 ### Step2. VSCodePortableの最新へのUpdate
 - VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
@@ -213,10 +213,13 @@ VSCODE_HOME=%PAL:DataDir%\code
   - 削除しないとアンチウィルスにひっかかることがある
 
 ### Step4. 以下の2つをC:\oit以下に追加インストール
+- ディレクトリ名を指定のものに変更する
 - jdk portable (x64)
   - https://portableapps.com/apps/utilities/jdkportable
 - PortableGit(x64)（解凍するだけ）
   - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
+  - bash.exe経由で起動するようにbatファイルを作成する
+    - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
 
 ### Step5. 拡張機能の追加
 - Java Extention Pack
@@ -237,5 +240,7 @@ VSCODE_HOME=%PAL:DataDir%\code
 - 以上のファイルの設定は本リポジトリ参照のこと
 
 ### Step8. シェルのセットアップ
-- jdkのbinへのpath設定が必要．WindowsのPATH環境変数の設定はいじりたくないので，シェル起動時に追加するようにする
-- bash.exeの場合は$PorableGit\etcのbash.bashrcに`export PATH=/c/byod/java1.8_152/bin/:$PATH`を追加し，bash.exeをvs codeの統合ターミナルとして呼び出すようにする(settings.json)．
+- jdkのbinへのpath設定が必要．WindowsのPATH環境変数の設定はいじりたくないので，シェル起動時にprofile.dで追加するようにする
+- bash.exeの場合は$PorableGit\etc\profile.d\のbash.profile.shに`export PATH=/c/byod/java8_XXX/bin/:$PATH`を追加し，bash.exeをvs codeの統合ターミナルとして呼び出すようにする(settings.json)．同じprofile.shにjava.exe,javac.exeへのaliasを追加し，$HOMEを指定する．
+- opensshが参照するホームディレクトリを指定するためにnsswitch.confにホームディレクトリを設定する．
+- /usr/local/bin/にmizutani先生謹製の課題get/pushスクリプトを置く
