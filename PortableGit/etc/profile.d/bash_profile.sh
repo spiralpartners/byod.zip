@@ -10,11 +10,6 @@ if [ -e ~/.bashrc -a ! -e ~/.bash_profile -a ! -e ~/.bash_login -a ! -e ~/.profi
 	EOF
 fi
 export PATH=/c/oit/Java8_161/bin/:$PATH
-#export PATH=/mingw64/bin/:$PATH
-alias javac='javac -J-Dfile.encoding=UTF-8'
-alias java='java -Dfile.encoding=UTF-8'
-
 export HOME=$(cd "$USERPROFILE\oithome" && pwd)
 HISTFILE=$HOME/kadai/.bash_history
 HISTTIMEFORMAT="%Y/%m/%dT%T%z "
-#cd $HOME
