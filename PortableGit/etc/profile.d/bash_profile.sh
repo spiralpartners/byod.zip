@@ -11,5 +11,6 @@ if [ -e ~/.bashrc -a ! -e ~/.bash_profile -a ! -e ~/.bash_login -a ! -e ~/.profi
 fi
 export PATH=/c/oit/Java8_161/bin/:$PATH
 export HOME=$(cd "$USERPROFILE\oithome" && pwd)
-HISTFILE=$HOME/kadai/.bash_history
+export PROMPT_COMMAND="history -a"
+HISTFILE=$HOME/kadai/.java_bash_history
 HISTTIMEFORMAT="%Y/%m/%dT%T%z "
