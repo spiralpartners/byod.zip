@@ -8,27 +8,33 @@
   - `/usr/local/bin` nkf.exe, rsync.exe, putkadai, shusseki等必要なexeや課題提出用スクリプト
 
 ## 課題
-### vscodeでシェル(bash.exe)を開いたときに`/usr/local/bin`にPATHが通っていない
-- 原因不明．bash.bashrcで明示的にPATHに追加すればいけるかもしれないが，2重でPATHを通すことになりそうで避けたい．
-- echo $PATHをすると，`/usr/local/bin/`と`/bin`へのPATHがbash.exeを実行した場合は通っていない(git-bash.exeを実行した場合は通っている）
 ### ファイルとディレクトリを間違えて作成した場合に，正しくリモートに課題が提出されない可能性がある
 - `ex01.c`とかいうディレクトリを間違って作成し，それが一度pushされると，以降はそれが変更されない（--deleteをつけない場合）
 ### shussekiコマンドが失敗していても学生が気づかない場合が考えられる
 - 1回目の同期が終了した後に確認コマンドを入力させる？
 
-### 複数の授業で公開鍵方式でsshする場合に，リモート側に1つのホストからの複数の鍵が残らないようになっている
+### 複数の授業で公開鍵方式でsshする場合に，リモート側に1つのホストからの複数の鍵しか残らないようになっている
 - `/usr/local/bin/initssh`参照
 - 授業で使う公開鍵を使い分けるような状況になると，毎回initsshやり直す必要がある
 - とりあえずは公開鍵を授業間で共有する方向で検討する（運用でカバー）
 
+### ~~vscodeでシェル(bash.exe)を開いたときに`/usr/local/bin`にPATHが通っていない~~(解決済み)
+- /usr/bin/bash.exe から起動するように設定し，環境変数MSYSTEMにMINGW64を指定すればPATHが通るようになることが確認できた
+- 参考：https://qiita.com/yumetodo/items/42132a1e8435504448aa
+- 原因不明．bash.bashrcで明示的にPATHに追加すればいけるかもしれないが，2重でPATHを通すことになりそうで避けたい．
+- echo $PATHをすると，`/usr/local/bin/`と`/bin`へのPATHがbash.exeを実行した場合は通っていない(git-bash.exeを実行した場合は通っている）
 ### ~~$USERPROFILE/byod をホームにして，.sshフォルダもそこに置きたいが，認識されない~~(解決済み)
 - bash.bashrcでHOMEを新たにセットし直しても，sshの公開鍵がデフォルトで読み込まれる場所は$USERPROFILEのまま
 - fstabの設定をしたりしても，なぜか変更できず
-- ssh-keygenのときに-fオプションで作成場所を指定し，rsyncやsshのときには-iオプションで指定したファイルを読み込むように変更した．
+- （解決策1:）nsswitch.conf でdb_homeを$HOMEと同じ場所に以下を参考に設定しておくと，sshも正しい場所を見てくれる
+  - http://yanor.net/wiki/?Windows-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%2FMinGW-MSYS%2FMSYS2%E3%81%AEOpenSSH%E3%81%A7%E3%81%AE%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%AE%E6%89%B1%E3%81%84
+-（解決策2:）ssh-keygenのときに-fオプションで作成場所を指定し，rsyncやsshのときには-iオプションで指定したファイルを読み込むように変更した．
 
 ### ~~`~/`を指定したときに展開される場所がときによって違う~~(解決済み)
 - 通常はHOMEとしてセットしたところが展開されるが，ssh -i ~/.ssh/id_rsa としたときに，$USERPROFILEが展開されることがある
-- $HOME/.ssh/id_rsa と指定することで展開される場所が共通化できた
+- （解決策1:）nsswitch.conf でdb_homeを$HOMEと同じ場所に以下を参考に設定しておくと，sshも正しい場所を見てくれる
+  - http://yanor.net/wiki/?Windows-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%2FMinGW-MSYS%2FMSYS2%E3%81%AEOpenSSH%E3%81%A7%E3%81%AE%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%AE%E6%89%B1%E3%81%84
+- （解決策2:）$HOME/.ssh/id_rsa と指定することで展開される場所が共通化できた
 
 ### ~~フォルダにスペースが混じっているとバグる(コマンドが正常に実行されなくなる)~~(解決済み)
 - "$HOME"等で囲む必要あり．
@@ -54,6 +60,6 @@
 - 本リポジトリ中に既に用意されているnkf.exeやrsync.exeはmsys2を利用して取得したもの．毎回やる必要はないが，セットアップ方法を以下に記しておく．
 - msys2の64bit版をインストール
   - https://sourceforge.net/projects/msys2/files/Base/
-- msys2 64bitを起動してrsyncをインストール（nkfも多分同じ）
+- msys2 64bitを起動してrsyncをインストール（nkfはソースからmakeする必要あり）
   - `pacman -S rsync`
 - `${msys2}/usr/bin/rsync.exe` を `${PortableGit}/usr/local/bin/`にコピーする
