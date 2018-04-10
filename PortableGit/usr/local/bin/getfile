@@ -32,5 +32,5 @@ fi
 id="`getoitname`" || exit 1
 rhost="`getkadaihost`"
 
-rsync -av -e "ssh -i '$HOME'/.ssh/id_rsa " "${id}@${rhost}:${FILE}" ./
+rsync -av "${id}@${rhost}:${FILE}" ./
 exit $?

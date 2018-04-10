@@ -25,7 +25,6 @@ rhost="`getkadaihost`"
 if [ ! -d ~/kadai ]; then
     mkdir ~/kadai
 fi
-#rsync -av ${id}@${rhost}:kadai ~/
-rsync -av -e "ssh -i '$HOME'/.ssh/id_rsa " ${id}@${rhost}:kadai ~/
+rsync -av ${id}@${rhost}:kadai ~/
 exit $?
 
