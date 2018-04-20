@@ -18,8 +18,7 @@
 - .project
   - project name等を指定する．現在はjavaなのでjava2018等にしたほうが良いかもしれない．
 
-### Step7. 演習フォルダ(本リポジトリ)のセットアップ
-- .vscode以下のlaunch.json, tasks.json, settings.json
+## .vscode\launch.json,tasks.json,settings.json
 - フォルダルートにある.classpath, .project
 - 以上のファイルの設定は本リポジトリ`java_src`参照のこと
 - https://qiita.com/yumetodo/items/42132a1e8435504448aa
