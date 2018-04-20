@@ -75,6 +75,85 @@ C:\Users\ユーザ名\oithome\kadai\java_src\bin
 - 終了時には`Ctr + C`
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
+# Java演習開発環境用VS codeセットアップ詳細
+### Step1'. VSCodePortableのセットアップ
+- [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)から`VSCodePortable_1.XX.Y_online.paf.exe`をダウンロードし，c:\oitに保存・実行（展開）する．
+- 最新版がこれでインストールできた場合はStep1,2,3を飛ばして良い
+
+### ~~Step1. VSCodePortable Updaterのセットアップ~~(2018/4/5時点で失敗するようになった)
+- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をC:\oitに展開する．
+- 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
+
+### ~~Step2. VSCodePortableの最新へのUpdate~~(2018/4/5時点で失敗するようになった)
+- VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
+
+### ~~Step3. 配布用にUpdateの停止~~(2018/4/5時点で失敗するようになった)
+- App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
+  - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
+```
+[Launch]
+ProgramExecutable=VSCode\code.exe
+ProgramExecutable64=VSCode64\code.exe
+CommandLineArguments='--user-data-dir="%PAL:DataDir%\code" --extensionHomePath="%PAL:DataDir%\code\extensions"'
+DirectoryMoveOK=yes
+DisableSplashScreen=true
+SplashTime=0
+SupportsUNC=yes
+MinOS=7
+
+[Environment]
+VSCODE_HOME=%PAL:DataDir%\code
+
+[DirectoriesCleanupIfEmpty]
+1=%APPDATA%\Code
+2=%USERPROFILE%\.vscode\extensions
+3=%USERPROFILE%\.vscode
+```
+- App\UpdateManager.exe を削除する
+  - 削除しないとアンチウィルスにひっかかることがある
+
+### Step4. 以下の2つをC:\oit以下に追加インストール
+- ディレクトリ名を指定のものに変更する
+- jdk portable (x64)
+  - https://portableapps.com/apps/utilities/jdkportable
+- PortableGit(x64)（解凍するだけ）
+  - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
+  - bash.exe経由で起動するように本リポジトリのjava-bashフォルダからexeファイルを作成する
+    - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
+    - 詳細は`java-bash\Readme.md` 参照
+
+### Step5. 拡張機能の追加
+- Java Extention Pack
+  - Java Language SupportとDebugger for Javaのセット
+- Project Manager
+  - 複数のフォルダを管理するための拡張機能
+- EvilInspector
+  - 全角スペースを強調表示する
+
+### Step6. 不要なフォルダを削除
+- 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
+  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
+- 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
+
+
+### Step7. 演習フォルダ(本リポジトリ)のセットアップ
+- .vscode以下のlaunch.json, tasks.json, settings.json
+- フォルダルートにある.classpath, .project
+- 以上のファイルの設定は本リポジトリ`java_src`参照のこと
+- https://qiita.com/yumetodo/items/42132a1e8435504448aa
+
+### Step8. シェルのセットアップ
+- C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
+- history: http://takuya-1st.hatenablog.jp/entry/2017/01/01/034040
+- mkdir:http://blog.katty.in/4967
+- bash設定: https://qiita.com/u1and0/items/b4c3217868cf8bafb085
+- alias: http://blog.msz3nhen.net/?p=39
+
+
+### Step9. bash.exe実行のための実行バイナリの作成
+- java-bashフォルダをgoでビルドする
+- https://gist.github.com/mattn/000735084394601b225a861af4afd35e
+- icon: http://blog.y-yuki.net/entry/2017/04/22/000000
 
 # 今後の課題
 ### ~~全ディレクトリ構成をどうするか~~(一応交渉成立)
