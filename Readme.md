@@ -1,16 +1,15 @@
 # BYOD下におけるプログラミング演習環境の構築
 ## リポジトリの内容
 - このリポジトリの内容はBYOD下でのプログラミング演習環境の一部である
-- 学生が解く課題のサンプルを保存するフォルダとPortableGitの変更内容をリポジトリで管理する
+- 学生が解く課題を保存するフォルダ(vscode設定ファイル付き)，PortableGitの変更内容，PortableGitのバイナリを実行するためのオプション付きexeを作成するフォルダの3つをこのリポジトリで管理する
+  - 各フォルダの詳細はそれぞれのフォルダのReadme.md参照のこと
 - 想定するプログラミング演習の言語はJava
 - 実行環境はJDK＋PortableGit+Visual Studio Code．
   - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
-  - PortableGitについての設定方法や課題は下記参照のこと
-    - https://github.com/spiralpartners/byod.zip/tree/master/PortableGit
 
 ## 演習環境の準備
-### vscode, jdk, portablegit
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるjavaYYYYMMDD.exeをC:\oitにダウンロードし，実行（展開）する
+### vscode, jdk, portablegitのインストール
+- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるoit-javaYYYYMMDD.exeをC:\oitにダウンロードし，実行（展開）する
   - 自己解凍ファイル展開後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
 ```
 C:\oit\VSCodePortable_1.XX.Y\App
@@ -33,130 +32,48 @@ C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
 C:\oit\java-bash-2.XX.YY.Z-64.exe
 ```
 
-### vscode_setting
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\oithome\kadai`が生成される．`kadai`フォルダ以下に本リポジトリの`vscode_setting`フォルダを以下のようになるように展開する．
+### java_srcフォルダのインストール
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\oithome\kadai`が生成される（ない場合）．`kadai`フォルダ以下に本リポジトリの`java_src`フォルダを以下のようになるように展開する．
 ```
-C:\Users\ユーザ名\oithome\kadai\vscode_setting\.vscode
-C:\Users\ユーザ名\oithome\kadai\vscode_setting\bin
+C:\Users\ユーザ名\oithome\kadai\java_src\.vscode
+C:\Users\ユーザ名\oithome\kadai\java_src\bin
 ```
-- vscode_setting/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
+- java_src/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがvs code関連のすべての設定ファイル
 
 ## 開発(学生の立場から)の流れ
 ### 準備(公開鍵sshの設定)
-- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「initssh」コマンドを実行する
-  - $HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．
-  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vncにアクセスできるようになる
-  - .sshフォルダと公開鍵・秘密鍵はbyod_homeフォルダ内部に作成される
-  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有．なお，$HOMEの場所は変更の可能性あり）
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「initssh」コマンドを実行する
+  - $HOMEフォルダとして`C:\Users\ユーザ名\oithome`がセットされる．
+  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
+  - .sshフォルダと公開鍵・秘密鍵は`oithome\.ssh`フォルダ内部に作成される
+  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有することを前提とする）
   - 下記画像のように`成功しました`と表示されればOK.
 
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
 
 ### Javaファイルの編集・コンパイル・実行
 #### vscodeの起動及びファイル編集
-- `C:\oit\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->「`$HOME\kadai\javaYYYY`」(年度によってYYYYは変わる)フォルダを指定する
-- 「java01\Hello.java」を開いて適当に編集する
+- `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
+- ファイル->フォルダを開く->「`$HOME\kadai\java_src`」(授業ではjava2018等のフォルダ名になる可能性あり)フォルダを指定する
+- 例えば`java01\Hello.java`を開いて適当に編集する
 
 #### コンパイル・実行方法(方法1)
 - Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-  - 初回起動時はPowershellが開き，bash.exeを開いてよいか聞いてくるので`Allow`を選択し，vscode毎再起動すると良い
-- `$HOME\kadai\javaYYYY`にいる状態でターミナルが開くので，`cd java01`と実行する
+  - 初回起動時はPowershellが開き，bash.exeを開いてよいか聞いてくるので`Allow`を選択し，vscodeごと再起動すると良い
+- `$HOME\kadai\java_src`にいる状態でターミナルが開くので，`cd java01`と実行し，
 - `javac Hello.java`と実行する
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
 
 #### コンパイル・実行方法(方法2)
 - Hello.javaを開いた状態で，デバッグ->デバッグを開始，を選択する
 - コンパイルがターミナルで行われ，実行結果がデバッグコンソールに表示される
-  - breakpointを指定したデバッグ等も可能
 
 ### 出席・課題提出方法
-- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「shusseki」コマンドを実行する
-- 下記のように~/kadai がsyncされればOK．
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「shusseki」コマンドを実行する
+- 下記のように~/kadai がo-vnc.center.oit.ac.jp上の同じフォルダとsyncされればOK．
 - 終了時には`Ctr + C`
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
-
-
-
-
-# Java演習開発環境セットアップ詳細
-### ~~Step1. VSCodePortable Updaterのセットアップ~~(2018/4/5時点で失敗するようになった)
-- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をC:\oitに展開する．
-- 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
-### Step1'. VSCodePortableのセットアップ
-- [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)のダウンロード
-- 最新版がこれでインストールできた場合はStep2,3を飛ばして良い
-
-### Step2. VSCodePortableの最新へのUpdate
-- VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
-
-### Step3. 配布用にUpdateの停止
-- App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
-  - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
-```
-[Launch]
-ProgramExecutable=VSCode\code.exe
-ProgramExecutable64=VSCode64\code.exe
-CommandLineArguments='--user-data-dir="%PAL:DataDir%\code" --extensionHomePath="%PAL:DataDir%\code\extensions"'
-DirectoryMoveOK=yes
-DisableSplashScreen=true
-SplashTime=0
-SupportsUNC=yes
-MinOS=7
-
-[Environment]
-VSCODE_HOME=%PAL:DataDir%\code
-
-[DirectoriesCleanupIfEmpty]
-1=%APPDATA%\Code
-2=%USERPROFILE%\.vscode\extensions
-3=%USERPROFILE%\.vscode
-```
-- App\UpdateManager.exe を削除する
-  - 削除しないとアンチウィルスにひっかかることがある
-
-### Step4. 以下の2つをC:\oit以下に追加インストール
-- ディレクトリ名を指定のものに変更する
-- jdk portable (x64)
-  - https://portableapps.com/apps/utilities/jdkportable
-- PortableGit(x64)（解凍するだけ）
-  - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
-  - bash.exe経由で起動するようにbatファイルを作成する
-    - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
-
-### Step5. 拡張機能の追加
-- Java Extention Pack
-  - Java Language SupportとDebugger for Javaのセット
-- Project Manager
-  - 複数のフォルダを管理するための拡張機能
-- EvilInspector
-  - 全角スペースを強調表示する
-
-### Step6. 不要なフォルダを削除
-- 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
-  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
-- 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
-
-
-### Step7. 演習フォルダ(本リポジトリ)のセットアップ
-- .vscode以下のlaunch.json, tasks.json, settings.json
-- フォルダルートにある.classpath, .project
-- 以上のファイルの設定は本リポジトリ参照のこと
-- https://qiita.com/yumetodo/items/42132a1e8435504448aa
-
-### Step8. シェルのセットアップ
-- C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
-- history: http://takuya-1st.hatenablog.jp/entry/2017/01/01/034040
-- mkdir:http://blog.katty.in/4967
-- bash設定: https://qiita.com/u1and0/items/b4c3217868cf8bafb085
-- alias: http://blog.msz3nhen.net/?p=39
-
-
-### StepX. bash.exe実行のための実行バイナリの作成
-- goでビルド
-- https://gist.github.com/mattn/000735084394601b225a861af4afd35e
-- icon: http://blog.y-yuki.net/entry/2017/04/22/000000
 
 # 今後の課題
 ### 全ディレクトリ構成をどうするか
