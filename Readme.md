@@ -58,16 +58,17 @@ C:\Users\ユーザ名\oithome\kadai\java_src\bin
 - 例えば`java01\Hello.java`を開いて適当に編集する
 
 #### コンパイル・実行方法(方法1)
-- Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-  - 初回起動時はPowershellが開き，bash.exeを開いてよいか聞いてくるので`Allow`を選択し，vscodeごと再起動すると良い
-- `$HOME\kadai\java_src`にいる状態でターミナルが開くので，`cd java01`と実行し，
-- `javac Hello.java`と実行する
-- 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
+- Hello.javaをvscodeで開いた状態で，`java-bash-2.XX.Y-64.exe`を実行する(initsshやshussekiを動かしているものとは別に開くこと)
+- `C:\oit`にいる状態でbashのターミナルが開くので，`cd`と実行する．
+- $HOMEに移動するので，`cd kadai/java_src/java01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
+- 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される．
 
 #### コンパイル・実行方法(方法2)
-- Hello.javaを開いた状態で，デバッグ->デバッグを開始，を選択する
-- コンパイルがターミナルで行われ，実行結果がデバッグコンソールに表示される
-- なお，これも初回起動時（初回にjava_srcフォルダを開いた際）はデバッガが見つけられず，コンパイルに失敗するので，その場合はvscodeごと再起動する．
+- Hello.javaを開いた状態で，`F5`を叩く．
+- コンパイルがターミナルで行われ，実行結果が外部ターミナル（自動的に開く）に表示される
+- なお，これも初回起動時（初回にjava_srcフォルダを開いた際）はデバッガが見つけられず，コンパイルに失敗することがあるので，その場合はvscodeごと再起動する．
+- なお，実行は不要でコンパイルのみがしたい場合は，`Ctr+Shift+B`を押せば良い．
+- 実行には環境によっては数秒かかる
 
 ### 出席・課題提出方法
 - `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「shusseki」コマンドを実行する
@@ -76,6 +77,7 @@ C:\Users\ユーザ名\oithome\kadai\java_src\bin
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
 # Java演習開発環境用VS codeセットアップ詳細
+- 以下は0からvs code 環境のセットアップを行う際に参考にする情報．
 ### Step1'. VSCodePortableのセットアップ
 - [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)から`VSCodePortable_1.XX.Y_online.paf.exe`をダウンロードし，c:\oitに保存・実行（展開）する．
 - 最新版がこれでインストールできた場合はStep1,2,3を飛ばして良い
