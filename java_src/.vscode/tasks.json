@@ -1,38 +1,53 @@
 {
     "version": "2.0.0",
     "windows": {
-        "command": "${env:windir}/System32/WindowsPowerShell/v1.0/powershell.exe",
-        "args": [ "-NoProfile", "-ExecutionPolicy", "Bypass" ]
+        "command": "/c/oit/PortableGit-2.17.0-64/bin/bash.exe",
+        "args": [ "--login", "-i"]
     },
     "tasks": [
         {
-            "label": "Compile Java",
-            "type":"process",
-            "command": "C:/oit/java8_161/bin/javac.exe",
-            "windows": {
-                "args": [
-                    "-encoding",
-                    "utf-8",
-                    "-source",
-                    "1.8",
-                    "-target",
-                    "1.8",
-                    "-cp",
-                    "bin",
-                    "-d",
-                    "${workspaceRoot}\\bin",
-                    "-sourcepath",
-                    "${fileDirname}",
-                    "${file}",
-                    "-Xlint"
-                ]
+            "label": "log for debug",
+            "type": "shell",
+            "command": "sh",
+            "presentation": {
+                "reveal": "never"
             },
+            "args": [
+                "-c",
+                "\"echo `date +%s` javac ${relativeFile} and java ${fileBasenameNoExtension} >> .vsjavalog \""
+            ]
+        },
+        {
+            "label": "log for compile",
+            "type": "shell",
+            "command": "sh",
+            "presentation": {
+                "reveal": "never"
+            },
+            "args": [
+                "-c",
+                "\"echo `date +%s` javac ${relativeFile} >> .vsjavalog \""
+            ]
+        },
+        {
+            "label": "Compile Java",
+            "type": "shell",
+            "command": "javac",
+            "args": [
+                "-encoding",
+                "utf-8",
+                "-cp",
+                "bin",
+                "-d",
+                "bin",
+                "${relativeFile}"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": {
-                "owner": "build",
+                "owner": "java",
                 "fileLocation": [
                     "relative",
                     "${workspaceRoot}"
@@ -44,7 +59,41 @@
                     "severity": 3,
                     "message": 4
                 }
-            }
+            },
+            "dependsOn": [
+                "log for compile"
+            ]
+        },
+        {
+            "label": "Compile(for Debug)",
+            "type": "shell",
+            "command": "javac",
+            "args": [
+                "-encoding",
+                "utf-8",
+                "-cp",
+                "bin",
+                "-d",
+                "bin",
+                "${relativeFile}"
+            ],
+            "problemMatcher": {
+                "owner": "java",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(警告|エラー):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "severity": 3,
+                    "message": 4
+                }
+            },
+            "dependsOn": [
+                "log for debug"
+            ]
         }
     ]
 }

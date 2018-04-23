@@ -10,7 +10,8 @@
             "request": "launch",
             "mainClass": "${fileBasenameNoExtension}",
             "args": "",
-            "preLaunchTask": "Compile Java",
+            "preLaunchTask": "Compile(for Debug)",
+            "console": "externalTerminal",
             "encoding": "UTF-8",
             "classPaths": [
                 "${workspaceFolder}\\bin"
