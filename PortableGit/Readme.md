@@ -24,6 +24,7 @@
 - nsswitch.conf
   - 暗黙的な？ホームディレクトリをここで指定する-> `db_home: /%H/oithome`
   - これを指定していないと，sshkeygen等のopenssh系コマンド（多分他にもある）がホームディレクトリとして`$USERPROFILE`を見に行ってしまう．なお，$HOME環境変数にはこの設定は影響しない．
+    - 参考：http://yanor.net/wiki/?Windows-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%2FMinGW-MSYS%2FMSYS2%E3%81%AEOpenSSH%E3%81%A7%E3%81%AE%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%AE%E6%89%B1%E3%81%84
 
   - `/usr/local/bin` nkf.exe, rsync.exe, putkadai, shusseki等必要なexeや課題提出用スクリプト
 
