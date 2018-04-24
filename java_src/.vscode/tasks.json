@@ -1,15 +1,12 @@
 {
     "version": "2.0.0",
-    "windows": {
-        "command": "/c/oit/PortableGit-2.17.0-64/bin/bash.exe",
-        "args": [ "--login", "-i"]
-    },
     "tasks": [
         {
             "label": "log for debug",
             "type": "shell",
             "command": "sh",
             "presentation": {
+                "echo":false,
                 "reveal": "never"
             },
             "args": [
@@ -22,6 +19,7 @@
             "type": "shell",
             "command": "sh",
             "presentation": {
+                "echo":false,
                 "reveal": "never"
             },
             "args": [
