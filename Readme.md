@@ -142,20 +142,12 @@ VSCODE_HOME=%PAL:DataDir%\code
 - .vscode以下のlaunch.json, tasks.json, settings.json
 - フォルダルートにある.classpath, .project
 - 以上のファイルの設定は本リポジトリ`java_src`参照のこと
-- https://qiita.com/yumetodo/items/42132a1e8435504448aa
 
 ### Step8. シェルのセットアップ
 - C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
-- history: http://takuya-1st.hatenablog.jp/entry/2017/01/01/034040
-- mkdir:http://blog.katty.in/4967
-- bash設定: https://qiita.com/u1and0/items/b4c3217868cf8bafb085
-- alias: http://blog.msz3nhen.net/?p=39
-
 
 ### Step9. bash.exe実行のための実行バイナリの作成
-- java-bashフォルダをgoでビルドする
-- https://gist.github.com/mattn/000735084394601b225a861af4afd35e
-- icon: http://blog.y-yuki.net/entry/2017/04/22/000000
+- java-bashフォルダをgoでビルドし，`java-bash-2.XX.YY.Z-64.exe`ファイルを作成する．
 
 # 今後の課題
 ### ~~全ディレクトリ構成をどうするか~~(一応交渉成立)
