@@ -2,9 +2,21 @@
 - このフォルダにはPortableGitを対象とした追加の設定ファイル，コマンドを設置する．
 
 ## 利用方法
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開すると，本フォルダの内容を適用済みのPortableGitフォルダが展開される．
-- 内訳
-  - `/etc/bash.bashrc` ログイン時の処理を最後に追記したもの．git-bash.exeを起動すると，指定したホームフォルダを（なければ）作成し，そこに移動する．
+- [Release](https://github.com/spiralpartners/byod.zip/releases) exeファイルをC:\oit以下で展開すると，本フォルダの内容を適用済みのPortableGitフォルダが展開される．
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると`C:\oit\PortableGit-2.17.0-64\usr\bin\bash.exe`が呼び出される．
+  - 正確な実行内容は`java-bash\java-bash.go`参照．
+
+## 構成
+- `profile.d/aliases.sh` 
+  - aliaseを設定している．javaコマンド及びjavacコマンドのutf-8呼び出し．
+  - 参考：http://blog.msz3nhen.net/?p=39
+- `profile.d/bash_profile.sh` 
+  - bashにログイン時の処理↓を記述している．
+    - ログイン時に`$HOME/kadai/`ディレクトリがない場合にmkdir
+    - PATHにjavaのbinを追加
+    - HOMEを`$USERPROFILE\oithome`に設定し，同時にパスの表示をLinuxの形式にあわせている
+    - コマンド実行履歴を`$HOME/kadai/.java_bash_history`に保存する設定追加
+
   - `/usr/local/bin` nkf.exe, rsync.exe, putkadai, shusseki等必要なexeや課題提出用スクリプト
 
 ## 課題
