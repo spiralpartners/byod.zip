@@ -12,5 +12,9 @@
     "git.ignoreMissingGitWarning": true,
     "git.enabled": false,
     "terminal.integrated.shell.windows": "C:\\oit\\PortableGit-2.17.0-64\\bin\\bash.exe",
-    "terminal.integrated.shellArgs.windows":["-l"]
+    "terminal.integrated.env.windows": {
+        "MSYSTEM": "MINGW64",
+        "CHERE_INVOKING": 1
+    },
+    "terminal.integrated.shellArgs.windows":["--login"]
 }
