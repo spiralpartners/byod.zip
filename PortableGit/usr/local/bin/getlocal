@@ -26,13 +26,14 @@ if [ "$#" -ge 1 ]; then
     esac
 fi
 
-id="`getoitname`" || exit 1
-rhost="`getkadaihost`"
+id="`/usr/local/bin/oitname`" || exit 1
+rhost="`/usr/local/bin/kadaihost`"
+localdir="/home/teachers/t2005225/public_html/progint/local"
 
 echo "現在の/usr/localをバックアップ中．"
 (cd /usr; tar czpf local-`date +%Y%m%d-%H%M%S`.tgz local)
 
 echo "/usr/localを更新します．"
-rsync -av "${id}@${rhost}:/home/teachers/t2005225/PINT/pint-env/local/ /usr/local/
+rsync --timeout=10 -av "${id}"@${rhost}:${localdir}/ /usr/local/
 
 exit $?

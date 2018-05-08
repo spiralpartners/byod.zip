@@ -2,19 +2,23 @@
 #
 # Written by Yasuharu Mizutani
 
+GB='\e[1;32m'
+GE='\e[m'
+RB='\e[1;31m'
+RE='\e[m'
+
 #
 # ユーザ名の入力
 #
-echo -n "e1で始まるユーザ名を入力してください: "
+echo -en "${GB}e1で始まるユーザ名を入力してください${GE}: "
 read id
 case "${id}" in
   e1??????|t???????)
     ;;
   *)
-    echo "ユーザ名が e1xxxxxx の形式（e1の後に5桁の数字）ではありません"
+    echo "ユーザ名が e1xxxxxx の形式ではありません"
     exit 1
 esac
-
 
 #
 # .sshディレクトリの作成
@@ -32,15 +36,16 @@ eval PRIKEY="~/.ssh/id_rsa"
 if [ -f "${PUBKEY}" -a -f "${PRIKEY}" ]; then
     :
 else
-    echo "今からエンターキーを3回押してください"
+    echo -e "${GB}今からエンターキーを3回押してください${GE}"
     sleep 0.2
     ssh-keygen -t rsa
 fi
 
 #
 # 鍵認証の設定とユーザ名の登録
+# (kadaiディレクトリも作っておく)
 #
-RHOST="`getkadaihost`"
+RHOST="`/usr/local/bin/kadaihost`"
 RCOMM="
     mkdir -p -m 700 .ssh;
     grep -v '`hostname`' .ssh/authorized_keys > .ssh/tmp;
@@ -50,14 +55,12 @@ RCOMM="
     mkdir -p -m 705 kadai;
 "
 echo ""
-echo "演習室のパスワードを入力してください"
+echo -e "${GB}演習室のパスワードを入力してください${GE}"
 if cat "${PUBKEY}" | ssh "${id}@${RHOST}" "${RCOMM}"; then
     echo "${id}" > ~/.oitname
-    echo "成功しました"
+    echo -e "${GB}成功しました${GE}"
 else
-    echo "失敗しました"
+    echo -e "${RB}失敗しました${RE}"
     exit 1
 fi
-
-
 exit 0

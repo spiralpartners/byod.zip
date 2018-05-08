@@ -9,8 +9,12 @@ usage(){
 	  putkadai 
 	  putkadai --delete
 	
-	このPCのホームディレクトリ下にあるkadaiディレクトリ（~/kadai）をサーバ
-	上のkadaiディレクトリにコピー（提出）します．
+	このPCのホームディレクトリ下にあるkadaiディレクトリ（~/kadai）をファイル
+    サーバ上のkadaiディレクトリに提出(リモートコピー)します．
+	
+	サーバ名はデフォルトでは o-vnc.center.oit.ac.jp です．
+	環境変数 KADAI_HOST でサーバ名を指定することができます．
+	(例) env KADAI_HOST=pc1350l putkadai
 	
 	--deleteを付けると~/kadaiとサーバ上のkadaiを完全同期します．
 	つまり，サーバ上のkadaiにあって~/kadaiに無いファイルは，サーバ上から
@@ -37,12 +41,15 @@ if [ "$#" -ge 1 ]; then
     esac
 fi
 
-id="`getoitname`" || exit 1
-rhost="`getkadaihost`"
+id="`/usr/local/bin/oitname`" || exit 1
+rhost="`/usr/local/bin/kadaihost`"
 
-rsync -av ${DFLAG} \
+[ -d ~/kadai ] || mkdir -p -m 705 ~/kadai
+
+rsync --timeout=10 -av ${DFLAG} \
         --chmod=D705,F604   \
         --exclude='*.exe'   \
+        --exclude='*.o'     \
         --exclude='*.class' \
         --exclude='*~'      \
         --exclude='#*'      \

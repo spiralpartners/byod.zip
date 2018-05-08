@@ -19,12 +19,9 @@ if [ "$#" -ne 0 ]; then
     exit 0
 fi
 
-id="`getoitname`" || exit 1
-rhost="`getkadaihost`"
+id="`/usr/local/bin/oitname`" || exit 1
+rhost="`/usr/local/bin/kadaihost`"
 
-if [ ! -d ~/kadai ]; then
-    mkdir ~/kadai
-fi
-rsync -av ${id}@${rhost}:kadai ~/
+rsync --timeout=10 -av ${id}@${rhost}:kadai ~/
+
 exit $?
-

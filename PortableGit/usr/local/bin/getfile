@@ -29,8 +29,8 @@ else
     esac
 fi
 
-id="`getoitname`" || exit 1
-rhost="`getkadaihost`"
+id="`/usr/local/bin/oitname`" || exit 1
+rhost="`/usr/local/bin/kadaihost`"
 
-rsync -av "${id}@${rhost}:${FILE}" ./
+rsync --timeout=10 -av "${id}@${rhost}:${FILE}" ./
 exit $?
