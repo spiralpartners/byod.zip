@@ -10,6 +10,8 @@ if [ -e ~/.bashrc -a ! -e ~/.bash_profile -a ! -e ~/.bash_login -a ! -e ~/.profi
 	EOF
 fi
 
+PATH=/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
+
 mkdir -p $USERPROFILE/oithome/kadai/
 export PATH=/c/oit/Java8_161/bin/:$PATH
 export HOME=$(cd "$USERPROFILE\oithome" && pwd)
