@@ -33,7 +33,10 @@ C:\oit\java-bash-2.XX.YY.Z-64.exe
 ```
 
 ### java_srcフォルダのインストール
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\oithome\kadai`が生成される（ない場合）．`kadai`フォルダ以下に本リポジトリの`java_src`フォルダを以下のようになるように展開する．
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\oithome\kadai`が生成される（ない場合）．
+- `kadai`フォルダ以下に本リポジトリの`java_src`フォルダを以下のようになるように展開する．
+  - 最終的にjava_srcフォルダはjava2018等の名前になる可能性がある
+
 ```
 C:\Users\ユーザ名\oithome\kadai\java_src\.vscode
 C:\Users\ユーザ名\oithome\kadai\java_src\bin
