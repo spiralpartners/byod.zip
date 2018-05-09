@@ -28,6 +28,26 @@
 
   - `/usr/local/bin` nkf.exe, rsync.exe, putkadai, shusseki等必要なexeや課題提出用スクリプト
 
+## PortableGit設定方法詳細
+### Step1. PortableGitのダウンロード及び解凍
+- 下記URLより，PortableGit-2.XX.Y.Z-64-bit.7z.exe をダウンロードし，oitフォルダに解凍する
+  - ディレクトリ名を`PortableGit2.XX.YY.Z-64`のようにバージョン番号を付与したものにしておくこと
+  - https://github.com/git-for-windows/git/releases/latest
+
+### Step2. PortableGitフォルダへの設定ファイルの追加
+- 本リポジトリPortableGitフォルダの中身をStep1で解凍したPortableGitフォルダに上書きする
+  - c1のmizutaniスクリプト群の中から必要なものをコピーする
+  - getlocalのアクセス先を変更
+
+### StepX. 追加バイナリのインストール方法
+- 本リポジトリ中に既に用意されているnkf.exeやrsync.exeはmsys2を利用して取得したもの．毎回やる必要はないが，セットアップ方法を以下に記しておく．
+- msys2の64bit版をインストール
+  - https://sourceforge.net/projects/msys2/files/Base/
+- msys2 64bitを起動してrsyncをインストール（nkfはソースからmakeする必要あり）
+  - `pacman -S rsync`
+- `${msys2}/usr/bin/rsync.exe` を `${PortableGit}/usr/local/bin/`にコピーする
+
+
 ## 課題
 ### ファイルとディレクトリを間違えて作成した場合に，正しくリモートに課題が提出されない可能性がある
 - `ex01.c`とかいうディレクトリを間違って作成し，それが一度pushされると，以降はそれが変更されない（--deleteをつけない場合）
@@ -68,19 +88,3 @@
 - `C:\`の`:`のせいでremoteだと誤認するっぽい．
 - HOMEを`export HOME=$(cd "$USERPROFILE\byod_home" && pwd)`として設定することで，`/c/Users/..`形式でホームディレクトリを処理できるようになる
 
-## PortableGit設定方法詳細
-### Step1. PortableGitのダウンロード及び解凍
-- 下記URLより，PortableGit-2.XX.Y.Z-64-bit.7z.exe をダウンロードし，byodフォルダに解凍する
-  - ディレクトリ名を`PortableGit2.XX.YY.Z-64`のようにバージョン番号を付与したものにしておくこと
-  - https://github.com/git-for-windows/git/releases/latest
-
-### Step2. PortableGitフォルダへの設定ファイルの追加
-- 本リポジトリPortableGitフォルダの中身をStep1で解凍したPortableGitフォルダに上書きする
-
-### StepX. 追加バイナリのインストール方法
-- 本リポジトリ中に既に用意されているnkf.exeやrsync.exeはmsys2を利用して取得したもの．毎回やる必要はないが，セットアップ方法を以下に記しておく．
-- msys2の64bit版をインストール
-  - https://sourceforge.net/projects/msys2/files/Base/
-- msys2 64bitを起動してrsyncをインストール（nkfはソースからmakeする必要あり）
-  - `pacman -S rsync`
-- `${msys2}/usr/bin/rsync.exe` を `${PortableGit}/usr/local/bin/`にコピーする
