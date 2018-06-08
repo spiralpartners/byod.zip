@@ -56,7 +56,9 @@ $ git config --global user.name "Hiroshi Igaki"
 $ git config --global core.quotepath false
 $ git config --global core.autocrlf false
 ```
-- sshでgitに接続する場合は`ssh-keygen -t rsa`と実行し，公開鍵をgitbucketの各リポジトリに追加する（リポジトリページ->Settings->DeployKeys->Add a deploy key)
+- sshでgitに接続する場合は`ssh-keygen -t rsa`と実行し，公開鍵をgitbucketのstaffアカウントに追加する
+  - http://150.89.223.124/teacher/_ssh
+  - 鍵をgitbucketのstaffアカウントに追加する際は，必ず誰の鍵か分かるように登録すること
   - `.ssh`フォルダはoithome以下に作成される
   - よくわからない場合は飛ばしてもOK（その場合はsshじゃなくてhttpでgitにアクセスする）
 
@@ -68,24 +70,25 @@ $ git config --global core.autocrlf false
 
 - Clone（sshの場合）
 ```
-$ git clone ssh://git@150.89.233.124/teacher/????.git
+$ git clone ssh://git@150.89.223.124:2222/teacher/Java.git
 ```
 - Clone（httpの場合）
   - httpの場合は，↓のコマンド実行後にID，Passを入力するダイアログが表示されるので，teacher/いつもの，を入力する
 ```
-$ git clone http://150.89.223.124/git/teacher/????.git
+$ git clone http://150.89.223.124/git/teacher/Java.git
 ```
 
 ### 開発作業（実装・コンパイル）
 #### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->Cloneしたリポジトリのフォルダを指定する
-- フォルダを開いた後，javaファイルを作成し，適当に編集する
+- ファイル->フォルダを開く->Cloneしたリポジトリのフォルダ(Javaフォルダ)を指定する
+- フォルダを開いた後，01~15の任意のフォルダ内にjavaファイルを作成し，適当に編集する
 
 #### コンパイル・実行方法(方法1)
-- Hello.javaをvscodeで開いた状態で，`java-bash-2.XX.Y-64.exe`を実行する(initsshやshussekiを動かしているものとは別に開くこと)
+- 01にあるHello.javaを例に説明する．
+- 01/Hello.javaをvscodeで開いた状態で，`java-bash-2.XX.Y-64.exe`を実行する
 - `C:\oit`にいる状態でbashのターミナルが開くので，`cd`と実行する．
-- $HOMEに移動するので，`cd kadai/java_src/java01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
+- $HOMEに移動するので，`cd Java/01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される．
 
 #### コンパイル・実行方法(方法2)
@@ -98,7 +101,7 @@ $ git clone http://150.89.223.124/git/teacher/????.git
 ### 開発作業（コミット・プッシュ）
 - 編集したファイルをaddして，commitしてpushする
 ```
-$ git add ./java01/Hoge.java
+$ git add ./01/Hoge.java
 $ git commit -m "Hogeクラスを作成した"
 $ git push origin master
 ```
