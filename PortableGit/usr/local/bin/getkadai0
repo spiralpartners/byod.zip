@@ -23,6 +23,6 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-scp -pr ${id}@${rhost}:kadai ~/
+scp -pr ${id}@${rhost}:kadai/java18/javaexc/ ~/
 
 exit $?

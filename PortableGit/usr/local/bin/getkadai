@@ -8,8 +8,8 @@ usage(){
 	使い方:
 	  getkadai 
 	
-	サーバ上のkadaiディレクトリを，このPC上のホームディレクトリの下に
-	あるkadaiディレクトリ（~/kadai）にコピーします．
+	サーバ上のkadai/java18ディレクトリの中身を，このPC上のホームディレクトリの下に
+	あるjavaexcディレクトリ（~/javaexc）の中にコピーします．
 	
 	EOF
 }
@@ -22,6 +22,6 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-rsync --timeout=15 --force -avu ${id}@${rhost}:kadai ~/
+rsync --timeout=15 --force -avu ${id}@${rhost}:kadai/java18/ ~/
 
 exit $?

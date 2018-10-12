@@ -9,10 +9,10 @@ usage(){
 	  putkadai 
 	  putkadai --delete
 	
-	このPCのホームディレクトリ下にあるkadaiディレクトリ（~/kadai）をファイル
-    サーバ上のkadaiディレクトリに提出(リモートコピー)します．
+	このPCのホームディレクトリ下にあるjavaexcディレクトリ（~/javaexc）をファイル
+    サーバ上のkadai/java18/javaexcディレクトリに提出(リモートコピー)します．
 	
-	サーバ名はデフォルトでは o-vnc.center.oit.ac.jp です．
+	サーバ名はデフォルトでは o-ssh.center.oit.ac.jp です．
 	環境変数 KADAI_HOST でサーバ名を指定することができます．
 	(例) env KADAI_HOST=pc1350l putkadai
 	
@@ -44,7 +44,7 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-[ -d ~/kadai ] || mkdir -p -m 705 ~/kadai
+[ -d ~/javaexc ] || mkdir -p -m 705 ~/javaexc
 
 rsync --timeout=15 --force -avu ${DFLAG} \
         --chmod=D705,F604   \
@@ -53,6 +53,6 @@ rsync --timeout=15 --force -avu ${DFLAG} \
         --exclude='*.class' \
         --exclude='*~'      \
         --exclude='#*'      \
-        ~/kadai ${id}@${rhost}:
+        ~/javaexc ${id}@${rhost}:kadai/java18/
 echo $?
 

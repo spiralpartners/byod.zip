@@ -36,8 +36,8 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-[ -d ~/kadai ] || mkdir -p -m 705 ~/kadai
+[ -d ~/javaexc ] || mkdir -p -m 705 ~/javaexc
 
-scp -pr ~/kadai ${id}@${rhost}:
+scp -pr ~/javaexc ${id}@${rhost}:kadai/java18/
 echo $?
 

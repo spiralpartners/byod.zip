@@ -7,7 +7,7 @@
 # ssh-keygenで公開鍵のコメントに用いるため．
 #
 
-SYSTEM_ID="c1-byod"
+SYSTEM_ID=`/usr/local/bin/course`
 
 GB='\e[1;32m'
 GE='\e[m'

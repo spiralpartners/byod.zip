@@ -28,7 +28,7 @@ fi
 
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
-localdir="/home/teachers/t2005225/public_html/progint/local"
+localdir="/home/teachers/t2015025/public_html/progjava/local"
 
 echo "/usr/localを更新します．"
 rsync --timeout=15 -av --delete "${id}"@${rhost}:${localdir}/ /usr/local/
