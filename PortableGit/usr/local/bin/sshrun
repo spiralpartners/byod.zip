@@ -16,7 +16,7 @@ usage(){
 	EOF
 }
 
-if [ "$#" -eq 0 ]; then
+if [ "$1" = "-h" ]; then
     usage
     exit 1
 fi
@@ -24,5 +24,12 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-ssh "${id}@${rhost}" "$@"
+if [ "$#" -eq 0 ]; then
+    ssh "${id}@${rhost}"
+else
+    ssh "${id}@${rhost}" "$@"
+fi
 exit $?
+
+
+

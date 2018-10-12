@@ -28,12 +28,9 @@ fi
 
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
-localdir="/home/teachers/t2015025/public_html/progjava/local"
-
-echo "現在の/usr/localをバックアップ中．"
-(cd /usr; tar czpf local-`date +%Y%m%d-%H%M%S`.tgz local)
+localdir="/home/teachers/t2005225/public_html/progint/local"
 
 echo "/usr/localを更新します．"
-rsync --timeout=10 -av "${id}"@${rhost}:${localdir}/ /usr/local/
+rsync --timeout=15 -av --delete "${id}"@${rhost}:${localdir}/ /usr/local/
 
 exit $?

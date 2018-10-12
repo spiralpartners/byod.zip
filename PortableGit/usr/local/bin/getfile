@@ -32,5 +32,5 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-rsync --timeout=10 -av "${id}@${rhost}:${FILE}" ./
+rsync --timeout=15 -av "${id}@${rhost}:${FILE}" ./
 exit $?

@@ -1,3 +1,2 @@
 #!/bin/bash
-
-echo ${KADAI_HOST:-o-vnc.center.oit.ac.jp}
+echo ${KADAI_HOST:-o-ssh.center.oit.ac.jp}
