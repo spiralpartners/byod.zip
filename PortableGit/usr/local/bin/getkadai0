@@ -8,8 +8,8 @@ usage(){
 	使い方:
 	  getkadaiS
 	
-	サーバ上のkadaiディレクトリを，このPC上のホームディレクトリの下に
-	あるkadaiディレクトリ（~/kadai）にコピーします．
+	サーバ上のkadai/java18/javaexcディレクトリを，このPC上のホームディレクトリの下に
+	あるjavaexcディレクトリ（~/javaexc）にコピーします．
     通常のgetkadaiと異なり，内部でscpを用います．
 	
 	EOF

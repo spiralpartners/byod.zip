@@ -8,8 +8,8 @@ usage(){
 	使い方:
 	  getkadai 
 	
-	サーバ上のkadai/java18ディレクトリの中身を，このPC上のホームディレクトリの下に
-	あるjavaexcディレクトリ（~/javaexc）の中にコピーします．
+	サーバ上のkadai/java18/javaexcディレクトリを，このPC上のホームディレクトリの下に
+	あるjavaexcディレクトリ（~/javaexc）にコピーします．
 	
 	EOF
 }

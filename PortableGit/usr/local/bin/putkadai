@@ -16,8 +16,8 @@ usage(){
 	環境変数 KADAI_HOST でサーバ名を指定することができます．
 	(例) env KADAI_HOST=pc1350l putkadai
 	
-	--deleteを付けると~/kadaiとサーバ上のkadaiを完全同期します．
-	つまり，サーバ上のkadaiにあって~/kadaiに無いファイルは，サーバ上から
+	--deleteを付けると~/javaexcとサーバ上のkadai/java18/javaexcを完全同期します．
+	つまり，サーバ上のjavaexcにあって~/javaexcに無いファイルは，サーバ上から
 	削除されます．使い方を誤るとサーバ上の必要なファイルまで削除してしまう
 	可能性があるため，--deleteの使用は十分に気を付けてください．
 	
