@@ -13,11 +13,11 @@
 - `profile.d/bash_profile.sh` 
   - bashにログイン時の処理↓を記述している．
     - 参考：https://qiita.com/u1and0/items/b4c3217868cf8bafb085
-    - ログイン時に`$HOME/kadai/`ディレクトリがない場合にmkdir
+    - ログイン時に`$HOME/javaexc/`ディレクトリがない場合にmkdir
       - 参考：http://blog.katty.in/4967
     - PATHにjavaのbinを追加
-    - HOMEを`$USERPROFILE\oithome`に設定し，同時にパスの表示をLinuxの形式にあわせている
-    - コマンド実行履歴を`$HOME/kadai/.java_bash_history`に即時保存する設定追加
+    - HOMEを`$USERPROFILE\oithomes\java18`に設定し，同時にパスの表示をLinuxの形式にあわせている
+    - コマンド実行履歴を`$HOME/java18/.java_bash_history`に即時保存する設定追加
       - 参考：http://takuya-1st.hatenablog.jp/entry/2017/01/01/034040
 - minttyrc
   - bashをmintty経由で起動したときにフォントやUTF8設定，右クリックアクション等の設定を行っている．
