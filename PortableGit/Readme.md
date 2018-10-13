@@ -3,8 +3,8 @@
 
 ## 利用方法
 - [Release](https://github.com/spiralpartners/byod.zip/releases) exeファイルをC:\oit以下で展開すると，本フォルダの内容を適用済みのPortableGitフォルダが展開される．
-- `C:\oit\java2018.bat`を実行すると，`mintty`経由で`C:\oit\PortableGit-2.17.0-64\usr\bin\bash.exe`が呼び出される．
-  - 正確な実行内容は`java2018.bat`参照．
+- `C:\oit\java2018.vbs`を実行すると，PortableGitフォルダ内のjava-bash.batが呼ばれ，`mintty`経由で`C:\oit\PortableGit-2.17.0-64\usr\bin\bash.exe`が呼び出される．
+  - 正確な実行内容は`java-bash.bat`参照．
 
 ## 構成
 - `profile.d/aliases.sh` 
@@ -47,6 +47,8 @@ this_month=`date +'%Y%m'`
 last_month=`date -d "${this_month}01 1 month ago" +'%Y%m'`
 find $HOME/javaexc/ -name ".java_bash_history*" -not -name ".java_bash_history.${this_month}" -not -name ".java_bash_history.${last_month}" -exec rm {} \;
 ```
+
+- java2018.vbsはc:\oitの中に，java-bash.batはPortableGitフォルダの中にコピーすること
 
 ### StepX. 追加バイナリのインストール方法
 - 本リポジトリ中に既に用意されているnkf.exeやrsync.exeはmsys2を利用して取得したもの．毎回やる必要はないが，セットアップ方法を以下に記しておく．
