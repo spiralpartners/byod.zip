@@ -129,6 +129,7 @@ trim_trailing_whitespace = true
 
 ### Step5. 不要なフォルダを削除
 - 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
+  - ただし，「C:\oit\VSCodePortable_1.26.0\Data\code\User\locale.json」だけは残しておくこと（日本語設定）
   - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意(config.ini以外はキャッシュ）
 - 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
 

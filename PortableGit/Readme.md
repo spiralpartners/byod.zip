@@ -3,8 +3,8 @@
 
 ## 利用方法
 - [Release](https://github.com/spiralpartners/byod.zip/releases) exeファイルをC:\oit以下で展開すると，本フォルダの内容を適用済みのPortableGitフォルダが展開される．
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると，`mintty`経由で`C:\oit\PortableGit-2.17.0-64\usr\bin\bash.exe`が呼び出される．
-  - 正確な実行内容は`java-bash\java-bash.go`参照．
+- `C:\oit\java2018.bat`を実行すると，`mintty`経由で`C:\oit\PortableGit-2.17.0-64\usr\bin\bash.exe`が呼び出される．
+  - 正確な実行内容は`java2018.bat`参照．
 
 ## 構成
 - `profile.d/aliases.sh` 
@@ -17,7 +17,7 @@
       - 参考：http://blog.katty.in/4967
     - PATHにjavaのbinを追加
     - HOMEを`$USERPROFILE\oithomes\java18`に設定し，同時にパスの表示をLinuxの形式にあわせている
-    - コマンド実行履歴を`$HOME/java18/.java_bash_history`に即時保存する設定追加
+    - コマンド実行履歴を`$HOME/java18/.java_bash_history.YYYYmm`に即時保存する設定追加
       - 参考：http://takuya-1st.hatenablog.jp/entry/2017/01/01/034040
 - minttyrc
   - bashをmintty経由で起動したときにフォントやUTF8設定，右クリックアクション等の設定を行っている．
@@ -37,7 +37,16 @@
 ### Step2. PortableGitフォルダへの設定ファイルの追加
 - 本リポジトリPortableGitフォルダの中身をStep1で解凍したPortableGitフォルダに上書きする
   - c1のmizutaniスクリプト群の中から必要なものをコピーする
-  - getlocalのアクセス先を変更
+    - getkadai, putkadaiをjava2018用に変更（rsync元，先ディレクトリをどうするかは要検討）
+    - courseの中身をjava2018用に変更
+    - getlocalのアクセス先を変更
+    - oitnameに.java_bash_historyファイルの削除処理を追加
+
+```
+this_month=`date +'%Y%m'`
+last_month=`date -d "${this_month}01 1 month ago" +'%Y%m'`
+find $HOME/javaexc/ -name ".java_bash_history*" -not -name ".java_bash_history.${this_month}" -not -name ".java_bash_history.${last_month}" -exec rm {} \;
+```
 
 ### StepX. 追加バイナリのインストール方法
 - 本リポジトリ中に既に用意されているnkf.exeやrsync.exeはmsys2を利用して取得したもの．毎回やる必要はないが，セットアップ方法を以下に記しておく．
