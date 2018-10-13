@@ -1,97 +1,18 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "log for debug",
-            "type": "shell",
-            "command": "sh",
-            "presentation": {
-                "echo":false,
-                "reveal": "never"
-            },
-            "args": [
-                "-c",
-                "\"echo `date +%s` javac ${relativeFile} and java ${fileBasenameNoExtension} >> .vsjavalog \""
-            ]
-        },
-        {
-            "label": "log for compile",
-            "type": "shell",
-            "command": "sh",
-            "presentation": {
-                "echo":false,
-                "reveal": "never"
-            },
-            "args": [
-                "-c",
-                "\"echo `date +%s` javac ${relativeFile} >> .vsjavalog \""
-            ]
-        },
-        {
-            "label": "Compile Java",
-            "type": "shell",
-            "command": "javac",
-            "args": [
-                "-encoding",
-                "utf-8",
-                "-cp",
-                "bin",
-                "-d",
-                "bin",
-                "${relativeFile}"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": {
-                "owner": "java",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}"
-                ],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):\\s+(警告|エラー):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "severity": 3,
-                    "message": 4
-                }
-            },
-            "dependsOn": [
-                "log for compile"
-            ]
-        },
-        {
-            "label": "Compile(for Debug)",
-            "type": "shell",
-            "command": "javac",
-            "args": [
-                "-encoding",
-                "utf-8",
-                "-cp",
-                "bin",
-                "-d",
-                "bin",
-                "${relativeFile}"
-            ],
-            "problemMatcher": {
-                "owner": "java",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}"
-                ],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):\\s+(警告|エラー):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "severity": 3,
-                    "message": 4
-                }
-            },
-            "dependsOn": [
-                "log for debug"
-            ]
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "log for debug",
+      "type": "shell",
+      "command": "bash",
+      "presentation": {
+        "echo": false,
+        "reveal": "never"
+      },
+      "args": [
+        "-c",
+        "\"echo @`date +%s` javac ${relativeFile} and java ${fileBasenameNoExtension} >> ${HOME}/kadai/`/usr/local/bin/course`/.java_bash_history.`date \"+%Y%m\"` \""
+      ]
+    }
+  ]
 }
