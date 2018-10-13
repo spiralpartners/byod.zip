@@ -8,14 +8,14 @@ usage(){
 	使い方:
 	  putkadai 
 	
-	このPCのホームディレクトリ下にあるkadaiディレクトリ（~/kadai）をファイル
-    サーバ上のkadaiディレクトリに提出(リモートコピー)します．
+	このPCのホームディレクトリ下にあるkadaiディレクトリ内のjava18ディレクトリ（~/kadai/java18）をファイル
+    サーバ上のkadaiディレクトリ内に提出(リモートコピー)します．
 	
-	サーバ名はデフォルトでは o-vnc.center.oit.ac.jp です．
+	サーバ名はデフォルトでは o-ssh.center.oit.ac.jp です．
 	環境変数 KADAI_HOST でサーバ名を指定することができます．
 	(例) env KADAI_HOST=pc1350l putkadai
 	
-    通常のputkadaiと異なり，内部でrsyncを用いる．
+    通常のputkadaiと異なり，内部でscpを用いる．
 	
 	EOF
 }
@@ -36,8 +36,8 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-[ -d ~/javaexc ] || mkdir -p -m 705 ~/javaexc
+[ -d ~/kadai/`/usr/local/bin/course` ] || mkdir -p -m 705 ~/kadai/`/usr/local/bin/course`
 
-scp -pr ~/javaexc ${id}@${rhost}:kadai/java18/
+scp -pr ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/
 echo $?
 

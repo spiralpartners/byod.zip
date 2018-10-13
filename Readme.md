@@ -124,7 +124,7 @@ trim_trailing_whitespace = true
 ```
 
 ## Step4. VS Code設定
-- 自動整形設定
+- 自動整形設定(settings.jsonに追記）
   - https://qiita.com/maron8676/items/017cd830ab0c5fb8bcac
 
 ### Step5. 不要なフォルダを削除
