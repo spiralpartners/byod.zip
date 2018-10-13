@@ -17,5 +17,5 @@ export PATH=/c/oit/openjdk1.8.0.181/bin/:$PATH
 export HOME=$(cd "$USERPROFILE\oithomes\java18" && pwd)
 
 export PROMPT_COMMAND="history -a"
-HISTFILE=$HOME/javaexc/.java_bash_history.`date "+%Y%m%d"`
+HISTFILE=$HOME/javaexc/.java_bash_history.`date +'%Y%m'`
 HISTTIMEFORMAT="%Y/%m/%dT%T%z "
