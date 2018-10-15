@@ -92,12 +92,16 @@ C:\Users\ユーザ名\oithome\kadai\java_src\bin
     - C:\oit\openjdk1.8.0.181\bin といったディレクトリ構成になる．
 - PortableGit(x64)（解凍するだけ）
   - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
-  - bash.exe経由で起動するように本リポジトリのjava-bashフォルダからbatファイルを作成する
+  - bash.exe経由で起動するように本リポジトリのPortableGitフォルダからbatファイルを作成する
     - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
 
 ```
+@echo off
+
+IF EXIST "%USERPROFILE%\oithomes\java\" (
+cd %USERPROFILE%\oithomes\java
+)
 @set MSYSTEM=MINGW64
-@set HOME=
 @C:\oit\PortableGit-2.19.1-64\usr\bin\mintty.exe C:\oit\PortableGit-2.19.1-64\usr\bin\bash.exe --login -i
 ```
 
@@ -124,7 +128,7 @@ trim_trailing_whitespace = true
 ```
 
 ## Step4. VS Code設定
-- 自動整形設定(settings.jsonに追記）
+- 自動整形設定やjava.homeの設定(settings.jsonに追記）
   - https://qiita.com/maron8676/items/017cd830ab0c5fb8bcac
 
 ### Step5. 不要なフォルダを削除
@@ -136,14 +140,15 @@ trim_trailing_whitespace = true
 
 ### Step6. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
-- フォルダルートにある.classpath, .project
+- フォルダルートにある.classpathと.editorconfig
+  - .projectフォルダは今の所不要
 - 以上のファイルの設定は本リポジトリ`java_src`参照のこと
 
 ### Step7. シェルのセットアップ
 - C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
 
-### Step8. bash.exe実行のためのbatファイル作成
-- java-bashフォルダをgoでビルドし，`java-bash-2.XX.YY.Z-64.exe`ファイルを作成する．
+### Step8. /usr/local/bin/と学生用java演習フォルダをサーバに設置
+- /home/teachers/t2015025/public_html/progjava/local に /usr/local/bin/のbinフォルダをコピーし，/home/teachers/t2015025/public_html/progjava/java18/ に~/kadai/java18/の学生課題を置くディレクトリや設定ファイルを配置しておく．
 
 # 今後の課題
 ### ~~全ディレクトリ構成をどうするか~~(一応交渉成立)

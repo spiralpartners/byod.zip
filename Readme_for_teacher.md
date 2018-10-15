@@ -1,9 +1,9 @@
 # 教員向けプログラミング演習環境利用マニュアル
 ## Java開発環境
 - Java開発環境はJDK＋PortableGit+Visual Studio Code．
-  - [oit-java20180509.exe](https://drive.google.com/open?id=1o3O-GHunZnAACjgAp53SAscogYbNw1w4)
+  - [oit-java20181012.exe](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing)
     - 大学アカウントでGoogleにログインした場合のみDL可能
-    - jdk,portablegit,vscodeportable,java-bash-2.17.0-64.exeが自己解凍形式で圧縮されているので，c:\oit にダウンロードし，実行すると良い．
+    - jdk,portablegit,vscodeportableが自己解凍形式で圧縮されているので，c:\oit にダウンロードし，実行すると良い．
     - 実行後以下のようなディレクトリ構成になっていることを確認する
 
 ```
@@ -13,18 +13,19 @@ C:\oit\VSCodePortable_1.XX.Y\Other
 C:\oit\VSCodePortable_1.XX.Y\Help.html
 C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe
 :
-C:\oit\java8_XXX\App
-C:\oit\java8_XXX\bin
-C:\oit\java8_XXX\Data
-C:\oit\java8_XXX\db
-C:\oit\java8_XXX\include
-C:\oit\java8_XXX\jre
+C:\oit\openjdk1.8.0_XXX\App
+C:\oit\openjdk1.8.0_XXX\bin
+C:\oit\openjdk1.8.0_XXX\Data
+C:\oit\openjdk1.8.0_XXX\db
+C:\oit\openjdk1.8.0_XXX\include
+C:\oit\openjdk1.8.0_XXX\jre
 :
 C:\oit\PortableGit-2.XX.YY.Z-64\bin
 C:\oit\PortableGit-2.XX.YY.Z-64\cmd
 :
 C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
 C:\oit\java-bash-2.XX.YY.Z-64.exe
+C:\java-bash.bat
 ```
 
 
@@ -44,22 +45,22 @@ C:\oit\java-bash-2.XX.YY.Z-64.exe
 
 ## 開発（教員の立場から）の流れ
 ### セットアップ
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行する
-- `C:\Users\名前\oithome\kadai` フォルダが自動的にできる
-  - HOMEフォルダが`oithome`になるので，`cd`と実行すると`HOME`に移動する．
+- `C:\oit\java-bash.bat`を実行する
+- `C:\Users\名前\oithomes\java\kadai\java18` フォルダが自動的にできる
+  - HOMEフォルダが`oithomes\java`になるので，`java-bash.bat`実行時には`HOME`に移動する．
 - gitのコミッター情報を登録する
   - 細かい設定もちょっと追加（日本語の扱いや改行コード関連の設定）
 
 ```
-$ git config --global user.email "igaki@gitbucket.com"
-$ git config --global user.name "Hiroshi Igaki"
+$ git config --global user.email "自分のメールアドレスを入れてください"
+$ git config --global user.name "自分の名前をローマ字で入れてください"
 $ git config --global core.quotepath false
 $ git config --global core.autocrlf false
 ```
 - sshでgitに接続する場合は`ssh-keygen -t rsa`と実行し，公開鍵をgitbucketのstaffアカウントに追加する
   - http://150.89.223.124/teacher/_ssh
   - 鍵をgitbucketのstaffアカウントに追加する際は，必ず誰の鍵か分かるように登録すること
-  - `.ssh`フォルダはoithome以下に作成される
+  - `.ssh`フォルダはoithomes\java以下に作成される
   - よくわからない場合は飛ばしてもOK（その場合はsshじゃなくてhttpでgitにアクセスする）
 
 ### 開発作業（リポジトリのclone）
@@ -73,7 +74,7 @@ $ git config --global core.autocrlf false
 $ git clone ssh://git@150.89.223.124:2222/teacher/Java.git
 ```
 - Clone（httpの場合）
-  - httpの場合は，↓のコマンド実行後にID，Passを入力するダイアログが表示されるので，teacher/いつもの，を入力する
+  - httpの場合は，↓のコマンド実行後にID，Passを入力するダイアログが表示されるので，teacher/いつもの，を入力する．
 ```
 $ git clone http://150.89.223.124/git/teacher/Java.git
 ```
@@ -82,7 +83,7 @@ $ git clone http://150.89.223.124/git/teacher/Java.git
 #### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
 - ファイル->フォルダを開く->Cloneしたリポジトリのフォルダ(Javaフォルダ)を指定する
-- フォルダを開いた後，01~15の任意のフォルダ内にjavaファイルを作成し，適当に編集する
+- フォルダを開いた後，01~14の任意のフォルダ内にjavaファイルを作成し，適当に編集する
 
 #### コンパイル・実行方法(方法1)
 - 01にあるHello.javaを例に説明する．
