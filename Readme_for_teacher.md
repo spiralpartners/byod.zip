@@ -102,7 +102,7 @@ $ git clone http://150.89.223.124/git/teacher/Java.git
 ### 開発作業（コミット・プッシュ）
 - 編集したファイルをaddして，commitしてpushする
 ```
-$ git add ./01/Hoge.java
+$ git add ./lec01/Hoge.java
 $ git commit -m "Hogeクラスを作成した"
 $ git push origin master
 ```
@@ -110,36 +110,37 @@ $ git push origin master
 
 ## 開発(学生の立場から)の流れ
 ### 準備(公開鍵sshの設定)
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「initssh」コマンドを実行する
-  - $HOMEフォルダとして`C:\Users\ユーザ名\oithome`がセットされる．
+- `C:\oit\java-bash.bat`を実行し，「initssh」コマンドを実行する
+  - $HOMEフォルダとして`C:\Users\ユーザ名\oithomes\java`がセットされる．
   - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
-  - .sshフォルダと公開鍵・秘密鍵は`oithome\.ssh`フォルダ内部に作成される
-  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有することを前提とする）
+  - .sshフォルダと公開鍵・秘密鍵は`oithomes/java/.ssh`フォルダ内部に作成される
+  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
   - 下記画像のように`成功しました`と表示されればOK.
 
 <img src="https://github.com/igakilab/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
+  - initsshが成功後「getjava」コマンドを実行する．$HOME/kadai/java18/ フォルダにlec01~lec14等の課題用フォルダや.classpath等の各種設定ファイルがダウンロードされる．
 
 ### Javaファイルの編集・コンパイル・実行
 #### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->「`$HOME\kadai\java_src`」(授業ではjava2018等のフォルダ名になる可能性あり)フォルダを指定する
-- 例えば`java01\Hello.java`を開いて適当に編集する
+- ファイル->フォルダを開く->「`$HOME\kadai\java18`」フォルダを指定する
+- その後，例えば`lec01\Hello.java`を開いて適当に編集する
 
 #### コンパイル・実行方法(方法1)
-- Hello.javaをvscodeで開いた状態で，`java-bash-2.XX.Y-64.exe`を実行する(initsshやshussekiを動かしているものとは別に開くこと)
-- `C:\oit`にいる状態でbashのターミナルが開くので，`cd`と実行する．
-- $HOMEに移動するので，`cd kadai/java_src/java01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
+- Hello.javaをvscodeで開いた状態で，`java-bash.bat`を実行する(initsshやshussekiを動かしているものとは別に開くこと)
+- `$HOME`にいる状態でbashのターミナルが開く．
+- `cd kadai/java18/lec01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される．
 
 #### コンパイル・実行方法(方法2)
 - Hello.javaを開いた状態で，`F5`を叩く．
 - コンパイルがターミナルで行われ，実行結果が外部ターミナル（自動的に開く）に表示される
-- なお，これも初回起動時（初回にjava_srcフォルダを開いた際）はデバッガが見つけられず，コンパイルに失敗することがあるので，その場合はvscodeごと再起動する．
-- なお，実行は不要でコンパイルのみがしたい場合は，`Ctr+Shift+B`を押せば良い．
+- なお，これも初回起動時（初回にjava18フォルダを開いた際）はデバッガが見つけられず，コンパイルに失敗することがあるので，その場合はvscodeごと再起動する．
 - 実行には環境によっては数秒かかる
+- 標準入力時に日本語を利用すると文字化けが発生するので，あまりおすすめはしない．
 
 ### 出席・課題提出方法
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「shusseki」コマンドを実行する
-- 下記のように~/kadai がo-vnc.center.oit.ac.jp上の同じフォルダとsyncされればOK．
+- `C:\oit\java-bash.bat`を実行し，「shusseki」コマンドを実行する
+- 下記のように~/kadai/java18 がo-vnc.center.oit.ac.jp上の同じフォルダとsyncされればOK．
 - 終了時には`Ctr + C`
 <img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
