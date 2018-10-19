@@ -54,5 +54,5 @@ rsync --timeout=15 --force -avu ${DFLAG} \
         --exclude='*~'      \
         --exclude='#*'      \
         ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/
-echo $?
+exit $?
 
