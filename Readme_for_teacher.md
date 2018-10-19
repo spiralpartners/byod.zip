@@ -1,7 +1,7 @@
 # 教員向けプログラミング演習環境利用マニュアル
 ## Java開発環境
 - Java開発環境はJDK＋PortableGit+Visual Studio Code．
-  - [oit-java20181012.exe](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing)
+  - [oit-java20YYMMDD.exe](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing)
     - 大学アカウントでGoogleにログインした場合のみDL可能
     - jdk,portablegit,vscodeportableが自己解凍形式で圧縮されているので，c:\oit にダウンロードし，実行すると良い．
     - 実行後以下のようなディレクトリ構成になっていることを確認する
@@ -83,13 +83,13 @@ $ git clone http://150.89.223.124/git/teacher/Java.git
 #### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
 - ファイル->フォルダを開く->Cloneしたリポジトリのフォルダ(Javaフォルダ)を指定する
-- フォルダを開いた後，01~14の任意のフォルダ内にjavaファイルを作成し，適当に編集する
+- フォルダを開いた後，lec01~lec14の任意のフォルダ内にjavaファイルを作成し，適当に編集する
 
 #### コンパイル・実行方法(方法1)
-- 01にあるHello.javaを例に説明する．
-- 01/Hello.javaをvscodeで開いた状態で，`java-bash-2.XX.Y-64.exe`を実行する
+- lec01にあるHello.javaを例に説明する．
+- lec01/Hello.javaをvscodeで開いた状態で，`java-bash-2.XX.Y-64.exe`を実行する
 - `C:\oit`にいる状態でbashのターミナルが開くので，`cd`と実行する．
-- $HOMEに移動するので，`cd Java/01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
+- $HOMEに移動するので，`cd Java/lec01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される．
 
 #### コンパイル・実行方法(方法2)
@@ -112,7 +112,7 @@ $ git push origin master
 ### 準備(公開鍵sshの設定)
 - `C:\oit\java-bash.bat`を実行し，「initssh」コマンドを実行する
   - $HOMEフォルダとして`C:\Users\ユーザ名\oithomes\java`がセットされる．
-  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
+  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-ssh.center.oit.ac.jpにアクセスできるようになる
   - .sshフォルダと公開鍵・秘密鍵は`oithomes/java/.ssh`フォルダ内部に作成される
   - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
   - 下記画像のように`成功しました`と表示されればOK.
@@ -129,7 +129,7 @@ $ git push origin master
 #### コンパイル・実行方法(方法1)
 - Hello.javaをvscodeで開いた状態で，`java-bash.bat`を実行する(initsshやshussekiを動かしているものとは別に開くこと)
 - `$HOME`にいる状態でbashのターミナルが開く．
-- `cd kadai/java18/lec01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
+- `cd ~/kadai/java18/lec01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
 - 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される．
 
 #### コンパイル・実行方法(方法2)
@@ -141,6 +141,6 @@ $ git push origin master
 
 ### 出席・課題提出方法
 - `C:\oit\java-bash.bat`を実行し，「shusseki」コマンドを実行する
-- 下記のように~/kadai/java18 がo-vnc.center.oit.ac.jp上の同じフォルダとsyncされればOK．
+- 下記のように~/kadai/java18 がo-ssh.center.oit.ac.jp上の同じフォルダとsyncされればOK．
 - 終了時には`Ctr + C`
 <img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
