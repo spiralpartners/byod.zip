@@ -1,20 +1,38 @@
 {
-    "files.encoding": "utf8",
-    "java.home": "c://oit//java8_161",
-    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8",
-    "editor.renderWhitespace": "boundary",
-    "workbench.colorTheme": "Default Light+",
-    "files.exclude": {
-        "bin/": true
-    },
-    "workbench.editor.enablePreview": false,
-      // Git が有効になっているかどうか
-    "git.ignoreMissingGitWarning": true,
-    "git.enabled": false,
-    "terminal.integrated.shell.windows": "C:\\oit\\PortableGit-2.17.0-64\\bin\\bash.exe",
-    "terminal.integrated.env.windows": {
-        "MSYSTEM": "MINGW64",
-        "CHERE_INVOKING": "1"
-    },
-    "terminal.integrated.shellArgs.windows":["--login"]
+  "files.encoding": "utf8",
+  "java.home": "c://oit//openjdk1.8.0.181",
+  "java.jdt.ls.vmargs": "-noverify -Dfile.encoding=utf8",
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "workbench.colorTheme": "Default Light+",
+  "files.exclude": {
+    "bin/": true,
+    ".*": true
+  },
+  "workbench.editor.enablePreview": false,
+  // Git が有効になっているかどうか
+  "git.ignoreMissingGitWarning": true,
+  "git.enabled": false,
+  "terminal.integrated.shell.windows": "C:\\oit\\PortableGit-2.19.1-64\\usr\\bin\\bash.exe",
+  "terminal.integrated.env.windows": {
+    "MSYSTEM": "MINGW64",
+    "CHERE_INVOKING": "1"
+  },
+  "terminal.integrated.shellArgs.windows": [
+    "--login",
+    "-i"
+  ],
+  "terminal.integrated.setLocaleVariables": true,
+  "files.eol": "\n",
+  "editor.renderWhitespace": "boundary",
+  "editor.fontFamily": "Consolas, monospace",
+  "editor.fontSize": 15,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.detectIndentation": false,
+  "editor.tabCompletion": true,
+  "editor.wordWrap": "on",
+  "extensions.ignoreRecommendations": true,
+  "files.autoSave": "onFocusChange",
+  "editor.codeLens": false
 }

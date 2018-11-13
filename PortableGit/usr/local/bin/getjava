@@ -7,9 +7,9 @@ usage(){
     cat <<-EOF
 	
 	使い方:
-	    getlocal
+	    getjava
 	
-	/usr/localを更新する．
+	~/kadai/`/usr/local/bin/course`/を更新する．
 	
 	EOF
 }
@@ -29,9 +29,9 @@ fi
 
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
-localdir="/home/teachers/t2015025/public_html/progjava/local"
+javadir="/home/teachers/t2015025/public_html/progjava/`/usr/local/bin/course`/"
 
-echo "/usr/localを更新します．"
-rsync --timeout=15 -av --delete "${id}"@${rhost}:${localdir}/ /usr/local/
+echo "~/kadai/`/usr/local/bin/course`/を更新します．"
+rsync --timeout=15 -av -zz "${id}"@${rhost}:${javadir} ~/kadai/`/usr/local/bin/course`/
 
 exit $?

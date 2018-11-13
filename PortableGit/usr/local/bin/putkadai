@@ -9,15 +9,15 @@ usage(){
 	  putkadai 
 	  putkadai --delete
 	
-	このPCのホームディレクトリ下にあるkadaiディレクトリ（~/kadai）をファイル
-    サーバ上のkadaiディレクトリに提出(リモートコピー)します．
+	このPCのホームディレクトリ下にあるkadai/java18ディレクトリ（~/kadai/java18）をファイル
+    サーバ上のkadai/java18ディレクトリに提出(リモートコピー)します．
 	
-	サーバ名はデフォルトでは o-vnc.center.oit.ac.jp です．
+	サーバ名はデフォルトでは o-ssh.center.oit.ac.jp です．
 	環境変数 KADAI_HOST でサーバ名を指定することができます．
 	(例) env KADAI_HOST=pc1350l putkadai
 	
-	--deleteを付けると~/kadaiとサーバ上のkadaiを完全同期します．
-	つまり，サーバ上のkadaiにあって~/kadaiに無いファイルは，サーバ上から
+	--deleteを付けると~/javaexcとサーバ上のkadai/java18/javaexcを完全同期します．
+	つまり，サーバ上のjavaexcにあって~/javaexcに無いファイルは，サーバ上から
 	削除されます．使い方を誤るとサーバ上の必要なファイルまで削除してしまう
 	可能性があるため，--deleteの使用は十分に気を付けてください．
 	
@@ -44,15 +44,15 @@ fi
 id="`/usr/local/bin/oitname`" || exit 1
 rhost="`/usr/local/bin/kadaihost`"
 
-[ -d ~/kadai ] || mkdir -p -m 705 ~/kadai
+[ -d ~/kadai/`/usr/local/bin/course` ] || mkdir -p -m 705 ~/kadai/`/usr/local/bin/course`
 
-rsync --timeout=10 -av ${DFLAG} \
+rsync --timeout=15 --force -avu ${DFLAG} \
         --chmod=D705,F604   \
         --exclude='*.exe'   \
         --exclude='*.o'     \
         --exclude='*.class' \
         --exclude='*~'      \
         --exclude='#*'      \
-        ~/kadai ${id}@${rhost}:
-echo $?
+        ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/
+exit $?
 

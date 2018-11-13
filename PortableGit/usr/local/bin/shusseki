@@ -1,23 +1,38 @@
 #!/bin/bash
 
+GB='\e[1;32m'
+GE='\e[m'
+RB='\e[1;31m'
+RE='\e[m'
+
 echo "出席スクリプトを起動します．"
 echo "今日の意気込みを一言入力してください（1行のみ）． "
 echo -n "> "
 read input
 
-IPADDR="`/c/Windows/System32/ipconfig |/usr/local/bin/nkf -w |grep IPv4 |grep 150.89 |sed -e 's/^.*: //' |head -n 1`"
-
-trap "echo '授業を終了します'; exit 0" 2 15
+trap "echo '授業を終了します';rm ~/kadai/.??*; exit 0" 2 15
 
 [ ! -d ~/kadai ] && mkdir -p ~/kadai
-echo "`date +'%Y-%m-%dT%H:%M:%S'` ${IPADDR} : $input" >> ~/kadai/.message.txt
+echo "`date +'%Y-%m-%dT%H:%M:%S'` ${IPADDR} : $input" >> ~/kadai/`/usr/local/bin/course`/.message.txt
 
 
 echo "==== 今からputkadaiコマンドで定期的に課題を提出します ===="
-INTERVAL="60"
+INTERVAL="15"
+find ~/kadai -not -name '.*' -not -name '*.class' -ls > ~/kadai/.found
 while :; do
-    /usr/local/bin/putkadai |grep -v 'message\.txt' |grep -v '^[ 	]*$'
-    echo "${INTERVAL}秒後に再度自動提出します"
-    sleep ${INTERVAL}
-    echo
+    find ~/kadai -not -name '.*' -not -name '*.class' -ls > ~/kadai/.tmp
+    if diff ~/kadai/.tmp ~/kadai/.found > /dev/null; then
+      sleep $INTERVAL
+    else
+      /usr/local/bin/putkadai > ~/kadai/.put
+      if [ $? -gt 0 ]; then
+        echo -e "${RB}rsyncは失敗しました．${RE}$INTERVAL秒後に再実行します．"
+        sleep $INTERVAL
+      else
+        #cat ~/kadai/.put
+        grep -v '/\.' ~/kadai/.put
+        echo -e "${GB}rsyncは成功しました${GE}"
+        cp ~/kadai/.tmp ~/kadai/.found
+      fi
+    fi
 done

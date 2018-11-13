@@ -1,6 +1,13 @@
 #!/bin/sh
 #
 # Written by Yasuharu Mizutani
+#
+#
+# 各科目を識別する名前をSYSTEM_IDに設定しておくこと．
+# ssh-keygenで公開鍵のコメントに用いるため．
+#
+
+SYSTEM_ID=`/usr/local/bin/course`
 
 GB='\e[1;32m'
 GE='\e[m'
@@ -13,7 +20,7 @@ RE='\e[m'
 echo -en "${GB}e1で始まるユーザ名を入力してください${GE}: "
 read id
 case "${id}" in
-  e1??????|t???????)
+  e1??????|m1??????|t???????)
     ;;
   *)
     echo "ユーザ名が e1xxxxxx の形式ではありません"
@@ -26,7 +33,8 @@ esac
 if [ ! -d ~/.ssh ]; then
     mkdir -p ~/.ssh
 fi
-echo "StrictHostKeyChecking no" > ~/.ssh/config
+echo "StrictHostKeyChecking no" >  ~/.ssh/config
+echo "ConnectTimeout 8"         >> ~/.ssh/config
 
 #
 # 鍵の生成
@@ -38,7 +46,7 @@ if [ -f "${PUBKEY}" -a -f "${PRIKEY}" ]; then
 else
     echo -e "${GB}今からエンターキーを3回押してください${GE}"
     sleep 0.2
-    ssh-keygen -t rsa
+    ssh-keygen -t rsa -C "@${SYSTEM_ID}"
 fi
 
 #
@@ -48,12 +56,13 @@ fi
 RHOST="`/usr/local/bin/kadaihost`"
 RCOMM="
     mkdir -p -m 700 .ssh;
-    grep -v '`hostname`' .ssh/authorized_keys > .ssh/tmp;
-    mv .ssh/tmp .ssh/authorized_keys;
+    touch .ssh/authorized_keys;
     cat >> .ssh/authorized_keys;
     chmod 600 .ssh/authorized_keys
     mkdir -p -m 705 kadai;
 "
+#    grep -v '`hostname`' .ssh/authorized_keys > .ssh/tmp;
+#    mv .ssh/tmp .ssh/authorized_keys;
 echo ""
 echo -e "${GB}演習室のパスワードを入力してください${GE}"
 if cat "${PUBKEY}" | ssh "${id}@${RHOST}" "${RCOMM}"; then

@@ -81,76 +81,74 @@ C:\Users\ユーザ名\oithome\kadai\java_src\bin
 
 # Java演習開発環境用VS codeセットアップ詳細
 - 以下は0からvs code 環境のセットアップを行う際に参考にする情報．
-### Step1'. VSCodePortableのセットアップ
+## Step1. VSCodePortableのセットアップ
 - [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)から`VSCodePortable_1.XX.Y_online.paf.exe`をダウンロードし，c:\oitに保存・実行（展開）する．
-- 最新版がこれでインストールできた場合はStep1,2,3を飛ばして良い
 
-### ~~Step1. VSCodePortable Updaterのセットアップ~~(2018/4/5時点で失敗するようになった)
-- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をC:\oitに展開する．
-- 1.21から↑が失敗するようになったのでとりあえず↓の方法も載せておく
-
-### ~~Step2. VSCodePortableの最新へのUpdate~~(2018/4/5時点で失敗するようになった)
-- VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
-
-### ~~Step3. 配布用にUpdateの停止~~(2018/4/5時点で失敗するようになった)
-- App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
-  - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
-```
-[Launch]
-ProgramExecutable=VSCode\code.exe
-ProgramExecutable64=VSCode64\code.exe
-CommandLineArguments='--user-data-dir="%PAL:DataDir%\code" --extensionHomePath="%PAL:DataDir%\code\extensions"'
-DirectoryMoveOK=yes
-DisableSplashScreen=true
-SplashTime=0
-SupportsUNC=yes
-MinOS=7
-
-[Environment]
-VSCODE_HOME=%PAL:DataDir%\code
-
-[DirectoriesCleanupIfEmpty]
-1=%APPDATA%\Code
-2=%USERPROFILE%\.vscode\extensions
-3=%USERPROFILE%\.vscode
-```
-- App\UpdateManager.exe を削除する
-  - 削除しないとアンチウィルスにひっかかることがある
-
-### Step4. 以下の2つをC:\oit以下に追加インストール
+## Step2. 以下の2つをC:\oit以下に追加インストール
 - ディレクトリ名を指定のものに変更する
-- jdk portable (x64)
-  - https://portableapps.com/apps/utilities/jdkportable
+- redhat openjdk (x64)
+  - https://developers.redhat.com/products/openjdk/download/
+  - C:\oitにopenjdk1.8.0.181のようなフォルダを作成し，DLしたopenjdkのzipファイル内の中身を展開する．
+    - C:\oit\openjdk1.8.0.181\bin といったディレクトリ構成になる．
 - PortableGit(x64)（解凍するだけ）
   - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
-  - bash.exe経由で起動するように本リポジトリのjava-bashフォルダからexeファイルを作成する
+  - bash.exe経由で起動するように本リポジトリのPortableGitフォルダからbatファイルを作成する
     - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
-    - 詳細は`java-bash\Readme.md` 参照
 
-### Step5. 拡張機能の追加
-- Java Extention Pack
-  - Java Language SupportとDebugger for Javaのセット
-- Project Manager
-  - 複数のフォルダを管理するための拡張機能
+```
+@echo off
+
+IF EXIST "%USERPROFILE%\oithomes\java\" (
+cd %USERPROFILE%\oithomes\java
+)
+@set MSYSTEM=MINGW64
+@C:\oit\PortableGit-2.19.1-64\usr\bin\mintty.exe C:\oit\PortableGit-2.19.1-64\usr\bin\bash.exe --login -i
+```
+
+## Step3. 拡張機能の追加
+- Japanese Language Pack for Visual Studio Code
+  - Installすると自動的に``C:\oit\VSCodePortable_1.26.0\Data\code\User\locale.json``にjaがセットされる．
+- Language support for Java ™ for Visual Studio Code, Debugger for Java
+  - Java Extension Packだと不要なMaven pluginまでインストールされるので，個別に2つのプラグインをインストールする
 - EvilInspector
   - 全角スペースを強調表示する
+- EditorConfig for vscode
+  - ↓の設定(.editorconfig)をプロジェクトのホームフォルダにおいておき，VSCodeの設定で自動整形設定をしておけば，.editorconfig のとおりに自動整形してくれる
 
-### Step6. 不要なフォルダを削除
+```
+# Editor configuration, see http://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+```
+
+## Step4. VS Code設定
+- 自動整形設定やjava.homeの設定(settings.jsonに追記）
+  - https://qiita.com/maron8676/items/017cd830ab0c5fb8bcac
+
+### Step5. 不要なフォルダを削除
 - 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
-  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
+  - ただし，「C:\oit\VSCodePortable_1.26.0\Data\code\User\locale.json」だけは残しておくこと（日本語設定）
+  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意(config.ini以外はキャッシュ）
 - 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
 
 
-### Step7. 演習フォルダ(本リポジトリ)のセットアップ
+### Step6. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
-- フォルダルートにある.classpath, .project
+- フォルダルートにある.classpathと.editorconfig
+  - .projectフォルダは今の所不要
 - 以上のファイルの設定は本リポジトリ`java_src`参照のこと
 
-### Step8. シェルのセットアップ
+### Step7. シェルのセットアップ
 - C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
 
-### Step9. bash.exe実行のための実行バイナリの作成
-- java-bashフォルダをgoでビルドし，`java-bash-2.XX.YY.Z-64.exe`ファイルを作成する．
+### Step8. /usr/local/bin/と学生用java演習フォルダをサーバに設置
+- /home/teachers/t2015025/public_html/progjava/local に /usr/local/bin/のbinフォルダをコピーし，/home/teachers/t2015025/public_html/progjava/java18/ に~/kadai/java18/の学生課題を置くディレクトリや設定ファイルを配置しておく．
 
 # 今後の課題
 ### Ctrl+@でvscode内のターミナルでbashを開くと，コンパイルエラー時に文字化けする

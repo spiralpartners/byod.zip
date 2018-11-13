@@ -12,10 +12,10 @@ fi
 
 PATH=/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
 
-mkdir -p $USERPROFILE/oithome/kadai/
-export PATH=/c/oit/Java8_161/bin/:$PATH
-export HOME=$(cd "$USERPROFILE\oithome" && pwd)
+mkdir -p $USERPROFILE/oithomes/java/kadai/`/usr/local/bin/course`/
+export PATH=/c/oit/openjdk1.8.0.181/bin/:$PATH
+export HOME=$(cd "$USERPROFILE\oithomes\java" && pwd)
 
 export PROMPT_COMMAND="history -a"
-HISTFILE=$HOME/kadai/.java_bash_history
+HISTFILE=$HOME/kadai/`/usr/local/bin/course`/.java_bash_history.`date +'%Y%m'`
 HISTTIMEFORMAT="%Y/%m/%dT%T%z "
