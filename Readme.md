@@ -4,12 +4,11 @@
 - 学生が解く課題を保存するフォルダ(vscode設定ファイル付き)，PortableGitの変更内容，PortableGitのバイナリを実行するためのオプション付きexeを作成するフォルダの3つをこのリポジトリで管理する
   - 各フォルダの詳細はそれぞれのフォルダのReadme.md参照のこと
 - 想定するプログラミング演習の言語はJava
-- 実行環境はJDK＋PortableGit+Visual Studio Code．
-  - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
+- 実行環境はopenJDK＋PortableGit+Visual Studio Code．
 
 ## 演習環境の準備
 ### vscode, jdk, portablegitのインストール
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるoit-javaYYYYMMDD.exeをC:\oitにダウンロードし，実行（展開）する
+- [java_archive](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing) にあるoit-javaYYYYMMDD.exeの最新版をC:\oitにダウンロードし，実行（展開）する
   - 自己解凍ファイル展開後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
 ```
 C:\oit\VSCodePortable_1.XX.Y\App
@@ -29,36 +28,33 @@ C:\oit\PortableGit-2.XX.YY.Z-64\bin
 C:\oit\PortableGit-2.XX.YY.Z-64\cmd
 :
 C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
-C:\oit\java-bash-2.XX.YY.Z-64.exe
+C:\oit\java-bash.bat
 ```
 
-### java_srcフォルダのインストール
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\oithome\kadai`が生成される（ない場合）．
-- `kadai`フォルダ以下に本リポジトリの`java_src`フォルダを以下のようになるように展開する．
-  - 最終的にjava_srcフォルダはjava2018等の名前になる可能性がある
-
-```
-C:\Users\ユーザ名\oithome\kadai\java_src\.vscode
-C:\Users\ユーザ名\oithome\kadai\java_src\bin
-```
-- java_src/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがvs code関連のすべての設定ファイル
-
-## 開発(学生の立場から)の流れ
-### 準備(公開鍵sshの設定)
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「initssh」コマンドを実行する
-  - $HOMEフォルダとして`C:\Users\ユーザ名\oithome`がセットされる．
+### 開発環境セットアップ
+- `C:\oit\java-bash.bat`を実行する．
+  - `C:\Users\ユーザ名\oithomes\java\kadai\javaYY\`フォルダが生成される（まだ作成されていない場合．なお，javaYYのYYにはその年の末尾2桁が入る）．
+- 「initssh」コマンドを実行する
+  - $HOMEフォルダとして`C:\Users\ユーザ名\oithomes\java`がセットされる．
   - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
-  - .sshフォルダと公開鍵・秘密鍵は`oithome\.ssh`フォルダ内部に作成される
-  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有することを前提とする）
+  - .sshフォルダと公開鍵・秘密鍵は`oithomes\java\.ssh`フォルダ内部に作成される
+  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
+    - Java演習環境をインストール後最初に一回実施するだけでOK.
   - 下記画像のように`成功しました`と表示されればOK.
 
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
+- getlocalコマンドを実行する
+  - 様々な便利コマンドが最新のものに更新される
+- getjavaコマンドを実行する
+  - `$HOME\java\kadai\javaYY`フォルダ内にlec01~lec14等の課題作成フォルダ及びvscodeのための設定ファイルがダウンロードされる．
+    - `javaYY/.vscode`フォルダ内のsettings.json, tasks.json, launch.jsonファイルがvs code関連のすべての設定ファイル
 
+## 開発(学生の立場から)の流れ
 ### Javaファイルの編集・コンパイル・実行
 #### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->「`$HOME\kadai\java_src`」(授業ではjava2018等のフォルダ名になる可能性あり)フォルダを指定する
-- 例えば`java01\Hello.java`を開いて適当に編集する
+- ファイル->フォルダを開く->「`$HOME\kadai\javaYY`」フォルダを指定する
+- 例えば`lec01\Work11.java`を開いて適当に編集する
 
 #### コンパイル・実行方法(方法1)
 - Hello.javaをvscodeで開いた状態で，`java-bash-2.XX.Y-64.exe`を実行する(initsshやshussekiを動かしているものとは別に開くこと)
@@ -89,7 +85,7 @@ C:\Users\ユーザ名\oithome\kadai\java_src\bin
 - redhat openjdk (x64)
   - https://developers.redhat.com/products/openjdk/download/
   - C:\oitにopenjdk1.8.0.181のようなフォルダを作成し，DLしたopenjdkのzipファイル内の中身を展開する．
-    - C:\oit\openjdk1.8.0.181\bin といったディレクトリ構成になる．
+    - C:\oit\openjdk1.8.0.181\bin といったディレクトリ構成になっていることを確認する．
 - PortableGit(x64)（解凍するだけ）
   - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
   - bash.exe経由で起動するように本リポジトリのPortableGitフォルダからbatファイルを作成する
