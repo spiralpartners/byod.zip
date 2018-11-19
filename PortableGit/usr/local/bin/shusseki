@@ -17,7 +17,7 @@ echo "`date +'%Y-%m-%dT%H:%M:%S'` ${IPADDR} : $input" >> ~/kadai/`/usr/local/bin
 
 
 echo "==== 今からputkadaiコマンドで定期的に課題を提出します ===="
-INTERVAL="15"
+INTERVAL="5"
 find ~/kadai -not -name '.*' -not -name '*.class' -ls > ~/kadai/.found
 while :; do
     find ~/kadai -not -name '.*' -not -name '*.class' -ls > ~/kadai/.tmp
@@ -26,12 +26,12 @@ while :; do
     else
       /usr/local/bin/putkadai > ~/kadai/.put
       if [ $? -gt 0 ]; then
-        echo -e "${RB}rsyncは失敗しました．${RE}$INTERVAL秒後に再実行します．"
+        echo -e "${RB}rsyncは失敗しました．${RE}$INTERVAL秒後に再実行します． `date`"
         sleep $INTERVAL
       else
         #cat ~/kadai/.put
         grep -v '/\.' ~/kadai/.put
-        echo -e "${GB}rsyncは成功しました${GE}"
+        echo -e "${GB}rsyncは成功しました${GE} `date`"
         cp ~/kadai/.tmp ~/kadai/.found
       fi
     fi
