@@ -52,6 +52,7 @@ rsync --timeout=15 --force -avu ${DFLAG} \
         --exclude='*.o'     \
         --exclude='*.class' \
         --exclude='*~'      \
+        --exclude='.vscode' \
         --exclude='#*'      \
         ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/
 exit $?
