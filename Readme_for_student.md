@@ -1,4 +1,5 @@
 # BYOD下におけるプログラミング演習環境の構築
+- 下記インストール及びセットアップは必ず授業開始までにすべて実行しておくこと
 ## 演習環境の準備
 ### vscode, jdk, portablegitのインストール
 - [java_archive](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing) にあるoit-javaYYYYMMDD.exeの最新版をC:\oitにダウンロードし，実行（展開）する
@@ -25,8 +26,7 @@ C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
 C:\oit\java-bash-2.XX.Z-64.exe
 ```
 
-### 開発環境セットアップ
-- 授業開始までに必ず下記全てを実行しておくこと．
+### 演習環境のセットアップ
 1. `C:\oit\java-bash-2.XX.Z-64.exe`を実行する．
    - `C:\Users\ユーザ名\oithomes\java\kadai\javaYY\`フォルダが生成される（まだ作成されていない場合．なお，javaYYのYYにはその年の末尾2桁が入る）．
    - $HOMEフォルダとして`C:\Users\ユーザ名\oithomes\java`がセットされている．
@@ -48,34 +48,31 @@ C:\oit\java-bash-2.XX.Z-64.exe
    <img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.jpg?raw=true" width=400>
 1. 上記終了後，アンケートに回答すること．なお，実施はしたが不具合が発生した等で自力で解決できない場合は，上記終了前にアンケートに回答し，教員からの連絡を待つこと．
 
-## 開発(学生の立場から)の流れ
+## 開発の流れ
 ### 準備
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「shusseki」コマンドを実行する
+- `C:\oit\java-bash-2.XX.Z-64.exe`を実行し，「shusseki」コマンドを実行する
 - 下記のように「rsyncは成功しました」もしくは「更新ファイルがありませんでした」と表示されればOK．
-  - 「rsyncは失敗しました．」と表示されたときはサーバに接続できていない（＝課題が提出されない）．必ず原因を確認すること．
-- 以降はshussekiコマンドを実行したまま課題を実施する．課題ファイルが更新されるたびに一定時間ごとに自動的にサーバにファイルが提出される．
+  - 「rsyncは失敗しました．」と表示されたときはサーバに接続できていない（＝課題が提出されない）ので，必ず原因を確認すること．
+- 以降はshussekiコマンドを実行したまま課題を実施する．shussekiコマンドが実行されている限り，課題ファイルが更新されるたびに一定時間ごとに自動的にサーバにファイルが提出される．
 - 終了時には`Ctrl + C`を押すこと．
 <img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.jpg?raw=true" width=400>
 
 ### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
+  - 英語モードで起動するが，再起動すると設定ファイルが読み込まれて日本語モードになる
 - ファイル->フォルダを開く->「`$HOME\kadai\javaYY`」フォルダを指定する
   - $HOMEは`C:\Users\ユーザ名\oithomes\java`．
-- 下図のように，lec01~lec14フォルダが表示されるので，各回のフォルダにjavaファイルを作成し，編集する．
+  - javaYYのYYには19や20等20YY年の下2桁の数字が入る．
+- 下図のように，lec01~lec14フォルダが表示されるので，javaファイルを作成したい回のフォルダを選択し，ファイルを新規作成・編集する．
   - 更新されたファイルはshussekiコマンドを実行し続けている限り自動的に提出される．
+<img src="https://github.com/igakilab/byod.zip/blob/images/images/vscode_newfile.jpg?raw=true" width=500>
 
 ### コンパイル・実行方法
 - javaファイルをvscodeで編集後，`java-bash-2.XX.Y-64.exe`を実行する(shussekiを動かしているものとは別に開くこと)
-- $HOMEに移動した状態でbashが開くので，編集中のjavaファイルが存在するディレクトリに移動し，`javac javaファイル`と実行する．
-- 正常にコンパイルができ，classファイルができたら，`java javaファイル`と実行すると結果が出力される．
+- $HOMEに移動した状態でbashが開くので，編集中のjavaファイルが存在するディレクトリに移動し，`javac`コマンドでjavaファイルをコンパイルする．
+- 正常にコンパイルができ，classファイルができたら，`java`コマンドを実行すると結果が出力される．
 - 下図はlec01\Work11.javaをコンパイル・実行した例である．
-
-### コンパイル・実行方法(方法2)
-- Hello.javaを開いた状態で，`F5`を叩く．
-- コンパイルがターミナルで行われ，実行結果が外部ターミナル（自動的に開く）に表示される
-- なお，これも初回起動時（初回にjava_srcフォルダを開いた際）はデバッガが見つけられず，コンパイルに失敗することがあるので，その場合はvscodeごと再起動する．
-- なお，実行は不要でコンパイルのみがしたい場合は，`Ctr+Shift+B`を押せば良い．
-- 実行には環境によっては数秒かかる
+<img src="https://github.com/igakilab/byod.zip/blob/images/images/javac.jpg?raw=true" width=400>
 
 ## 各コマンドの詳細
 ### initssh
