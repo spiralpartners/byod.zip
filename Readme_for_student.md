@@ -54,7 +54,7 @@ C:\oit\java-bash-2.XX.Z-64.exe
 - 下記のように「rsyncは成功しました」もしくは「更新ファイルがありませんでした」と表示されればOK．
   - 「rsyncは失敗しました．」と表示されたときはサーバに接続できていない（＝課題が提出されない）ので，必ず原因を確認すること．
 - 以降はshussekiコマンドを実行したまま課題を実施する．shussekiコマンドが実行されている限り，課題ファイルが更新されるたびに一定時間ごとに自動的にサーバにファイルが提出される．
-- 終了時には`Ctrl + C`を押すこと．
+   - shussekiコマンド終了時には`Ctrl + C`を押すこと．
 <img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.jpg?raw=true" width=400>
 
 ### vscodeの起動及びファイル編集
