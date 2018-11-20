@@ -1,5 +1,6 @@
-# BYOD下におけるプログラミング演習環境の構築
+# BYOD下におけるプログラミング演習環境
 ## 演習環境の準備
+- 下記インストールとセットアップを必ず授業開始までに完了しておくこと
 ### vscode, jdk, portablegitのインストール
 - [java_archive](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing) にあるoit-javaYYYYMMDD.exeの最新版をC:\oitにダウンロードし，実行（展開）する
    - C:\oitフォルダがない場合は作成すること
@@ -21,7 +22,7 @@ C:\oit\java8_XXX\jre
 C:\oit\PortableGit-2.XX.Z-64\bin
 C:\oit\PortableGit-2.XX.Z-64\cmd
 :
-C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
+C:\oit\PortableGit-2.XX.Z-64\git-bash.exe
 C:\oit\java-bash-2.XX.Z-64.exe
 ```
 
@@ -35,7 +36,7 @@ C:\oit\java-bash-2.XX.Z-64.exe
    - 画面に書かれているように，「Enter passphrase」「Enter same passphrase again」と言われたらEnterキーを押す
    - 最後に演習室へのログインパスワードを入力し，Enter
    - 成功しましたと表示されればOK．表示されなかった場合は再度`initssh`を実行すること．
-   <img src="https://github.com/igakilab/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
+   <img src="https://github.com/igakilab/byod.zip/blob/images/images/initssh.jpg?raw=true" width=500>
 1. `initssh`実行後に，`getlocal`コマンドを入力し，Enter
    - 演習で利用する様々なコマンドが最新のものに更新される（課題提出等）
 1. `initssh`及び`getlocal`実行後に，`getjava`コマンドを入力し，Enter
