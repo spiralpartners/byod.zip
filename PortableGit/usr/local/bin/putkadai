@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Written by Yasuharu Mizutani.
+# Modified by Hiroshi Igaki.
 
 usage(){
     cat <<-EOF
@@ -23,6 +24,11 @@ usage(){
 	
 	EOF
 }
+
+GB='\e[1;32m'
+GE='\e[m'
+RB='\e[1;31m'
+RE='\e[m'
 
 DFLAG=""
 if [ "$#" -ge 1 ]; then
@@ -54,6 +60,24 @@ rsync --timeout=15 --force -avu ${DFLAG} \
         --exclude='*~'      \
         --exclude='.vscode' \
         --exclude='#*'      \
-        ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/
-exit $?
+        ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/ > ~/kadai/.put
+if [ $? -gt 0 ]; then
+  echo -e "${RB}rsyncは失敗しました．${RE} `date`"
+  rm ~/kadai/.put
+  exit 2
+fi
 
+rsync_msg=`cat ~/kadai/.put | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is'`
+rsync_msg_size=`cat ~/kadai/.put | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is' | wc -l`
+
+if [ $rsync_msg_size -gt 1 ]; then
+  echo "Uploadファイル一覧"
+  echo -e ${rsync_msg}
+  echo -e "${GB}rsyncは成功しました${GE} `date`"
+  rm ~/kadai/.put
+  exit 0
+else
+  echo -e "${GB}更新ファイルがありませんでした${GE} `date`"
+  rm ~/kadai/.put
+  exit 1
+fi

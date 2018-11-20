@@ -1,4 +1,6 @@
 #!/bin/bash
+# Written by Yasuharu Mizutani.
+# Modified by Hiroshi Igaki.
 
 GB='\e[1;32m'
 GE='\e[m'
@@ -6,32 +8,36 @@ RB='\e[1;31m'
 RE='\e[m'
 
 echo "出席スクリプトを起動します．"
-echo "今日の意気込みを一言入力してください（1行のみ）． "
-echo -n "> "
-read input
+echo "このスクリプトは演習の課題ファイルが更新されるたびにそのファイルを自動的にサーバに提出します．"
+echo "演習実施中や課題ファイル編集時にはずっと起動しておいてください．"
+echo "Ctr+Cで終了できます．"
+#echo -n "> "
+#read input
 
-trap "echo '授業を終了します';rm ~/kadai/.??*; exit 0" 2 15
+trap end_proc 2 15
+function end_proc(){
+  rm ~/kadai/.??*
+  echo "`date +'%Y-%m-%dT%H:%M:%S'` : End" >> ~/kadai/`/usr/local/bin/course`/.message.txt
+  echo '終了時の更新ファイルを提出し，出席スクリプトを終了します'
+  /usr/local/bin/putkadai
+  exit 0
+}
 
 [ ! -d ~/kadai ] && mkdir -p ~/kadai
-echo "`date +'%Y-%m-%dT%H:%M:%S'` ${IPADDR} : $input" >> ~/kadai/`/usr/local/bin/course`/.message.txt
+echo "`date +'%Y-%m-%dT%H:%M:%S'` : Start" >> ~/kadai/`/usr/local/bin/course`/.message.txt
 
-
-echo "==== 今からputkadaiコマンドで定期的に課題を提出します ===="
-INTERVAL="5"
-find ~/kadai -not -name '.*' -not -name '*.class' -ls > ~/kadai/.found
+INTERVAL="10"
+echo -e "==== 今から${INTERVAL}秒ごとに課題を提出します ===="
+/usr/local/bin/putkadai
+find ~/kadai/`/usr/local/bin/course`/ -not -name '.*' -not -name '*.class' -ls > ~/kadai/.found
 while :; do
-    find ~/kadai -not -name '.*' -not -name '*.class' -ls > ~/kadai/.tmp
+    find ~/kadai/`/usr/local/bin/course`/ -not -name '.*' -not -name '*.class' -ls > ~/kadai/.tmp
     if diff ~/kadai/.tmp ~/kadai/.found > /dev/null; then
       sleep $INTERVAL
     else
-      /usr/local/bin/putkadai > ~/kadai/.put
-      if [ $? -gt 0 ]; then
-        echo -e "${RB}rsyncは失敗しました．${RE}$INTERVAL秒後に再実行します． `date`"
-        sleep $INTERVAL
-      else
-        #cat ~/kadai/.put
-        grep -v '/\.' ~/kadai/.put
-        echo -e "${GB}rsyncは成功しました${GE} `date`"
+      #echo `diff ~/kadai/.tmp ~/kadai/.found`
+      /usr/local/bin/putkadai
+      if [ $? -le 1 ]; then
         cp ~/kadai/.tmp ~/kadai/.found
       fi
     fi
