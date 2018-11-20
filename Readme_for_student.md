@@ -2,8 +2,8 @@
 ## 演習環境の準備
 ### vscode, jdk, portablegitのインストール
 - [java_archive](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing) にあるoit-javaYYYYMMDD.exeの最新版をC:\oitにダウンロードし，実行（展開）する
-  - C:\oitフォルダがない場合は作成すること
-  - 自己解凍ファイル展開後のフォルダ構成は以下のとおり(一部省略している．また，X,Y,Zにはバージョン番号が入る)
+   - C:\oitフォルダがない場合は作成すること
+   - 自己解凍ファイル展開後のフォルダ構成は以下のとおり(一部省略している．また，X,Y,Zにはバージョン番号が入る)
 ```
 C:\oit\VSCodePortable_1.XX.Y\App
 C:\oit\VSCodePortable_1.XX.Y\Data
@@ -43,14 +43,7 @@ C:\oit\java-bash-2.XX.Z-64.exe
 1. `initssh`，`getlocal`及び`getjava`コマンド実行後に，`shusseki`コマンドを入力し，Enter
    - 画面に下記のように「rsyncは成功しました」もしくは「更新ファイルがありませんでした」と表示されればOK.
    - これらが表示されるのを確認後，Ctrlキーを押したままCボタンを押し，shussekiコマンドを終了させる
-
-## 各コマンドの詳細
-### initssh
-- initsshを実行すると，sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
-- .sshフォルダと公開鍵・秘密鍵は`$HOME/.ssh`フォルダ内部に作成される
-  - $HOMEフォルダは`C:\Users\ユーザ名\oithomes\java`
-- $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
-  - Java演習環境をインストール後最初に一回実施するだけでOK.
+1. 上記終了後，アンケートに回答すること．なお，実施はしたが不具合が発生した等で自力で解決できない場合は，上記終了前にアンケートに回答し，教員からの連絡を待つこと．
 
 ## 開発(学生の立場から)の流れ
 ### 準備
@@ -80,4 +73,12 @@ C:\oit\java-bash-2.XX.Z-64.exe
 - なお，これも初回起動時（初回にjava_srcフォルダを開いた際）はデバッガが見つけられず，コンパイルに失敗することがあるので，その場合はvscodeごと再起動する．
 - なお，実行は不要でコンパイルのみがしたい場合は，`Ctr+Shift+B`を押せば良い．
 - 実行には環境によっては数秒かかる
+
+## 各コマンドの詳細
+### initssh
+- initsshを実行すると，sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
+- .sshフォルダと公開鍵・秘密鍵は`$HOME/.ssh`フォルダ内部に作成される
+  - $HOMEフォルダは`C:\Users\ユーザ名\oithomes\java`
+- $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
+  - Java演習環境をインストール後最初に一回実施するだけでOK.
 
