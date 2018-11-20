@@ -20,17 +20,17 @@ C:\oit\VSCodePortable_1.XX.Y\Other
 C:\oit\VSCodePortable_1.XX.Y\Help.html
 C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe
 :
-C:\oit\java8_XXX\App
-C:\oit\java8_XXX\bin
-C:\oit\java8_XXX\Data
-C:\oit\java8_XXX\db
-C:\oit\java8_XXX\include
-C:\oit\java8_XXX\jre
+C:\oit\openjdk1.8.0.XXX\App
+C:\oit\openjdk1.8.0.XXX\bin
+C:\oit\openjdk1.8.0.XXX\Data
+C:\oit\openjdk1.8.0.XXX\db
+C:\oit\openjdk1.8.0.XXX\include
+C:\oit\openjdk1.8.0.XXX\jre
 :
 C:\oit\PortableGit-2.XX.Z-64\bin
 C:\oit\PortableGit-2.XX.Z-64\cmd
 :
-C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
+C:\oit\PortableGit-2.XX.Z-64\git-bash.exe
 C:\oit\java-bash-2.XX.Z-64.exe
 ```
 
