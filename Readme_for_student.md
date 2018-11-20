@@ -1,6 +1,5 @@
-# BYOD下におけるプログラミング演習環境
+# BYOD下におけるプログラミング演習環境の構築
 ## 演習環境の準備
-- 下記インストールとセットアップを必ず授業開始までに完了しておくこと
 ### vscode, jdk, portablegitのインストール
 - [java_archive](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing) にあるoit-javaYYYYMMDD.exeの最新版をC:\oitにダウンロードし，実行（展開）する
    - C:\oitフォルダがない場合は作成すること
@@ -22,7 +21,7 @@ C:\oit\java8_XXX\jre
 C:\oit\PortableGit-2.XX.Z-64\bin
 C:\oit\PortableGit-2.XX.Z-64\cmd
 :
-C:\oit\PortableGit-2.XX.Z-64\git-bash.exe
+C:\oit\PortableGit-2.XX.YY.Z-64\git-bash.exe
 C:\oit\java-bash-2.XX.Z-64.exe
 ```
 
@@ -33,17 +32,20 @@ C:\oit\java-bash-2.XX.Z-64.exe
    - $HOMEフォルダとして`C:\Users\ユーザ名\oithomes\java`がセットされている．
 1. bashが起動するので，下記のように`initssh`と入力し，Enter
    - まずe1で始まるユーザ名を入力する
-   - 画面に書かれているように，「Enter passphrase」「Enter same passphrase again」と言われたらEnterキーを押す
+   - 画面に書かれているように，「Enter file in..」「Enter passphrase」「Enter same passphrase again」と言われたらEnterキーを押す
    - 最後に演習室へのログインパスワードを入力し，Enter
    - 成功しましたと表示されればOK．表示されなかった場合は再度`initssh`を実行すること．
    <img src="https://github.com/igakilab/byod.zip/blob/images/images/initssh.jpg?raw=true" width=500>
 1. `initssh`実行後に，`getlocal`コマンドを入力し，Enter
    - 演習で利用する様々なコマンドが最新のものに更新される（課題提出等）
+   <img src="https://github.com/igakilab/byod.zip/blob/images/images/getlocal.jpg?raw=true" width=400>
 1. `initssh`及び`getlocal`実行後に，`getjava`コマンドを入力し，Enter
    - `$HOME\java\kadai\javaYY`フォルダ内にlec01~lec14等の課題作成フォルダ及びvscodeのための設定ファイルがダウンロードされる．
+   <img src="https://github.com/igakilab/byod.zip/blob/images/images/getjava.jpg?raw=true" width=400>
 1. `initssh`，`getlocal`及び`getjava`コマンド実行後に，`shusseki`コマンドを入力し，Enter
    - 画面に下記のように「rsyncは成功しました」もしくは「更新ファイルがありませんでした」と表示されればOK.
    - これらが表示されるのを確認後，Ctrlキーを押したままCボタンを押し，shussekiコマンドを終了させる
+   <img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.jpg?raw=true" width=400>
 1. 上記終了後，アンケートに回答すること．なお，実施はしたが不具合が発生した等で自力で解決できない場合は，上記終了前にアンケートに回答し，教員からの連絡を待つこと．
 
 ## 開発(学生の立場から)の流れ
@@ -53,7 +55,7 @@ C:\oit\java-bash-2.XX.Z-64.exe
   - 「rsyncは失敗しました．」と表示されたときはサーバに接続できていない（＝課題が提出されない）．必ず原因を確認すること．
 - 以降はshussekiコマンドを実行したまま課題を実施する．課題ファイルが更新されるたびに一定時間ごとに自動的にサーバにファイルが提出される．
 - 終了時には`Ctrl + C`を押すこと．
-<img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
+<img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.jpg?raw=true" width=400>
 
 ### vscodeの起動及びファイル編集
 - `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
