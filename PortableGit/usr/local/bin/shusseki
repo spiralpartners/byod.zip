@@ -1,4 +1,6 @@
 #!/bin/bash
+# Written by Yasuharu Mizutani.
+# Modified by Hiroshi Igaki.
 
 GB='\e[1;32m'
 GE='\e[m'
@@ -6,16 +8,23 @@ RB='\e[1;31m'
 RE='\e[m'
 
 echo "出席スクリプトを起動します．"
-echo "これは演習の課題ファイルが作成・編集されるたびにそのファイルを自動的にサーバに提出するスクリプトです．"
-echo "授業開始後はずっと起動しておいてください．"
+echo "このスクリプトは演習の課題ファイルが更新されるたびにそのファイルを自動的にサーバに提出します．"
+echo "演習実施中や課題ファイル編集時にはずっと起動しておいてください．"
 echo "Ctr+Cで終了できます．"
 #echo -n "> "
 #read input
 
-trap "echo '授業を終了します';rm ~/kadai/.??*; exit 0" 2 15
+trap end_proc 2 15
+function end_proc(){
+  rm ~/kadai/.??*
+  echo "`date +'%Y-%m-%dT%H:%M:%S'` : End" >> ~/kadai/`/usr/local/bin/course`/.message.txt
+  echo '終了時の更新ファイルを提出し，出席スクリプトを終了します'
+  /usr/local/bin/putkadai
+  exit 0
+}
 
 [ ! -d ~/kadai ] && mkdir -p ~/kadai
-echo "`date +'%Y-%m-%dT%H:%M:%S'` ${IPADDR} : $input" >> ~/kadai/`/usr/local/bin/course`/.message.txt
+echo "`date +'%Y-%m-%dT%H:%M:%S'` : Start" >> ~/kadai/`/usr/local/bin/course`/.message.txt
 
 
 echo "==== 今からputkadaiコマンドで定期的に課題を提出します ===="
