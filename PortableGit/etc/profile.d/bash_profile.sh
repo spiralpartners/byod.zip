@@ -16,6 +16,6 @@ mkdir -p $USERPROFILE/oithomes/java/kadai/`/usr/local/bin/course`/
 export PATH=/c/oit/openjdk1.8.0.181/bin/:$PATH
 export HOME=$(cd "$USERPROFILE\oithomes\java" && pwd)
 
-export PROMPT_COMMAND="history -a"
+export PROMPT_COMMAND='echo -e "res:$?\tpwd:`pwd`\tdate:`date +%s`\t" >> $HOME/kadai/`/usr/local/bin/course`/.java_bash_history.`date +'%Y%m'`;history -a'
 HISTFILE=$HOME/kadai/`/usr/local/bin/course`/.java_bash_history.`date +'%Y%m'`
 HISTTIMEFORMAT="%Y/%m/%dT%T%z "
