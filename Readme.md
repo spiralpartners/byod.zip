@@ -43,6 +43,7 @@ C:\oit\java-bash.bat
   - 下記画像のように`成功しました`と表示されればOK.
 
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
+
 - getlocalコマンドを実行する
   - 様々な便利コマンドが最新のものに更新される
 - getjavaコマンドを実行する
@@ -91,16 +92,6 @@ C:\oit\java-bash.bat
   - bash.exe経由で起動するように本リポジトリのPortableGitフォルダからbatファイルを作成する
     - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
 
-```
-@echo off
-
-IF EXIST "%USERPROFILE%\oithomes\java\" (
-cd %USERPROFILE%\oithomes\java
-)
-@set MSYSTEM=MINGW64
-@C:\oit\PortableGit-2.19.1-64\usr\bin\mintty.exe C:\oit\PortableGit-2.19.1-64\usr\bin\bash.exe --login -i
-```
-
 ## Step3. 拡張機能の追加
 - Japanese Language Pack for Visual Studio Code
   - Installすると自動的に``C:\oit\VSCodePortable_1.26.0\Data\code\User\locale.json``にjaがセットされる．
@@ -136,8 +127,7 @@ trim_trailing_whitespace = true
 
 ### Step6. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
-- フォルダルートにある.classpathと.editorconfig
-  - .projectフォルダは今の所不要
+- フォルダルートにある.classpathと.editorconfig, .project
 - 以上のファイルの設定は本リポジトリ`java_src`参照のこと
 
 ### Step7. シェルのセットアップ
@@ -145,6 +135,7 @@ trim_trailing_whitespace = true
 
 ### Step8. /usr/local/bin/と学生用java演習フォルダをサーバに設置
 - /home/teachers/t2015025/public_html/progjava/local に /usr/local/bin/のbinフォルダをコピーし，/home/teachers/t2015025/public_html/progjava/java18/ に~/kadai/java18/の学生課題を置くディレクトリや設定ファイルを配置しておく．
+- 上記 progjava フォルダに対して `chmod g+rx -R ~/public_html/progjava/` を実行しておくこと．
 
 # 今後の課題
 ### Ctrl+@でvscode内のターミナルでbashを開くと，コンパイルエラー時に文字化けする
