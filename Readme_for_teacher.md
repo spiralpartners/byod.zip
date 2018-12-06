@@ -32,9 +32,9 @@ C:\java-bash.bat
 
 ## 開発（教員の立場から）の流れ
 ### セットアップ
-- `C:\oit\java-bash.bat`を実行する
+- `C:\oit\java-bash-2.XX.Y-64.exe`を実行する
 - `C:\Users\名前\oithomes\java\kadai\java18` フォルダが自動的にできる
-  - HOMEフォルダが`oithomes\java`になるので，`java-bash.bat`実行時には`HOME`に移動する．
+  - HOMEフォルダが`oithomes\java`になるので，`java-bash-2.XX.Y-64.exe`実行時には自動的に`HOME`に移動する．
 - gitのコミッター情報を登録する
   - 細かい設定もちょっと追加（日本語の扱いや改行コード関連の設定）
 
@@ -95,39 +95,3 @@ $ git push origin master
 ```
 - branchモデルでの開発等(Pull Requestも)は可能なら活用する
 
-## 開発(学生の立場から)の流れ
-### 準備(公開鍵sshの設定)
-- `C:\oit\java-bash.bat`を実行し，「initssh」コマンドを実行する
-  - $HOMEフォルダとして`C:\Users\ユーザ名\oithomes\java`がセットされる．
-  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-ssh.center.oit.ac.jpにアクセスできるようになる
-  - .sshフォルダと公開鍵・秘密鍵は`oithomes/java/.ssh`フォルダ内部に作成される
-  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
-  - 下記画像のように`成功しました`と表示されればOK.
-
-<img src="https://github.com/igakilab/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
-  - initsshが成功後「getjava」コマンドを実行する．$HOME/kadai/java18/ フォルダにlec01~lec14等の課題用フォルダや.classpath等の各種設定ファイルがダウンロードされる．
-
-### Javaファイルの編集・コンパイル・実行
-#### vscodeの起動及びファイル編集
-- `C:\oit\VSCodePortable_1.XX.Y\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->「`$HOME\kadai\java18`」フォルダを指定する
-- その後，例えば`lec01\Hello.java`を開いて適当に編集する
-
-#### コンパイル・実行方法(方法1)
-- Hello.javaをvscodeで開いた状態で，`java-bash.bat`を実行する(initsshやshussekiを動かしているものとは別に開くこと)
-- `$HOME`にいる状態でbashのターミナルが開く．
-- `cd ~/kadai/java18/lec01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
-- 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される．
-
-#### コンパイル・実行方法(方法2)
-- Hello.javaを開いた状態で，`F5`を叩く．
-- コンパイルがターミナルで行われ，実行結果が外部ターミナル（自動的に開く）に表示される
-- なお，これも初回起動時（初回にjava18フォルダを開いた際）はデバッガが見つけられず，コンパイルに失敗することがあるので，その場合はvscodeごと再起動する．
-- 実行には環境によっては数秒かかる
-- 標準入力時に日本語を利用すると文字化けが発生するので，あまりおすすめはしない．
-
-### 出席・課題提出方法
-- `C:\oit\java-bash.bat`を実行し，「shusseki」コマンドを実行する
-- 下記のように~/kadai/java18 がo-ssh.center.oit.ac.jp上の同じフォルダとsyncされればOK．
-- 終了時には`Ctr + C`
-<img src="https://github.com/igakilab/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
