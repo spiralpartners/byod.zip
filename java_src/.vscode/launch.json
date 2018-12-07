@@ -6,7 +6,6 @@
       "request": "launch",
       "mainClass": "${fileBasenameNoExtension}",
       "args": "",
-      "preLaunchTask": "log for debug",
       "console": "externalTerminal",
       "stopOnEntry": false,
       "encoding": "UTF-8",

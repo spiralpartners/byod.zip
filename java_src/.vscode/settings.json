@@ -30,7 +30,7 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.detectIndentation": false,
-  "editor.tabCompletion": true,
+  "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
   "extensions.ignoreRecommendations": true,
   "files.autoSave": "onFocusChange",
