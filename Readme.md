@@ -78,8 +78,10 @@ C:\oit\java-bash.bat
 
 # Java演習開発環境用VS codeセットアップ詳細
 - 以下は0からvs code 環境のセットアップを行う際に参考にする情報．
-## Step1. VSCodePortableのセットアップ
-- [VSCodePortable Installer](https://github.com/garethflowers/vscode-portable/releases)から`VSCodePortable_1.XX.Y_online.paf.exe`をダウンロードし，c:\oitに保存・実行（展開）する．
+## Step1. VSCode Portable Modeのセットアップ
+- [Download VSCode](https://code.visualstudio.com/Download)からVSCode Windows .zip (64bit)をダウンロードし，c:\oitに保存・実行（展開）する．
+- dataフォルダをVSCodeフォルダ内に作成する
+  - 参考：https://code.visualstudio.com/docs/editor/portable
 
 ## Step2. 以下の2つをC:\oit以下に追加インストール
 - ディレクトリ名を指定のものに変更する
@@ -89,12 +91,11 @@ C:\oit\java-bash.bat
     - C:\oit\openjdk1.8.0.181\bin といったディレクトリ構成になっていることを確認する．
 - PortableGit(x64)（解凍するだけ）
   - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
-  - bash.exe経由で起動するように本リポジトリのPortableGitフォルダからbatファイルを作成する
-    - これをやらないとopensshがこちらの指定したホームディレクトリを見てくれない
+  - bash.exe経由で起動するように本リポジトリのjava-bashフォルダからexeファイルを作成する
 
 ## Step3. 拡張機能の追加
 - Japanese Language Pack for Visual Studio Code
-  - Installすると自動的に``C:\oit\VSCodePortable_1.26.0\Data\code\User\locale.json``にjaがセットされる．
+  - Install後にCtrl+Shift+P を押してコマンド パレットを表示させ、"config" と入力し、利用できるコマンドのリストをフィルター処理してから Configure Display Language を選択し，local.jsonを開いて，locale:jaと設定する．
 - Language support for Java ™ for Visual Studio Code, Debugger for Java
   - Java Extension Packだと不要なMaven pluginまでインストールされるので，個別に2つのプラグインをインストールする
 - EvilInspector
@@ -119,10 +120,9 @@ trim_trailing_whitespace = true
   - https://qiita.com/maron8676/items/017cd830ab0c5fb8bcac
 
 ### Step5. 不要なフォルダを削除
-- 「C:\oit\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
-  - ただし，「C:\oit\VSCodePortable_1.26.0\Data\code\User\locale.json」だけは残しておくこと（日本語設定）
-  - ただし，「C:\oit\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意(config.ini以外はキャッシュ）
-- 「C:\oit\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
+- 「C:\oit\VSCode-win32-x64-1.XX.Y\data\user-data」の中身を以下を除いて削除する．
+  - ただし，「C:\oit\VSCode-win32-x64-1.XX.Y\data\user-data\User\locale.json」だけは残しておくこと（日本語設定）
+  - ただし，「C:\oit\VSCode-win32-x64-1.XX.Y\Data\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意(config.ini以外はキャッシュ）
 
 
 ### Step6. 演習フォルダ(本リポジトリ)のセットアップ
