@@ -16,3 +16,4 @@ for i in `seq -f %02g 1 14`
 do
   mkdir -p ~/public_html/progjava/${class}/lec${i}
 done
+chmod 755 -R ~/public_html/progjava/${class}/
