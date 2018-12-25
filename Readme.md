@@ -135,8 +135,10 @@ trim_trailing_whitespace = true
 
 ### Step8. /usr/local/bin/と学生用java演習フォルダをサーバに設置
 - /home/teachers/t2015025/public_html/progjava/local に /usr/local/bin/のbinフォルダをコピーし，/home/teachers/t2015025/public_html/progjava/java18/ に~/kadai/java18/の学生課題を置くディレクトリや設定ファイルを配置しておく．
-- 上記 progjava フォルダに対して `chmod g+rx -R ~/public_html/progjava/` を実行しておくこと．
-  - public_html, ~/にも実行権限が必要（group(教員用), other(学生用))
+- 上記 progjava フォルダに対して権限の設定を適切にしておくこと
+  - ~/から~/public_html/progjavaまでを711
+  - progjava内のjava18,local以下のディレクトリを755
+  - progjava内の各ファイルを744
 
 # 今後の課題
 ### Ctrl+@でvscode内のターミナルでbashを開くと，コンパイルエラー時に文字化けする
