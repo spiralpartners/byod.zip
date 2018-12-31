@@ -14,6 +14,7 @@ PATH=/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/core_perl:/usr/bin/vendo
 
 mkdir -p $USERPROFILE/oithomes/java/kadai/`/usr/local/bin/course`/
 export PATH=/c/oit/openjdk1.8.0.181/bin/:$PATH
+export PATH=/c/oit/VSCode-win32-x64-1.29.1/bin/:$PATH
 export HOME=$(cd "$USERPROFILE\oithomes\java" && pwd)
 
 export PROMPT_COMMAND='echo -e "res:$?\tpwd:`pwd`\tdate:`date +%s`\t" >> $HOME/kadai/`/usr/local/bin/course`/.java_bash_history.`date +'%Y%m'`;history -a'
