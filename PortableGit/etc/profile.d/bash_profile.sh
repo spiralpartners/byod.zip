@@ -14,7 +14,7 @@ PATH=/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/core_perl:/usr/bin/vendo
 export LANG="ja_JP.UTF-8"
 
 mkdir -p $USERPROFILE/oithomes/java/kadai/`/usr/local/bin/course`/
-export PATH=/c/oit/openjdk1.8.0.181/bin/:$PATH
+export PATH=/c/oit/openjdk1.8.0.191/bin/:$PATH
 export PATH=/c/oit/VSCode-win32-x64-1.31.0/bin/:$PATH
 export HOME=$(cd "$USERPROFILE\oithomes\java" && pwd)
 
