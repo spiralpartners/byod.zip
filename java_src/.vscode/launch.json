@@ -8,10 +8,7 @@
       "args": "",
       "console": "integratedTerminal",
       "stopOnEntry": false,
-      "encoding": "UTF-8",
-      //"env": {
-      //  "JAVA_TOOL_OPTIONS": "-Dsun.jnu.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8"
-      //},
+      "encoding": "ms932",
       "classPaths": [
         "${workspaceFolder}\\bin"
       ]
