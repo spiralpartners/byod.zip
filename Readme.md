@@ -96,8 +96,6 @@ C:\oit\java-bash-2.XX.Y-64.exe
   - Java Extension Packだと不要なMaven pluginまでインストールされるので，個別に2つのプラグインをインストールする
 - EvilInspector
   - 全角スペースを強調表示する
-- EditorConfig for vscode
-  - .editorconfigをプロジェクトのホームフォルダにおいておき，VSCodeの設定で自動整形設定をしておけば，.editorconfig のとおりに自動整形してくれる
 
 ## Step4. VS Codeユーザー設定の変更
 - ファイル->基本設定->設定をクリックする
@@ -122,9 +120,10 @@ C:\oit\java-bash-2.XX.Y-64.exe
 
 ### Step6. 不要なフォルダを削除
 - 「C:\oit\VSCode-win32-x64-1.XX.Y\data\user-data」の中身を以下を除いて削除する．
-  - ただし，「C:\oit\VSCode-win32-x64-1.XX.Y\data\user-data\User\locale.json」だけは残しておくこと（日本語設定）
-  - ただし，「C:\oit\VSCode-win32-x64-1.XX.Y\Data\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意(config.ini以外はキャッシュ）
-
+  - data\appdata\Codeというフォルダ構成になる場合もあり．
+  - 「C:\oit\VSCode-win32-x64-1.XX.Y\data\user-data\User\locale.json,settings.json」は残しておくこと（日本語設定）．同じくlanguagepacks.jsonも残しておくこと
+- 「C:\oit\VSCode-win32-x64-1.XX.Y\Data\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので削除する(config.ini以外はキャッシュ）
+- logsフォルダを削除
 
 ### Step7. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, tasks.json, settings.json
@@ -143,7 +142,26 @@ C:\oit\java-bash-2.XX.Y-64.exe
   - `progjava`内の各ファイルを644
 
 # 今後の課題
-### Ctrl+@でvscode内のターミナルでbashを開くと，コンパイルエラー時に文字化けする
+### ~~F5でビルドしたときの-Dfile.encoding=UTF-8オプションのせいでScannerでの入力が文字化けする~~
+- vscode経由でbashを起動する場合，標準入力はsjis(ms932,windows-31j)になるっぽい．なのでencodingを明示的にms932とかに設定する必要があった
+- launch.jsonの"encoding": "ms932",にしたらScannerでの文字化けもなくなった．
+
+### ~~Javaのlanguage serverがしょっちゅうクラッシュする~~（一応いけた）
+- MS本家のportable modeだとNGだが，↓からダウンロードしたvscode(v1.31-0.1 7zip版)を利用したらOKだった．
+  - https://portapps.github.io/app/vscode-portable/
+- 起動して放置してると100%の確率で`The Language Support for Java server crashed 5 times in the last 3 minutes. The server will not be restarted.`と出て，Intellisenseとかが使えなくなる．
+  - `The workspace will exit with unsaved changes in this session.`とかなってるのが駄目っぽいんだが，原因は分からず．
+
+### ~~Ctrl+@でvscode内のターミナルでbashを開くと，コンパイルエラー時に文字化けする~~(なおった）
+- vscode内のターミナルで開く場合とmintty経由でbashを開く場合で，javac, javaの必要となる引数が違った．前者は`javac -encoding UTF-8`でjavaコマンドは引数なし，後者はjavac,java両方共に`javac -J-Dfile.encoding=UTF-8`つける必要あり．
+```
+if [ $BASH = "/usr/bin/bash" ]; then
+    alias javac='javac -encoding UTF-8'
+else
+    alias javac='javac -J-Dfile.encoding=UTF-8'
+    alias java='java -Dfile.encoding=UTF-8'
+fi
+```
 - vscode内ターミナルで`javac Hello.java`を実行し，コンパイルエラーが起きると文字化けする．調べた限りではshift-jisをutf-8で表示しようとして文字化けしてるっぽい．
 - 正常にコンパイルが通ったときは問題なく日本語も出力されるが，コンパイルエラー（恐らく実行時エラーも？）時にのみ文字化けする．
 - 今の所Ctrl+@を実行させないようにするしか解決方法がない
