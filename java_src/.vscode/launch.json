@@ -6,9 +6,12 @@
       "request": "launch",
       "mainClass": "${fileBasenameNoExtension}",
       "args": "",
-      "console": "externalTerminal",
+      "console": "integratedTerminal",
       "stopOnEntry": false,
       "encoding": "UTF-8",
+      //"env": {
+      //  "JAVA_TOOL_OPTIONS": "-Dsun.jnu.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8"
+      //},
       "classPaths": [
         "${workspaceFolder}\\bin"
       ]

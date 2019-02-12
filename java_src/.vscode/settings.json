@@ -1,8 +1,11 @@
 {
   "files.encoding": "utf8",
-  "java.home": "c://oit//openjdk1.8.0.191",
-  "java.jdt.ls.vmargs": "-noverify -Dfile.encoding=utf8",
+  "java.home": "c:\\oit\\openjdk1.8.0.191",
+  //"java.jdt.ls.vmargs": "-noverify -Dfile.encoding=utf8 -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication",
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication",
   "java.errors.incompleteClasspath.severity": "ignore",
+  "java.trace.server": "messages",
+  "java.configuration.updateBuildConfiguration": "disabled",
   "workbench.colorTheme": "Default Light+",
   "files.exclude": {
     "bin/": true,
@@ -13,7 +16,7 @@
   // Git が有効になっているかどうか
   "git.ignoreMissingGitWarning": true,
   "git.enabled": false,
-  "terminal.integrated.shell.windows": "C:\\oit\\PortableGit-2.20.1-64\\usr\\bin\\bash.exe",
+  "terminal.integrated.shell.windows": "C:\\oit\\PortableGit-2.20.1-64\\bin\\bash.exe",
   "terminal.integrated.env.windows": {
     "MSYSTEM": "MINGW64",
     "CHERE_INVOKING": "1"
