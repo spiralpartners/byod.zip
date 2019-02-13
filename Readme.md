@@ -11,11 +11,9 @@
 - [java_archive](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing) にあるoit-javaYYYYMMDD.exeの最新版をC:\oitにダウンロードし，実行（展開）する
   - 自己解凍ファイル展開後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
 ```
-C:\oit\VSCode-win32-x64-1.XX.Y\bin
-C:\oit\VSCode-win32-x64-1.XX.Y\data
-C:\oit\VSCode-win32-x64-1.XX.Y\locales
-C:\oit\VSCode-win32-x64-1.XX.Y\resources
-C:\oit\VSCode-win32-x64-1.XX.Y\tools
+C:\oit\vscode-portable-win64-1.XX.Y-Z\app
+C:\oit\vscode-portable-win64-1.XX.Y-Z\data
+C:\oit\vscode-portable-win64-1.XX.Y-Z\vscode-portable.exe
 :
 C:\oit\openjdk1.8.0.XXX\bin
 C:\oit\openjdk1.8.0.XXX\include
@@ -24,19 +22,19 @@ C:\oit\openjdk1.8.0.XXX\lib
 :
 C:\oit\PortableGit-2.XX.Y-64\bin
 C:\oit\PortableGit-2.XX.Y-64\cmd
-:
 C:\oit\PortableGit-2.XX.Y-64\git-bash.exe
+:
 C:\oit\java-bash-2.XX.Y-64.exe
 ```
 
 ### 開発環境セットアップ
 - `C:\oit\java-bash-2.XX.Y-64.exe`を実行する．
-  - `C:\Users\ユーザ名\oithomes\java\kadai\javaYY\`フォルダが生成される（なお，javaYYのYYにはその年の末尾2桁が入る）．
+  - `C:\Users\{ユーザ名}\oithomes\java\kadai\javaYY\`フォルダが生成される（なお，javaYYのYYにはその年の末尾2桁が入る）．
 - 「initssh」コマンドを実行する
-  - $HOMEフォルダとして`C:\Users\ユーザ名\oithomes\java`がセットされる．
+  - $HOMEフォルダとして`C:\Users\{ユーザ名}\oithomes\java`がセットされる．
   - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
   - .sshフォルダと公開鍵・秘密鍵は`oithomes\java\.ssh`フォルダ内部に作成される
-  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
+  - .ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
     - Java演習環境をインストール後最初に一回実施するだけでOK.
   - 下記画像のように`成功しました`と表示されればOK.
 
@@ -45,36 +43,37 @@ C:\oit\java-bash-2.XX.Y-64.exe
 - getlocalコマンドを実行する
   - 様々な便利コマンドが最新のものに更新される
 - getjavaコマンドを実行する
-  - `$HOME\java\kadai\javaYY`フォルダ内にlec01~lec14等の課題作成フォルダ及びvscodeのための設定ファイルがダウンロードされる．
-    - `javaYY/.vscode`フォルダ内のsettings.json, tasks.json, launch.jsonファイルがvs code関連のすべての設定ファイル
-    - $HOMEは`C:\Users\ユーザ名\oithomes\java`
+  - `$HOME\kadai\javaYY`フォルダ内にlec01~lec14等の課題作成フォルダ及びvscodeのための設定ファイルがダウンロードされる．
+    - `javaYY/.vscode`フォルダ内のsettings.json, launch.jsonファイルがvs code関連のすべての設定ファイル
+    - $HOMEは`C:\Users\{ユーザ名}\oithomes\java`
 
 ## 開発(学生の立場から)の流れ
-### Javaファイルの編集・コンパイル・実行
-#### vscodeの起動及びファイル編集
-- `C:\oit\java-bash-2.XX.Y-64.exe`を起動する
-  - ターミナルが起動するので，`code`と入力するとVisual Studio Codeが起動する．
-- ファイル->フォルダを開く->「`$HOME\kadai\javaYY`」フォルダを指定する
-- 例えば`lec01\Work11.java`を開いて適当に編集する
+### vscodeの起動及びファイル編集
+- `C:\oit\vscode-portable-win64-1.XX.Y-Z\vscode-portable.exe` をダブルクリックして起動する
+  - ターミナル`C:\oit\java-bash-2.XX.Y-64.exe`を起動して，`code`コマンドを入力しても同じものが起動する．
+- ファイル->フォルダを開く->`$HOME\kadai\javaYY`フォルダを指定する
+  - 例えば`lec01\Work11.java`を開いて適当に編集する
 
-#### コンパイル・実行方法
-- Hello.javaをvscodeで開いた状態で，vscodeを開いたターミナルを表示させる
-- `C:\oit`にいる状態でbashのターミナルが開くので，`cd`と実行する．
-- $HOMEにいる状態でターミナルが開いている（はず）ので，`cd kadai/javaYY/java01`等のHello.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
-- 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される．
+### javaファイルのコンパイル・実行方法
+- lec01/Work11.javaをコンパイルする場合を例に挙げる．
+- ターミナル`C:\oit\java-bash-2.XX.Y-64.exe`を起動する．
+  - ターミナルはvscode内でも開ける．「表示->ターミナル」を選択する．
+- $HOMEにいる状態でターミナルが開く（はず）ので，`cd kadai/javaYY/java01`を実行し，Work11.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
+  - javaYYのYYには年度の末尾2桁を入れる（2019の場合はjava19）
+  - vscode内のターミナルで開いた場合はjavaYYフォルダが直接開くので，`cd lec01`で移動してからコンパイルを実行する．
+- 正常にコンパイルができ，classファイルができたら，`java Work11`と実行すると結果が出力される．
 
 ### 出席・課題提出方法
-- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を実行し，「shusseki」コマンドを実行する
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を起動し，`shusseki`コマンドを実行する．
 - 下記のように~/kadai がo-vnc.center.oit.ac.jp上の同じフォルダとsyncされればOK．
+- 授業中や課題実施中は`shusseki`コマンドを実行したままにしておくこと．
 - 終了時には`Ctr + C`
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
 # Java演習開発環境用VS codeセットアップ詳細
 - 以下は0からvs code 環境のセットアップを行う際に参考にする情報．
-## Step1. VSCode Portable Modeのセットアップ
-- [Download VSCode](https://code.visualstudio.com/Download)からVSCode Windows .zip (64bit)をダウンロードし，c:\oitに保存・実行（展開）する．
-- dataフォルダをVSCodeフォルダ内に作成する
-  - 参考：https://code.visualstudio.com/docs/editor/portable
+## Step1. VSCode Portableのダウンロード
+- [Download VSCode](https://portapps.github.io/app/vscode-portable/#download)から最新バージョンの7z archive (Windows 64-bits)をダウンロードし，c:\oitに保存・実行（展開）する．
 
 ## Step2. 以下の2つをC:\oit以下に追加インストール
 - ディレクトリ名を指定のものに変更する
@@ -86,12 +85,13 @@ C:\oit\java-bash-2.XX.Y-64.exe
   - フォルダ名は「PortableGit-2.20.0-64」のようにつける
   - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
   - bash.exe経由で起動するように本リポジトリのjava-bashフォルダからexeファイルを作成しておく
-    - go環境を作成し，java-bash/build_java-bash.sh を実行する．その後ファイル名をjava-bash-2.xx.x-64.exe にし，c:\oit直下に配置する．
+    - go環境を作成し(msys2のpacman利用)，java-bash/build_java-bash.sh を実行する．その後ファイル名をjava-bash-2.xx.x-64.exe にし，c:\oit直下に配置する．
 
 ## Step3. vscodeの拡張機能の追加
 - Japanese Language Pack for Visual Studio Code
   - Install後にCtrl+Shift+P を押してコマンド パレットを表示させ、"config" と入力し、利用できるコマンドのリストをフィルター処理してから Configure Display Language を選択すると，locale.jsonが生成される．
   - 最新のバージョンだとInstall後に再起動すると自動で設定するっぽいが，念のためにlocale.jsonファイルをvscode経由で作成しておくこと．
+    - 本リポジトリのvscodeフォルダ内の`locale.json`を`C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User`に配置しても良い
 - Language support for Java ™ for Visual Studio Code, Debugger for Java
   - Java Extension Packだと不要なMaven pluginまでインストールされるので，個別に2つのプラグインをインストールする
 - EvilInspector
@@ -101,7 +101,8 @@ C:\oit\java-bash-2.XX.Y-64.exe
 - ファイル->基本設定->設定をクリックする
 - ユーザー設定を選択し，updateで設定を検索する．
 - 拡張機能やアプリケーションの更新関連の自動アップデート等をすべてOFFにしておく
-  - data\user-data\User\settings.json ファイルが生成されるので，下記のようになっているか確認しておくこと
+  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User\settings.json` ファイルが生成されるので，下記のようになっているか確認しておくこと
+    - 本リポジトリのvscodeフォルダ内のsettings.jsonを↑にコピーしても良い．
 
 ```
 {
@@ -119,21 +120,21 @@ C:\oit\java-bash-2.XX.Y-64.exe
 - 本リポジトリjava_srcフォルダ参照．
 
 ### Step6. 不要なフォルダを削除
-- 「C:\oit\VSCode-win32-x64-1.XX.Y\data\user-data」の中身を以下を除いて削除する．
-  - data\appdata\Codeというフォルダ構成になる場合もあり．
-  - 「C:\oit\VSCode-win32-x64-1.XX.Y\data\user-data\User\locale.json,settings.json」は残しておくこと（日本語設定）．同じくlanguagepacks.jsonも残しておくこと
-- 「C:\oit\VSCode-win32-x64-1.XX.Y\Data\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので削除する(config.ini以外はキャッシュ）
-- logsフォルダを削除
+- `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code`の中身を以下を除いて削除する．
+  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User\settings.json`
+  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\languagepacks.json`
+- `C:\oit\vscode-portable-win64-1.31.0-1\data\extensions\redhat.java-0.38.0\server\config_win`以下にキャッシュができる場合があるので削除する(config.ini以外はキャッシュ）
+- `C:\oit\vscode-portable-win64-1.31.0-1\data\logs`フォルダを丸ごと削除
 
 ### Step7. 演習フォルダ(本リポジトリ)のセットアップ
-- .vscode以下のlaunch.json, tasks.json, settings.json
-- フォルダルートにある.classpathと.editorconfig, .project
+- .vscode以下のlaunch.json, settings.json
+- フォルダルートにある.classpathと.project
 - 以上のファイルの設定は本リポジトリ`java_src`参照のこと
 
 ### Step8. シェルのセットアップ
 - C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
 
-### Step8. /usr/local/bin/と学生用java演習フォルダをサーバに設置
+### Step9. /usr/local/bin/と学生用java演習フォルダをサーバに設置
 - /home/teachers/t2015025/public_html/progjava/ を作成する
   - `~/`から`~/public_html/progjava`までを711にしておく
 - getjava.shとgetlocal.shを/home/teachers/t2015025/public_html/progjava/に配置し，各コマンドを実行する
@@ -147,7 +148,7 @@ C:\oit\java-bash-2.XX.Y-64.exe
 - launch.jsonの"encoding": "ms932",にしたらScannerでの文字化けもなくなった．
 
 ### ~~Javaのlanguage serverがしょっちゅうクラッシュする~~（一応いけた）
-- MS本家のportable modeだとNGだが，↓からダウンロードしたvscode(v1.31-0.1 7zip版)を利用したらOKだった．
+- [MS本家のportable mode](https://code.visualstudio.com/docs/editor/portable)だとNGだが，↓からダウンロードしたvscode(v1.31-0.1 windows-64bits 7zip archives)を利用したらOKだった．
   - https://portapps.github.io/app/vscode-portable/
 - 起動して放置してると100%の確率で`The Language Support for Java server crashed 5 times in the last 3 minutes. The server will not be restarted.`と出て，Intellisenseとかが使えなくなる．
   - `The workspace will exit with unsaved changes in this session.`とかなってるのが駄目っぽいんだが，原因は分からず．
@@ -162,6 +163,7 @@ else
     alias java='java -Dfile.encoding=UTF-8'
 fi
 ```
+- なお，vscodeのF5でコンパイル・実行をする場合はlaunch.jsonのencodingをms932にする必要がある（じゃないと文字化けする）．
 - vscode内ターミナルで`javac Hello.java`を実行し，コンパイルエラーが起きると文字化けする．調べた限りではshift-jisをutf-8で表示しようとして文字化けしてるっぽい．
 - 正常にコンパイルが通ったときは問題なく日本語も出力されるが，コンパイルエラー（恐らく実行時エラーも？）時にのみ文字化けする．
 - 今の所Ctrl+@を実行させないようにするしか解決方法がない
