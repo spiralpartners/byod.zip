@@ -92,6 +92,7 @@ C:\oit\java-bash-2.XX.Y-64.exe
   - Install後にCtrl+Shift+P を押してコマンド パレットを表示させ、"config" と入力し、利用できるコマンドのリストをフィルター処理してから Configure Display Language を選択すると，locale.jsonが生成される．
   - 最新のバージョンだとInstall後に再起動すると自動で設定するっぽいが，念のためにlocale.jsonファイルをvscode経由で作成しておくこと．
     - 本リポジトリのvscodeフォルダ内の`locale.json`を`C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User`に配置しても良い
+    - 同時にCode直下にlanguagepacks.jsonもコピーしておくこと
 - Language support for Java ™ for Visual Studio Code, Debugger for Java
   - Java Extension Packだと不要なMaven pluginまでインストールされるので，個別に2つのプラグインをインストールする
 - EvilInspector
@@ -107,7 +108,7 @@ C:\oit\java-bash-2.XX.Y-64.exe
 ```
 {
     "update.enableWindowsBackgroundUpdates": false,
-    "update.channel": "none",
+    "update.mode": "none",
     "update.showReleaseNotes": false,
     "extensions.autoCheckUpdates": false,
     "extensions.autoUpdate": false
@@ -121,7 +122,7 @@ C:\oit\java-bash-2.XX.Y-64.exe
 
 ### Step6. 不要なフォルダを削除
 - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code`の中身を以下を除いて削除する．
-  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User\settings.json`
+  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User\settings.json,locale.json`
   - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\languagepacks.json`
 - `C:\oit\vscode-portable-win64-1.31.0-1\data\extensions\redhat.java-0.38.0\server\config_win`以下にキャッシュができる場合があるので削除する(config.ini以外はキャッシュ）
 - `C:\oit\vscode-portable-win64-1.31.0-1\data\logs`フォルダを丸ごと削除
