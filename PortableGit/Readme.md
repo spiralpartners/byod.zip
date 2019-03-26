@@ -37,9 +37,9 @@
 ### Step2. PortableGitフォルダへの設定ファイルの追加
 - 本リポジトリPortableGitフォルダの中身をStep1で解凍したPortableGitフォルダに上書きする
   - c1のmizutaniスクリプト群の中から必要なものをコピーする
-    - getkadai, putkadaiをcourseスクリプト対応に変更（rsync元，先ディレクトリをどうするかは要検討）
-    - courseの中身を最新のものに変更
-    - getlocalのアクセス先を必要に応じて変更
+    - getkadai, putkadaiをjava2018用に変更（rsync元，先ディレクトリをどうするかは要検討）
+    - courseの中身をjava2018用に変更
+    - getlocalのアクセス先を変更
     - oitnameに.java_bash_historyファイルの削除処理を追加
 
 ```
