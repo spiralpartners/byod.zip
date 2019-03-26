@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Written by Yasuharu Mizutani.
+# Modified by Hiroshi Igaki.
 
 usage(){
     cat <<-EOF
@@ -9,16 +10,25 @@ usage(){
 	  putkadai 
 	  putkadai --delete
 	
-	ホームディレクトリの下にあるkadaiディレクトリ（~/kadai）をサーバ上に
-	コピー（提出）します．
+	このPCのホームディレクトリ下にあるkadai/java18ディレクトリ（~/kadai/java18）をファイル
+    サーバ上のkadai/java18ディレクトリに提出(リモートコピー)します．
 	
-	--deleteを付けると~/kadaiとサーバ上のkadaiを完全同期します．
-	すなわち，サーバ上のkadaiにあって~/kadaiに無いファイルは，サーバ上から
+	サーバ名はデフォルトでは o-ssh.center.oit.ac.jp です．
+	環境変数 KADAI_HOST でサーバ名を指定することができます．
+	(例) env KADAI_HOST=pc1350l putkadai
+	
+	--deleteを付けると~/javaexcとサーバ上のkadai/java18/javaexcを完全同期します．
+	つまり，サーバ上のjavaexcにあって~/javaexcに無いファイルは，サーバ上から
 	削除されます．使い方を誤るとサーバ上の必要なファイルまで削除してしまう
 	可能性があるため，--deleteの使用は十分に気を付けてください．
 	
 	EOF
 }
+
+GB='\e[1;32m'
+GE='\e[m'
+RB='\e[1;31m'
+RE='\e[m'
 
 DFLAG=""
 if [ "$#" -ge 1 ]; then
@@ -37,13 +47,37 @@ if [ "$#" -ge 1 ]; then
     esac
 fi
 
-id="`getoitname`" || exit 1
-cd
-rsync -av -e "ssh -i ./.ssh/id_rsa " ${DFLAG} \
-        --chmod=g-rwx \
-        --exclude='*.exe' \
-        --exclude='*.class' \
-        --exclude='*~' \
-        ~/kadai ${id}@o-vnc.center.oit.ac.jp:
-echo $?
+id="`/usr/local/bin/oitname`" || exit 1
+rhost="`/usr/local/bin/kadaihost`"
 
+[ -d ~/kadai/`/usr/local/bin/course` ] || mkdir -p -m 705 ~/kadai/`/usr/local/bin/course`
+
+rsync --timeout=15 --force -avu ${DFLAG} \
+        --chmod=D705,F604   \
+        --exclude='*.exe'   \
+        --exclude='*.o'     \
+        --exclude='*.class' \
+        --exclude='*~'      \
+        --exclude='.vscode' \
+        --exclude='#*'      \
+        ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/ > ~/kadai/.put
+if [ $? -gt 0 ]; then
+  echo -e "${RB}rsyncは失敗しました．${RE} `date`"
+  rm ~/kadai/.put
+  exit 2
+fi
+
+rsync_msg=`cat ~/kadai/.put | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is'`
+rsync_msg_size=`cat ~/kadai/.put | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is' | wc -l`
+
+if [ $rsync_msg_size -gt 1 ]; then
+  echo "Uploadファイル一覧"
+  echo -e ${rsync_msg}
+  echo -e "${GB}rsyncは成功しました${GE} `date`"
+  rm ~/kadai/.put
+  exit 0
+else
+  echo -e "${GB}更新ファイルがありませんでした${GE} `date`"
+  rm ~/kadai/.put
+  exit 1
+fi

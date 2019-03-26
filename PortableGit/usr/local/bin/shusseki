@@ -1,23 +1,44 @@
-#!/bin/sh
+#!/bin/bash
+# Written by Yasuharu Mizutani.
+# Modified by Hiroshi Igaki.
+
+GB='\e[1;32m'
+GE='\e[m'
+RB='\e[1;31m'
+RE='\e[m'
 
 echo "出席スクリプトを起動します．"
-echo "今日の意気込みを一言入力してください（1行のみ）． "
-echo -n "> "
-read input
+echo "このスクリプトは演習の課題ファイルが更新されるたびにそのファイルを自動的にサーバに提出します．"
+echo "演習実施中や課題ファイル編集時にはずっと起動しておいてください．"
+echo "Ctr+Cで終了できます．"
+#echo -n "> "
+#read input
 
-IPADDR="`/c/Windows/System32/ipconfig |nkf -w |grep IPv4 |grep 150.89 |sed -e 's/^.*: //'`"
+trap end_proc 2 15
+function end_proc(){
+  rm ~/kadai/.??*
+  echo "`date +'%Y-%m-%dT%H:%M:%S'` : End" >> ~/kadai/`/usr/local/bin/course`/.message.txt
+  echo '終了時の更新ファイルを提出し，出席スクリプトを終了します'
+  /usr/local/bin/putkadai
+  exit 0
+}
 
-trap "echo '授業を終了します'; exit 0" 2 15
+[ ! -d ~/kadai ] && mkdir -p ~/kadai
+echo "`date +'%Y-%m-%dT%H:%M:%S'` : Start" >> ~/kadai/`/usr/local/bin/course`/.message.txt
 
-[[ ! -d ~/kadai ]] && mkdir -p ~/kadai
-echo "`date +'%Y-%m-%dT%H:%M:%S'` ${IPADDR} : $input" >> ~/kadai/.message.txt
-
-
-echo "==== putkadaiコマンドで定期的に課題を提出します ===="
-INTERVAL="60"
+INTERVAL="10"
+echo -e "==== 今から${INTERVAL}秒ごとに課題を提出します ===="
+/usr/local/bin/putkadai
+find ~/kadai/`/usr/local/bin/course`/ -not -name '.*' -not -name '*.class' -ls > ~/kadai/.found
 while :; do
-    putkadai |grep -v 'message\.txt' |grep -v '^[ 	]*$'
-    echo "${INTERVAL}秒後に再度自動提出します"
-    sleep ${INTERVAL}
-    echo
+    find ~/kadai/`/usr/local/bin/course`/ -not -name '.*' -not -name '*.class' -ls > ~/kadai/.tmp
+    if diff ~/kadai/.tmp ~/kadai/.found > /dev/null; then
+      sleep $INTERVAL
+    else
+      #echo `diff ~/kadai/.tmp ~/kadai/.found`
+      /usr/local/bin/putkadai
+      if [ $? -le 1 ]; then
+        cp ~/kadai/.tmp ~/kadai/.found
+      fi
+    fi
 done

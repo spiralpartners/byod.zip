@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ "$#"  = "1" ] && [ "$1" = "-v" ]; then
+    echo "java19-20190326"
+else
+    echo "java19"
+fi

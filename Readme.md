@@ -1,82 +1,176 @@
 # BYOD下におけるプログラミング演習環境の構築
 ## リポジトリの内容
 - このリポジトリの内容はBYOD下でのプログラミング演習環境の一部である
-- 学生が解く課題のサンプルを保存するフォルダとPortableGitの変更内容をリポジトリで管理する
+- 学生が解く課題を保存するフォルダ(vscode設定ファイル付き)，PortableGitの変更内容，PortableGitのバイナリを実行するためのオプション付きexeを作成するフォルダの3つをこのリポジトリで管理する
+  - 各フォルダの詳細はそれぞれのフォルダのReadme.md参照のこと
 - 想定するプログラミング演習の言語はJava
-- 実行環境はJDK＋PortableGit+Visual Studio Code．
-  - [Release](https://github.com/spiralpartners/byod.zip/releases) でDLできる．
-  - PortableGitについての設定方法や課題は下記参照のこと
-    - https://github.com/spiralpartners/byod.zip/tree/master/PortableGit
+- 実行環境はopenJDK＋PortableGit+Visual Studio Code．
 
 ## 演習環境の準備
-### vscode, jdk, portablegit
-- [Release](https://github.com/spiralpartners/byod.zip/releases) にあるbyod_v1.X.zipをC:\に展開する
-  - ファイル解凍後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
+### vscode, jdk, portablegitのインストール
+- [java_archive](https://drive.google.com/drive/folders/1IqUOxfcV4Ort2wKhY1OpOVpVRusfTG-r?usp=sharing) にあるoit-javaYYYYMMDD.exeの最新版をC:\oitにダウンロードし，実行（展開）する
+  - 自己解凍ファイル展開後のフォルダ構成は以下のとおり(X,Y,Zにはバージョン番号が入る)
 ```
-C:\byod\VSCodePortable_1.XX.Y\App
-C:\byod\VSCodePortable_1.XX.Y\Data
-C:\byod\VSCodePortable_1.XX.Y\Other
-C:\byod\VSCodePortable_1.XX.Y\Help.html
-C:\byod\VSCodePortable_1.XX.Y\VSCodePortable.exe
+C:\oit\vscode-portable-win64-1.XX.Y-Z\app
+C:\oit\vscode-portable-win64-1.XX.Y-Z\data
+C:\oit\vscode-portable-win64-1.XX.Y-Z\vscode-portable.exe
 :
-C:\byod\java1.8_XXX\App
-C:\byod\java1.8_XXX\bin
-C:\byod\java1.8_XXX\Data
-C:\byod\java1.8_XXX\db
-C:\byod\java1.8_XXX\include
-C:\byod\java1.8_XXX\jre
+C:\oit\openjdk1.8.0.XXX\bin
+C:\oit\openjdk1.8.0.XXX\include
+C:\oit\openjdk1.8.0.XXX\jre
+C:\oit\openjdk1.8.0.XXX\lib
 :
-C:\byod\PortableGit2.XX.YY.Z-64\bin
-C:\byod\PortableGit2.XX.YY.Z-64\cmd
+C:\oit\PortableGit-2.XX.Y-64\bin
+C:\oit\PortableGit-2.XX.Y-64\cmd
+C:\oit\PortableGit-2.XX.Y-64\git-bash.exe
 :
-C:\byod\PortableGit2.XX.YY.Z-64\git-bash.exe
-\
+C:\oit\java-bash-2.XX.Y-64.exe
 ```
 
-### java_kadai
-- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行すると$HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．この下に`kadai`フォルダを作成し，本リポジトリのjava_kadaiフォルダを以下のようになるように展開する．
-```
-C:\Users\ユーザ名\byod_home\kadai\java_kadai\src
-C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
-```
-- java_kadai/.vscodeフォルダ内のsettings.json, tasks.json, launch.jsonファイルがすべての設定ファイル
-
-## 開発(学生の立場から)の流れ
-### 準備(公開鍵sshの設定)
-- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「initssh」コマンドを実行する
-  - $HOMEフォルダとして`C:\Users\ユーザ名\byod_home`が生成される．
-  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vncにアクセスできるようになる
-  - .sshフォルダと公開鍵・秘密鍵はbyod_homeフォルダ内部に作成される
-  - $HOME/.ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない（他の授業と共有．なお，$HOMEの場所は変更の可能性あり）
+### 開発環境セットアップ
+- `C:\oit\java-bash-2.XX.Y-64.exe`を実行する．
+  - `C:\Users\{ユーザ名}\oithomes\java\kadai\javaYY\`フォルダが生成される（なお，javaYYのYYにはその年の末尾2桁が入る）．
+- 「initssh」コマンドを実行する
+  - $HOMEフォルダとして`C:\Users\{ユーザ名}\oithomes\java`がセットされる．
+  - sshの公開鍵が登録され，ID/Pass認証ではなく公開鍵認証方式でo-vnc.center.oit.ac.jpにアクセスできるようになる
+  - .sshフォルダと公開鍵・秘密鍵は`oithomes\java\.ssh`フォルダ内部に作成される
+  - .ssh フォルダが既に作成されている場合はinitsshコマンドを実行する必要はない
+    - Java演習環境をインストール後最初に一回実施するだけでOK.
   - 下記画像のように`成功しました`と表示されればOK.
 
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/initssh.png?raw=true" width=500>
 
-### Javaファイルの編集・コンパイル・実行
-#### vscodeの起動及びファイル編集
-- `C:\byod\VSCodePortable_1.XX.1\VSCodePortable.exe`を起動する
-- ファイル->フォルダを開く->「java_kadai」フォルダを指定する
-- 「src\java01\ex01\Hello.java」を開いて適当に編集する
+- getlocalコマンドを実行する
+  - 様々な便利コマンドが最新のものに更新される
+- getjavaコマンドを実行する
+  - `$HOME\kadai\javaYY`フォルダ内にlec01~lec14等の課題作成フォルダ及びvscodeのための設定ファイルがダウンロードされる．
+    - `javaYY/.vscode`フォルダ内のsettings.json, launch.jsonファイルがvs code関連のすべての設定ファイル
+    - $HOMEは`C:\Users\{ユーザ名}\oithomes\java`
 
-#### コンパイル・実行方法(方法1)
-- Hello.javaを開いた状態で，表示->統合ターミナル（PortableGitのbash.exeが起動する）
-- $HOMEにいる状態でターミナルが開くので，`cd kadai/java_kadai/src/java01/`と実行する
-- `javac -encoding utf8 Hello.java`と実行する
-- 正常にコンパイルができ，classファイルができたら，`java Hello`と実行すると結果が出力される
+## 開発(学生の立場から)の流れ
+### vscodeの起動及びファイル編集
+- `C:\oit\vscode-portable-win64-1.XX.Y-Z\vscode-portable.exe` をダブルクリックして起動する
+  - ターミナル`C:\oit\java-bash-2.XX.Y-64.exe`を起動して，`code`コマンドを入力しても同じものが起動する．
+- ファイル->フォルダを開く->`$HOME\kadai\javaYY`フォルダを指定する
+  - 例えば`lec01\Work11.java`を開いて適当に編集する
 
-#### コンパイル・実行方法(方法2)
-- Hello.javaを開いた状態で，デバッグ->デバッグを開始，を選択する
-- コンパイルがターミナルで行われ，実行結果がデバッグコンソールに表示される
-  - breakpointを指定したデバッグ等も可能
+### javaファイルのコンパイル・実行方法
+- lec01/Work11.javaをコンパイルする場合を例に挙げる．
+- ターミナル`C:\oit\java-bash-2.XX.Y-64.exe`を起動する．
+  - ターミナルはvscode内でも開ける．「表示->ターミナル」を選択する．
+- $HOMEにいる状態でターミナルが開く（はず）ので，`cd kadai/javaYY/java01`を実行し，Work11.javaが存在するディレクトリに移動し，`javac Hello.java`と実行する．
+  - javaYYのYYには年度の末尾2桁を入れる（2019の場合はjava19）
+  - vscode内のターミナルで開いた場合はjavaYYフォルダが直接開くので，`cd lec01`で移動してからコンパイルを実行する．
+- 正常にコンパイルができ，classファイルができたら，`java Work11`と実行すると結果が出力される．
 
 ### 出席・課題提出方法
-- `PortableGit2.XX.YY.Z-64\git-bash.exe`を実行し，「shusseki」コマンドを実行する
-- 下記のように~/kadai がsyncされればOK．
+- `C:\oit\java-bash-2.XX.YY.Z-64.exe`を起動し，`shusseki`コマンドを実行する．
+- 下記のように~/kadai がo-vnc.center.oit.ac.jp上の同じフォルダとsyncされればOK．
+- 授業中や課題実施中は`shusseki`コマンドを実行したままにしておくこと．
 - 終了時には`Ctr + C`
 <img src="https://github.com/spiralpartners/byod.zip/blob/images/images/shusseki.png?raw=true" width=500>
 
-## 今後の課題
-### 全ディレクトリ構成をどうするか
+# Java演習開発環境用VS codeセットアップ詳細
+- 以下は0からvs code 環境のセットアップを行う際に参考にする情報．
+## Step1. VSCode Portableのダウンロード
+- [Download VSCode](https://portapps.github.io/app/vscode-portable/#download)から最新バージョンの7z archive (Windows 64-bits)をダウンロードし，c:\oitに保存・実行（展開）する．
+
+## Step2. 以下の2つをC:\oit以下に追加インストール
+- ディレクトリ名を指定のものに変更する
+- redhat openjdk (x64)
+  - https://developers.redhat.com/products/openjdk/download/
+  - C:\oitにopenjdk1.8.0.191のようなバージョンに対応するフォルダを作成し，DLしたopenjdkのzipファイル内の中身を展開する．
+    - C:\oit\openjdk1.8.0.191\bin といったディレクトリ構成になっていることを確認する．
+- PortableGit(x64)（解凍するだけ）
+  - フォルダ名は「PortableGit-2.20.0-64」のようにつける
+  - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
+  - bash.exe経由で起動するように本リポジトリのjava-bashフォルダからexeファイルを作成しておく
+    - go環境を作成し(msys2のpacman利用)，java-bash/build_java-bash.sh を実行する．その後ファイル名をjava-bash-2.xx.x-64.exe にし，c:\oit直下に配置する．
+
+## Step3. vscodeの拡張機能の追加
+- Japanese Language Pack for Visual Studio Code
+  - Install後にCtrl+Shift+P を押してコマンド パレットを表示させ、"config" と入力し、利用できるコマンドのリストをフィルター処理してから Configure Display Language を選択すると，locale.jsonが生成される．
+  - 最新のバージョンだとInstall後に再起動すると自動で設定するっぽいが，念のためにlocale.jsonファイルをvscode経由で作成しておくこと．
+    - 本リポジトリのvscodeフォルダ内の`locale.json`を`C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User`に配置しても良い
+    - 同時にCode直下にlanguagepacks.jsonもコピーしておくこと
+- Language support for Java ™ for Visual Studio Code, Debugger for Java
+  - Java Extension Packだと不要なMaven pluginまでインストールされるので，個別に2つのプラグインをインストールする
+- EvilInspector
+  - 全角スペースを強調表示する
+
+## Step4. VS Codeユーザー設定の変更
+- ファイル->基本設定->設定をクリックする
+- ユーザー設定を選択し，updateで設定を検索する．
+- 拡張機能やアプリケーションの更新関連の自動アップデート等をすべてOFFにしておく
+  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User\settings.json` ファイルが生成されるので，下記のようになっているか確認しておくこと
+    - 本リポジトリのvscodeフォルダ内のsettings.jsonを↑にコピーしても良い．
+
+```
+{
+    "update.enableWindowsBackgroundUpdates": false,
+    "update.mode": "none",
+    "update.showReleaseNotes": false,
+    "extensions.autoCheckUpdates": false,
+    "extensions.autoUpdate": false
+}
+```
+
+## Step5. VS Codeワークスペース設定
+- 自動整形設定やjava.homeの設定(settings.jsonに追記）
+  - https://qiita.com/maron8676/items/017cd830ab0c5fb8bcac
+- 本リポジトリjava_srcフォルダ参照．
+
+### Step6. 不要なフォルダを削除
+- `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code`の中身を以下を除いて削除する．
+  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\User\settings.json,locale.json`
+  - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\languagepacks.json`
+- `C:\oit\vscode-portable-win64-1.31.0-1\data\extensions\redhat.java-0.38.0\server\config_win`以下にキャッシュができる場合があるので削除する(config.ini以外はキャッシュ）
+- `C:\oit\vscode-portable-win64-1.31.0-1\data\logs`フォルダを丸ごと削除
+
+### Step7. 演習フォルダ(本リポジトリ)のセットアップ
+- .vscode以下のlaunch.json, settings.json
+- フォルダルートにある.classpathと.project
+- 以上のファイルの設定は本リポジトリ`java_src`参照のこと
+
+### Step8. シェルのセットアップ
+- C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
+
+### Step9. /usr/local/bin/と学生用java演習フォルダをサーバに設置
+- /home/teachers/t2015025/public_html/progjava/ を作成する
+  - `~/`から`~/public_html/progjava`までを711にしておく
+- getjava.shとgetlocal.shを/home/teachers/t2015025/public_html/progjava/に配置し，各コマンドを実行する
+- 上記 progjava フォルダに対して権限設定が適切であることを確認しておくこと
+  - `progjava`内の`java18`,`local`以下のディレクトリを755
+  - `progjava`内の各ファイルを644
+
+# 今後の課題
+### ~~F5でビルドしたときの-Dfile.encoding=UTF-8オプションのせいでScannerでの入力が文字化けする~~
+- vscode経由でbashを起動する場合，標準入力はsjis(ms932,windows-31j)になるっぽい．なのでencodingを明示的にms932とかに設定する必要があった
+- launch.jsonの"encoding": "ms932",にしたらScannerでの文字化けもなくなった．
+
+### ~~Javaのlanguage serverがしょっちゅうクラッシュする~~（一応いけた）
+- [MS本家のportable mode](https://code.visualstudio.com/docs/editor/portable)だとNGだが，↓からダウンロードしたvscode(v1.31-0.1 windows-64bits 7zip archives)を利用したらOKだった．
+  - https://portapps.github.io/app/vscode-portable/
+- 起動して放置してると100%の確率で`The Language Support for Java server crashed 5 times in the last 3 minutes. The server will not be restarted.`と出て，Intellisenseとかが使えなくなる．
+  - `The workspace will exit with unsaved changes in this session.`とかなってるのが駄目っぽいんだが，原因は分からず．
+
+### ~~Ctrl+@でvscode内のターミナルでbashを開くと，コンパイルエラー時に文字化けする~~(なおった）
+- vscode内のターミナルで開く場合とmintty経由でbashを開く場合で，javac, javaの必要となる引数が違った．前者は`javac -encoding UTF-8`でjavaコマンドは引数なし，後者はjavac,java両方共に`javac -J-Dfile.encoding=UTF-8`つける必要あり．
+```
+if [ $BASH = "/usr/bin/bash" ]; then
+    alias javac='javac -encoding UTF-8'
+else
+    alias javac='javac -J-Dfile.encoding=UTF-8'
+    alias java='java -Dfile.encoding=UTF-8'
+fi
+```
+- なお，vscodeのF5でコンパイル・実行をする場合はlaunch.jsonのencodingをms932にする必要がある（じゃないと文字化けする）．
+- vscode内ターミナルで`javac Hello.java`を実行し，コンパイルエラーが起きると文字化けする．調べた限りではshift-jisをutf-8で表示しようとして文字化けしてるっぽい．
+- 正常にコンパイルが通ったときは問題なく日本語も出力されるが，コンパイルエラー（恐らく実行時エラーも？）時にのみ文字化けする．
+- 今の所Ctrl+@を実行させないようにするしか解決方法がない
+- encodingを指定しても駄目．
+
+### ~~全ディレクトリ構成をどうするか~~(一応交渉成立)
 - jdk,vscode,portablegit等のバイナリを置くディレクトリとjavakadaiを置くディレクトリの場所をどうするか.
 - 他の授業との兼ね合いや年度進行（再履修含む）にどう対応するかも検討する必要あり．
 
@@ -148,7 +242,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 
 ### ~~初回起動時に統合ターミナルがbashにならない~~(一応解決)
 - 初回に起動した際に，`表示->統合ターミナル`を選択すると，settings.jsonにbash.exeで統合ターミナルを開くよう設定しているにも関わらず，powershellが起動する(Win10の場合)．
-- さらに，`shell:"C://byod/.../bash.exe"(ワークスペースの設定として定義されている）をターミナルで起動することを許可しますか？`というメッセージが表示される
+- さらに，`shell:"C://oit/.../bash.exe"(ワークスペースの設定として定義されている）をターミナルで起動することを許可しますか？`というメッセージが表示される
 - 下記のデバッガと同様に初回起動時はbash.exeでの起動が認識されていない（許可が必要）
 - 上記の許可しますか？のメッセージを対象に`Allow`を選択し，Visual Studio Codeを再起動すればOK．
 
@@ -160,7 +254,7 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ### ~~初回起動時に方法2でビルドを行うと失敗する~~（解決）
 - Ctr+Shit+bなどでtask.jsonに定義されたビルドタスクを実施すると`binフォルダがない`と言われて失敗する
 - 下記コマンドで`-d`オプションで指定している出力先フォルダが存在しないため
-  - `javac.exe -encoding utf-8 -source 1.8 -target 1.8 -cp bin -d c:\byod_tmp\javatest_local\bin -sourcepath c:\byod_tmp\javatest_local\src\java01\ex01 c:\byod_tmp\javatest_local\src\java01\ex01\Hello.java`
+  - `javac.exe -encoding utf-8 -source 1.8 -target 1.8 -cp bin -d C:\oit_tmp\javatest_local\bin -sourcepath C:\oit_tmp\javatest_local\src\java01\ex01 C:\oit_tmp\javatest_local\src\java01\ex01\Hello.java`
 - jdtも初回起動時には実施されない（java.homeが認識されないため)ので，自動生成もされない
 - ソースフォルダ配布時にbinフォルダを付与して配布すればOK
 
@@ -173,65 +267,3 @@ C:\Users\ユーザ名\byod_home\kadai\java_kadai\bin
 ### ~~デバッガ利用時の不具合~~(解決)
 - 方法2でコンパイル・実行をした場合，デバッガ実行時にコンパイルエラー・ランタイムエラーが発生すると，該当のファイルへのリンクがデバッガ出力に表示されるが，そのリンクが間違っており，ファイルが開けない
 - __VScodeのバージョンをUP(1.16.1->1.18.1)したら治ったっぽい__
-
-
-
-## VS codeセットアップ詳細
-### Step1. VSCodePortable Updaterのセットアップ
-- [UpdateManagerつきVSCodePortable](https://github.com/LightDestory/vscode-portable/archive/master.zip)をダウンロードし，VSCodePortableフォルダ以下をc:\byodに展開する．
-
-### Step2. VSCodePortableの最新へのUpdate
-- VSCodePortable.exe を実行するとUpdateManagerが起動するので，最新へのUpdateを実施する．
-
-### Step3. 配布用にUpdateの停止
-- App\AppInfo\Launcher\VSCodePortable.ini を下記を参考に，UpdateManager.exeを利用しないように変更する
-  - https://github.com/garethflowers/vscode-portable/pull/33/commits/9948ec6ba287f789b430e67b2c4397aed2e80375
-```
-[Launch]
-ProgramExecutable=VSCode\code.exe
-ProgramExecutable64=VSCode64\code.exe
-CommandLineArguments='--user-data-dir="%PAL:DataDir%\code" --extensionHomePath="%PAL:DataDir%\code\extensions"'
-DirectoryMoveOK=yes
-DisableSplashScreen=true
-SplashTime=0
-SupportsUNC=yes
-MinOS=7
-
-[Environment]
-VSCODE_HOME=%PAL:DataDir%\code
-
-[DirectoriesCleanupIfEmpty]
-1=%APPDATA%\Code
-2=%USERPROFILE%\.vscode\extensions
-3=%USERPROFILE%\.vscode
-```
-- App\UpdateManager.exe を削除する
-  - 削除しないとアンチウィルスにひっかかることがある
-
-### Step4. 以下の2つをc:\byod以下に追加インストール
-- jdk portable (x64)
-  - https://portableapps.com/apps/utilities/jdkportable
-- PortableGit(x64)（解凍するだけ）
-  - [PortableGit-2.xx.x.xx-64-bit.7z.exe](https://github.com/git-for-windows/git/releases)
-
-### Step5. 拡張機能の追加
-- Java Extention Pack
-  - Java Language SupportとDebugger for Javaのセット
-- Project Manager
-  - 複数のフォルダを管理するための拡張機能
-- EvilInspector
-  - 全角スペースを強調表示する
-
-### Step6. 不要なフォルダを削除
-- 「C:\byod\VSCodePortable_1.XX.1\Data\code\」以下のextensions以外のフォルダをすべて削除
-  - ただし，「C:\byod\VSCodePortable_1.XX.1\Data\code\extensions\redhat.java-0.14.0\server\config_win」以下にキャッシュができる場合があるので注意
-- 「C:\byod\VSCodePortable_1.XX.1\Data\cache\, settings\, Temp\」を削除
-
-### Step7. 演習フォルダ(本リポジトリ)のセットアップ
-- .vscode以下のlaunch.json, tasks.json, settings.json
-- フォルダルートにある.classpath, .project
-- 以上のファイルの設定は本リポジトリ参照のこと
-
-### Step8. シェルのセットアップ
-- jdkのbinへのpath設定が必要．WindowsのPATH環境変数の設定はいじりたくないので，シェル起動時に追加するようにする
-- bash.exeの場合は$PorableGit\etcのbash.bashrcに`export PATH=/c/byod/java1.8_152/bin/:$PATH`を追加し，bash.exeをvs codeの統合ターミナルとして呼び出すようにする(settings.json)．

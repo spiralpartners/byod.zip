@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# Written by Yasuharu Mizutani.
+# Modified by Hiroshi Igaki
+
+usage(){
+    cat <<-EOF
+	
+	使い方:
+	    getjava
+	
+	~/kadai/`/usr/local/bin/course`/を更新する．
+	
+	EOF
+}
+
+if [ "$#" -ge 1 ]; then
+    case "$1" in
+        -h|-help|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+fi
+
+id="`/usr/local/bin/oitname`" || exit 1
+rhost="`/usr/local/bin/kadaihost`"
+javadir="/home/teachers/t2015025/public_html/progjava/`/usr/local/bin/course`/"
+
+echo "~/kadai/`/usr/local/bin/course`/を更新します．"
+rsync --timeout=15 -av -zz "${id}"@${rhost}:${javadir} ~/kadai/`/usr/local/bin/course`/
+
+exit $?

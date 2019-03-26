@@ -1,0 +1,2 @@
+#!/bin/bash
+echo ${KADAI_HOST:-o-ssh.center.oit.ac.jp}
