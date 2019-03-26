@@ -134,13 +134,17 @@ C:\oit\java-bash-2.XX.Y-64.exe
 
 ### Step8. シェルのセットアップ
 - C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
+  - PortableGit/usr/local/bin/course が更新されているかを確認する
+  - Portablegit/etc/profile.d/bash_profile.sh のopenjdkとvscodeのPATHが更新されているかを確認する
 
 ### Step9. /usr/local/bin/と学生用java演習フォルダをサーバに設置
 - /home/teachers/t2015025/public_html/progjava/ を作成する
   - `~/`から`~/public_html/progjava`までを711にしておく
 - getjava.shとgetlocal.shを/home/teachers/t2015025/public_html/progjava/に配置し，各コマンドを実行する
+  - getjava.shのclass設定が正しいかを確認しておく（毎年更新の必要あり）
 - 上記 progjava フォルダに対して権限設定が適切であることを確認しておくこと
-  - `progjava`内の`java18`,`local`以下のディレクトリを755
+  - `progjava`内の`javaXX`,`local`以下のディレクトリを755
+    - javaXXにはjava19等の年度情報が入る
   - `progjava`内の各ファイルを644
 
 # 今後の課題
