@@ -40,6 +40,7 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
   "editor.detectIndentation": false,
   "editor.wordWrap": "on",
   "editor.renderControlCharacters": true,
@@ -53,5 +54,7 @@
   "editor.folding": true, // コードの折りたたみを許可
   "editor.lineNumbers": "on", // 行番号の表示
   "editor.matchBrackets": true, // 対応する括弧の強調表示をオンに
-  "git.enabled": false
+  "git.enabled": false,
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false
 }
