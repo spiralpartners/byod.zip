@@ -6,9 +6,9 @@
       "request": "launch",
       "mainClass": "${fileBasenameNoExtension}",
       "args": "",
-      "console": "externalTerminal",
+      "console": "integratedTerminal",
       "stopOnEntry": false,
-      "encoding": "UTF-8",
+      "encoding": "ms932",
       "classPaths": [
         "${workspaceFolder}\\bin"
       ]
