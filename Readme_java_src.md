@@ -1,8 +1,13 @@
 # Java演習環境用VS code設定
-- 演習時にはjava_srcフォルダをjava18フォルダ等に改名し，以下に配置しておく．
-  - /home/teachers/t2015025/public_html/progjava/java18/
-  - 学生はmsysから`getjava`コマンドを実行すると ~/kadai/java18/ フォルダの中身が更新される．
-学生はvscodeで当該フォルダを開くことでソースコードの編集やコンパイルができる．
+- /home/teachers/t2015025/public_html/progjava/ を作成する
+  - `~/`から`~/public_html/progjava`までを711にしておく
+- getjava.shとgetlocal.shを/home/teachers/t2015025/public_html/progjava/に配置し，各コマンドを実行する
+  - getjava.shのclass設定が正しいかを確認しておく（毎年更新の必要あり）
+- 上記 progjava フォルダに対して権限設定が適切であることを確認しておくこと
+  - `progjava`内の`javaXX`,`local`以下のディレクトリを755
+    - javaXXにはjava19等の年度情報が入る
+  - `progjava`内の各ファイルは644
+
 
 ## 運用上のルール
 - 各授業回について`lec01`等のフォルダがgetjavaコマンドで自動生成される
@@ -43,7 +48,3 @@
       - 参考：http://www.atmarkit.co.jp/ait/articles/1709/01/news034_3.html
 - .editorconfig
   - javaの自動整形用設定ファイル
-  
-# 課題
-## vscodeからターミナル(bash.exe)を開いてjavacでコンパイルを行うときに，コンパイルエラーのメッセージが何故かShift-jisで出力されてutf-8で表示しようとするのでもじバケる
-- 別途bash.exeを普通に起動して実行すると文字化けないので，とりあえずはvscode上でターミナルを使わせるのを教えないようにする予定．
