@@ -14,10 +14,12 @@ PATH=/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/core_perl:/usr/bin/vendo
 export LANG="ja_JP.UTF-8"
 
 mkdir -p $USERPROFILE/oithomes/java/kadai/`/usr/local/bin/course`/
-export PATH=/c/oit/openjdk1.8.0.191/bin/:$PATH
-export PATH=/c/oit/vscode-portable-win64-1.32.3-5/:$PATH
+export PATH=/c/oit/`/usr/local/bin/coursejdk`/bin/:$PATH
+export PATH=/c/oit/`/usr/local/bin/coursevscode`/:$PATH
 export HOME=$(cd "$USERPROFILE\oithomes\java" && pwd)
 
-export PROMPT_COMMAND='echo -e "res:$?\tpwd:`pwd`\tdate:`date +%s`\t" >> $HOME/kadai/`/usr/local/bin/course`/.java_bash_history.`date +'%Y%m'`;history -a'
-HISTFILE=$HOME/kadai/`/usr/local/bin/course`/.java_bash_history.`date +'%Y%m'`
+export HISTDATE=`date +'%Y%m'`
+export COURSEYEAR=`/usr/local/bin/course`
+HISTFILE=$HOME/kadai/$COURSEYEAR/.java_bash_history.$HISTDATE
 HISTTIMEFORMAT="%Y/%m/%dT%T%z "
+export PROMPT_COMMAND='echo -e "res:$?\tpwd:$PWD" >> $HOME/kadai/$COURSEYEAR/.java_bash_history.$HISTDATE;history -a'
