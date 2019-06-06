@@ -8,8 +8,8 @@ usage(){
 	使い方:
 	  getkadai 
 	
-	サーバ上のkadai/java18ディレクトリを，このPC上のホームディレクトリの下に
-	あるkadaiディレクトリ（~/kadai/java18）にコピーします．
+	サーバ上のkadai/javaYYディレクトリ(YYには年度情報が入る)を，このPC上のホームディレクトリの下に
+	あるkadaiディレクトリ（~/kadai/javaYY）にコピーします．
 	
 	EOF
 }

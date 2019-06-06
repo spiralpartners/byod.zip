@@ -19,7 +19,7 @@ function end_proc(){
   rm ~/kadai/.??*
   echo "`date +'%Y-%m-%dT%H:%M:%S'` : End" >> ~/kadai/`/usr/local/bin/course`/.message.txt
   echo '終了時の更新ファイルを提出し，出席スクリプトを終了します'
-  /usr/local/bin/putkadai
+  /usr/local/bin/upkadai
   exit 0
 }
 
@@ -28,7 +28,7 @@ echo "`date +'%Y-%m-%dT%H:%M:%S'` : Start" >> ~/kadai/`/usr/local/bin/course`/.m
 
 INTERVAL="10"
 echo -e "==== 今から${INTERVAL}秒ごとに課題を提出します ===="
-/usr/local/bin/putkadai
+/usr/local/bin/upkadai
 find ~/kadai/`/usr/local/bin/course`/ -not -name '.*' -not -name '*.class' -ls > ~/kadai/.found
 while :; do
     find ~/kadai/`/usr/local/bin/course`/ -not -name '.*' -not -name '*.class' -ls > ~/kadai/.tmp
@@ -36,7 +36,7 @@ while :; do
       sleep $INTERVAL
     else
       #echo `diff ~/kadai/.tmp ~/kadai/.found`
-      /usr/local/bin/putkadai
+      /usr/local/bin/upkadai
       if [ $? -le 1 ]; then
         cp ~/kadai/.tmp ~/kadai/.found
       fi
