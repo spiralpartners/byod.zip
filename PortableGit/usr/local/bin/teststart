@@ -1,0 +1,33 @@
+#!/bin/bash
+
+LECNAME=`/usr/local/bin/course`
+
+#コマンド実行履歴を保存するファイル．bash_profile.shで定義されている変数を利用している
+HISTTESTFILE=$HOME/kadai/$COURSEYEAR/.log/.java_test_history.$HISTDATE
+echo teststart:`date +%s` >> ${HISTTESTFILE}
+
+##########################
+# 提出ディレクトリの確認 #
+##########################
+eval JAVADIR="$HOME/kadai/${LECNAME}"
+eval SUBMITDIR="${JAVADIR}/test"
+
+for i in {1..3} ; do
+    if [ ! -d "${SUBMITDIR}/test${i}" ]; then
+        echo ""
+        echo "エラー: ${SUBMITDIR}/test${i} が存在しません．getjavaコマンドを実行してください"
+        echo ""
+        echo "エラー: ${SUBMITDIR}/test${i} が存在しません" >> ${HISTTESTFILE}
+        exit 1
+    fi
+done
+
+####################################
+# 常時起動しておくスクリプトを実行 #
+####################################
+LOOP="/usr/local/bin/testloop"
+if [ -x "${LOOP}" ]; then
+    ${LOOP} &
+fi
+
+echo "実技試験を開始します"

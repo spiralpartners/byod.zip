@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#コマンド実行履歴を保存するファイル．bash_profile.shで定義されている変数を利用している
+HISTTESTFILE=$HOME/kadai/$COURSEYEAR/.log/.java_test_history.$HISTDATE
+
+#リポジトリ初期化
+git -C ~/kadai/`/usr/local/bin/course`/test/ init 1>> ${HISTTESTFILE} 2>&1
+
+#コミッターの名前とアドレスを登録
+git -C ~/kadai/`/usr/local/bin/course`/test/ config --local user.name "`/usr/local/bin/oitname`" 1>> ${HISTTESTFILE} 2>&1
+git -C ~/kadai/`/usr/local/bin/course`/test/ config --local user.email "`/usr/local/bin/oitname`@st.oit.ac.jp" 1>> ${HISTTESTFILE} 2>&1
+
+#編集履歴を保存しないファイルの指定
+echo -e "*.class\n.*\n*~\n#*\n*.tbz2" > ~/kadai/`/usr/local/bin/course`/test/.gitignore
+
+
+#一定時間ごとに編集履歴を保存
+while :; do
+    #echo "loop"
+    git -C ~/kadai/`/usr/local/bin/course`/test/ add -A 1>/dev/null 2>&1
+    git -C ~/kadai/`/usr/local/bin/course`/test/ commit -m "`date +%s`" 1>/dev/null 2>&1
+    sleep 5
+done
