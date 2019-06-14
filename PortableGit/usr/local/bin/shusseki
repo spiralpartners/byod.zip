@@ -7,6 +7,10 @@ GE='\e[m'
 RB='\e[1;31m'
 RE='\e[m'
 
+#コマンド実行履歴を保存するファイル．bash_profile.shで定義されている変数を利用している
+HISTFILE=$HOME/kadai/$COURSEYEAR/.log/.java_bash_history.$HISTDATE
+
+
 echo "出席スクリプトを起動します．"
 echo "このスクリプトは演習の課題ファイルが更新されるたびにそのファイルを自動的にサーバに提出します．"
 echo "演習実施中や課題ファイル編集時にはずっと起動しておいてください．"
@@ -17,14 +21,14 @@ echo "Ctr+Cで終了できます．"
 trap end_proc 2 15
 function end_proc(){
   rm ~/kadai/.??*
-  echo "`date +'%Y-%m-%dT%H:%M:%S'` : End" >> ~/kadai/`/usr/local/bin/course`/.message.txt
+  echo "`date +'%Y-%m-%dT%H:%M:%S'` : Shusseki End" >> ${HISTFILE}
   echo '終了時の更新ファイルを提出し，出席スクリプトを終了します'
   /usr/local/bin/upkadai
   exit 0
 }
 
 [ ! -d ~/kadai ] && mkdir -p ~/kadai
-echo "`date +'%Y-%m-%dT%H:%M:%S'` : Start" >> ~/kadai/`/usr/local/bin/course`/.message.txt
+echo "`date +'%Y-%m-%dT%H:%M:%S'` : Shusseki Start" >> ${HISTFILE}
 
 INTERVAL="10"
 echo -e "==== 今から${INTERVAL}秒ごとに課題を提出します ===="

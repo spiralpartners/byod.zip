@@ -3,6 +3,7 @@
 # Written by Yausharu Mizutani
 # Modified by Hiroshi Igaki
 
+# 古いjava_bash_historyはローカルから削除（2ヶ月以上前）
 this_month=`date +'%Y%m'`
 last_month=`date -d "${this_month}01 1 month ago" +'%Y%m'`
 find $HOME/kadai/`/usr/local/bin/course`/ -name ".java_bash_history*" -not -name ".java_bash_history.${this_month}" -not -name ".java_bash_history.${last_month}" -exec rm {} \;

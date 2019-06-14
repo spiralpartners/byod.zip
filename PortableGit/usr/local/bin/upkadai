@@ -59,6 +59,7 @@ rsync --timeout=15 --force -avu ${DFLAG} \
         --exclude='*.class' \
         --exclude='*~'      \
         --exclude='.vscode' \
+        --exclude='.git' \
         --exclude='#*'      \
         ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/ > ~/kadai/.up
 if [ $? -gt 0 ]; then
