@@ -7,18 +7,18 @@ usage(){
     cat <<-EOF
 	
 	使い方:
-	  putkadai 
-	  putkadai --delete
+	  upkadai 
+	  upkadai --delete
 	
-	このPCのホームディレクトリ下にあるkadai/java18ディレクトリ（~/kadai/java18）をファイル
-    サーバ上のkadai/java18ディレクトリに提出(リモートコピー)します．
+	このPCのホームディレクトリ下にあるkadai/javaYYディレクトリ（~/kadai/javaYY）(YYには年度情報が入る)をファイル
+    サーバ上のkadai/javaYYディレクトリに提出(リモートコピー)します．
 	
-	サーバ名はデフォルトでは o-ssh.center.oit.ac.jp です．
+	サーバ名はデフォルトでは o-vnc.center.oit.ac.jp です．
 	環境変数 KADAI_HOST でサーバ名を指定することができます．
-	(例) env KADAI_HOST=pc1350l putkadai
+	(例) env KADAI_HOST=pc1350l upkadai
 	
-	--deleteを付けると~/javaexcとサーバ上のkadai/java18/javaexcを完全同期します．
-	つまり，サーバ上のjavaexcにあって~/javaexcに無いファイルは，サーバ上から
+	--deleteを付けると~/kadai/javaYYとサーバ上のkadai/javaYY/を完全同期します．
+	つまり，サーバ上のjavaYYにあってローカルの~/kadai/javaYYに無いファイルは，サーバ上から
 	削除されます．使い方を誤るとサーバ上の必要なファイルまで削除してしまう
 	可能性があるため，--deleteの使用は十分に気を付けてください．
 	
@@ -60,24 +60,24 @@ rsync --timeout=15 --force -avu ${DFLAG} \
         --exclude='*~'      \
         --exclude='.vscode' \
         --exclude='#*'      \
-        ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/ > ~/kadai/.put
+        ~/kadai/`/usr/local/bin/course` ${id}@${rhost}:kadai/ > ~/kadai/.up
 if [ $? -gt 0 ]; then
   echo -e "${RB}rsyncは失敗しました．${RE} `date`"
-  rm ~/kadai/.put
+  rm ~/kadai/.up
   exit 2
 fi
 
-rsync_msg=`cat ~/kadai/.put | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is'`
-rsync_msg_size=`cat ~/kadai/.put | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is' | wc -l`
+rsync_msg=`cat ~/kadai/.up | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is'`
+rsync_msg_size=`cat ~/kadai/.up | grep -v -e '/\.' -e 'sending incremental file list' -e 'bytes/sec' -e 'total size is' | wc -l`
 
 if [ $rsync_msg_size -gt 1 ]; then
   echo "Uploadファイル一覧"
   echo -e ${rsync_msg}
   echo -e "${GB}rsyncは成功しました${GE} `date`"
-  rm ~/kadai/.put
+  rm ~/kadai/.up
   exit 0
 else
   echo -e "${GB}更新ファイルがありませんでした${GE} `date`"
-  rm ~/kadai/.put
+  rm ~/kadai/.up
   exit 1
 fi

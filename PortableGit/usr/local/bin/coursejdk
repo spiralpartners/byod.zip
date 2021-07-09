@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ "$#"  = "1" ] && [ "$1" = "-v" ]; then
+    echo "openjdk1.8.0.212"
+else
+    echo "openjdk1.8.0.212"
+fi

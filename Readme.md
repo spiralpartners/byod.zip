@@ -126,6 +126,7 @@ C:\oit\java-bash-2.XX.Y-64.exe
   - `C:\oit\vscode-portable-win64-1.31.0-1\data\appdata\Code\languagepacks.json`
 - `C:\oit\vscode-portable-win64-1.31.0-1\data\extensions\redhat.java-0.38.0\server\config_win`以下にキャッシュができる場合があるので削除する(config.ini以外はキャッシュ）
 - `C:\oit\vscode-portable-win64-1.31.0-1\data\logs`フォルダを丸ごと削除
+- `C:\oit\vscode-portable-win64-1.31.0-1\logs`フォルダを丸ごと削除
 
 ### Step7. 演習フォルダ(本リポジトリ)のセットアップ
 - .vscode以下のlaunch.json, settings.json
@@ -134,14 +135,17 @@ C:\oit\java-bash-2.XX.Y-64.exe
 
 ### Step8. シェルのセットアップ
 - C:\oit\PortableGit-2.XX.YY.Z-64 以下に本リポジトリのPortableGitフォルダ以下をコピーする
-
+  - PortableGit/usr/local/bin/course,coursejdk,coursevscode が更新されているかを確認する
+  
 ### Step9. /usr/local/bin/と学生用java演習フォルダをサーバに設置
 - /home/teachers/t2015025/public_html/progjava/ を作成する
   - `~/`から`~/public_html/progjava`までを711にしておく
 - getjava.shとgetlocal.shを/home/teachers/t2015025/public_html/progjava/に配置し，各コマンドを実行する
+  - getjava.shのclass設定が正しいかを確認しておく（毎年更新の必要あり）
 - 上記 progjava フォルダに対して権限設定が適切であることを確認しておくこと
-  - `progjava`内の`java18`,`local`以下のディレクトリを755
-  - `progjava`内の各ファイルを644
+  - `progjava`内の`javaXX`,`local`以下のディレクトリを755
+    - javaXXにはjava19等の年度情報が入る
+  - `progjava`内の各ファイルは644
 
 # 今後の課題
 ### ~~F5でビルドしたときの-Dfile.encoding=UTF-8オプションのせいでScannerでの入力が文字化けする~~

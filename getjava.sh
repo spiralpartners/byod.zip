@@ -1,5 +1,5 @@
 tempdir="/home/teachers/t2015025/byod"
-class="java18"
+class="java19"
 rm -rf ~/public_html/progjava/${class}
 mkdir ${tempdir} && git -C ${tempdir} init
 git -C ${tempdir} config core.sparsecheckout true

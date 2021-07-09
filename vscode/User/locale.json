@@ -1,6 +1,3 @@
 {
-	// VS Code の表示言語を定義します。
-	// サポートされている言語の一覧については、https://go.microsoft.com/fwlink/?LinkId=761051 をご覧ください。
-	
-	"locale":"ja" // VS Code を再起動するまで変更は有効になりません。
+    "locale": "ja"
 }
